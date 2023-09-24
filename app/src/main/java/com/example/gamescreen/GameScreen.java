@@ -2,8 +2,6 @@ package com.example.gamescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.drawable.Drawable;
-import android.content.Intent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -20,10 +18,19 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.game_screen);
         ProgressBar health = (ProgressBar) findViewById(R.id.health_bar);
         Button interact = (Button) findViewById(R.id.interact);
-        Button movement = (Button) findViewById(R.id.movement);
+        Button up = (Button) findViewById(R.id.move_up);
+        Button down = (Button) findViewById(R.id.move_down);
+        Button left = (Button) findViewById(R.id.move_left);
+        Button right = (Button) findViewById(R.id.move_right);
         ImageView player = (ImageView) findViewById(R.id.character);
         player.setImageDrawable(ConfigScreen.sprite);
         this.position = new int[2];
+
+
+    }
+
+    private void movement() {
+
     }
 
     private void lost() {
