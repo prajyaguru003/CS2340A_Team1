@@ -70,7 +70,7 @@ public class ConfigScreen extends AppCompatActivity{
         spriteClicked(sprite2, 2);
         spriteClicked(sprite3, 3);
     }
-    private void spriteClicked(ImageButton button, int spriteNum){
+    private void spriteClicked(ImageButton button, int spriteNum) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
