@@ -29,7 +29,7 @@ public class ConfigScreen extends AppCompatActivity{
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(name != null && name.length() > 0){ //also add for name to not be whitespaces
+                if(name != null && name.length() > 0 && name.getText().toString().isEmpty()){ //also add for name to not be whitespaces
                     playerName = name;
                     difficulty();
                 } else{
