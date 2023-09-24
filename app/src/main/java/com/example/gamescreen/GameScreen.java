@@ -23,7 +23,7 @@ public class GameScreen extends AppCompatActivity {
         Button left = (Button) findViewById(R.id.move_left);
         Button right = (Button) findViewById(R.id.move_right);
         ImageView player = (ImageView) findViewById(R.id.character);
-        player.setImageDrawable(ConfigScreen.sprite);
+        player.setImageDrawable(ConfigScreen.getSprite());
         this.position = new int[2];
 
 

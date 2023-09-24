@@ -22,7 +22,7 @@ public class Welcome extends AppCompatActivity {
         startClicked(start);
         exitClicked(exit);
     }
-    private void startClicked(Button start){
+    private void startClicked(Button start) {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +32,7 @@ public class Welcome extends AppCompatActivity {
             }
         });
     }
-    private void exitClicked(Button exit){
+    private void exitClicked(Button exit) {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

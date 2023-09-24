@@ -1,4 +1,6 @@
-package com.example.gamescreen;/*package com.example.gamescreen;
+package com.example.gamescreen;
+/*
+package com.example.gamescreen
 
 public class EndScreen {
 }*/
@@ -6,9 +8,9 @@ public class EndScreen {
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+//import android.util.Log;
+//import android.view.View;
+//import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
