@@ -83,7 +83,7 @@ public class ConfigScreen extends AppCompatActivity{
         setContentView(R.layout.showselected);
         TextView name = (TextView) findViewById(R.id.nameSelect);
         ImageView setSprite = (ImageView) findViewById(R.id.spriteSelect);
-        name.setText(playerName.getText());
+        name.setText("Name: " + playerName.getText());
         setSprite.setImageDrawable(sprite);
         Button acknowledge = (Button) findViewById(R.id.btnAcknowledge);
         acknowledge.setOnClickListener(new View.OnClickListener() {
