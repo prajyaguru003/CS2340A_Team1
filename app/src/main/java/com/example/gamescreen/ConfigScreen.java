@@ -1,21 +1,23 @@
 package com.example.gamescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.graphics.drawable.Drawable;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Bundle;
 
 public class ConfigScreen extends AppCompatActivity{
-    private static int hp;
+    public static int hp;
     private static final int hpEasy = 100;
     private static final int hpMedium = 75;
     private static final int hpHard = 50;
-    private static int sprite;
+    public static String difficulty;
+    public static Drawable sprite;
+    public static TextView playerName;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setName();
@@ -28,6 +30,7 @@ public class ConfigScreen extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if(name != null && name.length() > 0){ //also add for name to not be whitespaces
+                    playerName = name;
                     difficulty();
                 } else{
                     Intent intent = new Intent(ConfigScreen.this, ConfigScreen.class);
@@ -41,11 +44,12 @@ public class ConfigScreen extends AppCompatActivity{
         Button easy = (Button) findViewById(R.id.btnEasy);
         Button medium = (Button) findViewById(R.id.btnMedium);
         Button hard = (Button) findViewById(R.id.btnHard);
-        difficultyClicked(easy, hpEasy);
-        difficultyClicked(medium, hpMedium);
-        difficultyClicked(hard, hpHard);
+        difficultyClicked(easy, hpEasy, "Easy");
+        difficultyClicked(medium, hpMedium, "Medium");
+        difficultyClicked(hard, hpHard, "Hard");
     }
-    private void difficultyClicked(Button button, int hp){
+    private void difficultyClicked(Button button, int hp, String diff){
+        difficulty = diff;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +74,21 @@ public class ConfigScreen extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sprite = spriteNum;
+                sprite = button.getDrawable();
+                showSelected();
+            }
+        });
+    }
+    private void showSelected(){
+        setContentView(R.layout.showselected);
+        TextView name = (TextView) findViewById(R.id.nameSelect);
+        ImageView setSprite = (ImageView) findViewById(R.id.spriteSelect);
+        name.setText(playerName.getText());
+        setSprite.setImageDrawable(sprite);
+        Button acknowledge = (Button) findViewById(R.id.btnAcknowledge);
+        acknowledge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(ConfigScreen.this, GameScreen.class);
                 startActivity(intent);
             }
