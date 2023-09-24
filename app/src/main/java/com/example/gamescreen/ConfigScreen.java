@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class ConfigScreen extends AppCompatActivity{
     public static int hp;
@@ -29,12 +30,14 @@ public class ConfigScreen extends AppCompatActivity{
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(name != null && name.length() > 0 && name.getText().toString().isEmpty()){ //also add for name to not be whitespaces
+                if(name != null && name.length() > 0){ //also add for name to not be whitespaces
                     playerName = name;
                     difficulty();
                 } else{
-                    Intent intent = new Intent(ConfigScreen.this, ConfigScreen.class);
-                    startActivity(intent);
+                    Toast toast = Toast.makeText(ConfigScreen.this, "Enter a valid name!", Toast.LENGTH_LONG);
+                    toast.show();
+//                    Intent intent = new Intent(ConfigScreen.this, ConfigScreen.class);
+//                    startActivity(intent);
                 }
             }
         });
