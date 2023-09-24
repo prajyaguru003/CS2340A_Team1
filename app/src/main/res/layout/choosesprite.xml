@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/spriteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose an Avatar!"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="39dp" />
+
+    <ImageButton
+        android:id="@+id/btnSprite1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSprite2"
+        app:layout_constraintStart_toEndOf="@+id/btnSprite3"
+        app:layout_constraintTop_toBottomOf="@+id/spriteText"
+        app:srcCompat="@drawable/chimchar" />
+
+    <ImageButton
+        android:id="@+id/btnSprite2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="80dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spriteText"
+        app:layout_constraintVertical_bias="0.489"
+        app:srcCompat="@drawable/pikachu" />
+
+    <ImageButton
+        android:id="@+id/btnSprite3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spriteText"
+        app:srcCompat="@drawable/piplup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
