@@ -1,9 +1,9 @@
 package com.example.gamescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.graphics.drawable.Drawable;
 import android.content.Intent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,31 +18,41 @@ public class ConfigScreen extends AppCompatActivity {
     private static final int HPHARD = 50;
     private static String difficulty;
     private static Drawable sprite;
-    private static TextView playerName;
+    private static String playerName;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setName();
     }
+
     private void setName() {
         setContentView(R.layout.setname);
         TextView name = (TextView) findViewById(R.id.nameInput);
         Button btnContinue = (Button) findViewById(R.id.btnContinueName);
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (name != null && name.length() > 0) { //also add for name to not be whitespaces
-                    playerName = name;
-                    difficulty();
-                } else {
-                    Toast toast = Toast.makeText(ConfigScreen.this,
-                                "Enter a valid name!", Toast.LENGTH_LONG);
-                    toast.show();
-                    //Intent intent = new Intent(ConfigScreen.this, ConfigScreen.class);
-                    //startActivity(intent);
+        btnContinue.setOnClickListener(view -> {
+            if (name != null && name.length() > 0) { //also add for name to not be whitespaces
+                boolean foundLetter = false;
+                for (int i = 0; i < name.length(); i++) {
+                    if (name.toString().charAt(i) != ' ') {
+                        foundLetter = true;
+                    }
                 }
+                if (!foundLetter) {
+                    Toast toast = Toast.makeText(ConfigScreen.this,
+                            "Enter a valid name!", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    playerName = name.getText().toString();
+                    difficulty();
+                }
+            } else {
+                Toast toast = Toast.makeText(ConfigScreen.this,
+                        "Enter a valid name!", Toast.LENGTH_LONG);
+                toast.show();
             }
         });
     }
+
     private void difficulty() {
         setContentView(R.layout.setdifficulty);
         Button easy = (Button) findViewById(R.id.btnEasy);
@@ -52,16 +62,15 @@ public class ConfigScreen extends AppCompatActivity {
         difficultyClicked(medium, HPMEDIUM, "Medium");
         difficultyClicked(hard, HPHARD, "Hard");
     }
+
     private void difficultyClicked(Button button, int hp, String diff) {
         difficulty = diff;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setHp(hp);
-                sprite();
-            }
+        button.setOnClickListener(view -> {
+            setHp(hp);
+            sprite();
         });
     }
+
     private static void setHp(int x) {
         hp = x;
     }
@@ -74,8 +83,12 @@ public class ConfigScreen extends AppCompatActivity {
         return sprite;
     }
 
-    public static TextView getPlayerName() {
+    public static String getPlayerName() {
         return playerName;
+    }
+
+    public static int gethp() {
+        return hp;
     }
 
     private void sprite() {
@@ -83,32 +96,29 @@ public class ConfigScreen extends AppCompatActivity {
         ImageButton sprite1 = (ImageButton) findViewById(R.id.btnSprite1);
         ImageButton sprite2 = (ImageButton) findViewById(R.id.btnSprite2);
         ImageButton sprite3 = (ImageButton) findViewById(R.id.btnSprite3);
-        spriteClicked(sprite1, 1);
-        spriteClicked(sprite2, 2);
-        spriteClicked(sprite3, 3);
+        spriteClicked(sprite1);
+        spriteClicked(sprite2);
+        spriteClicked(sprite3);
     }
-    private void spriteClicked(ImageButton button, int spriteNum) {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sprite = button.getDrawable();
-                showSelected();
-            }
+
+    private void spriteClicked(ImageButton button) {
+        button.setOnClickListener(view -> {
+            sprite = button.getDrawable();
+            showSelected();
         });
     }
+
     private void showSelected() {
         setContentView(R.layout.showselected);
         TextView name = (TextView) findViewById(R.id.nameSelect);
         ImageView setSprite = (ImageView) findViewById(R.id.spriteSelect);
-        name.setText("Name: " + playerName.getText());
+        String setName = "Name: " + playerName;
+        name.setText(setName);
         setSprite.setImageDrawable(sprite);
         Button acknowledge = (Button) findViewById(R.id.btnAcknowledge);
-        acknowledge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ConfigScreen.this, GameScreen.class);
-                startActivity(intent);
-            }
+        acknowledge.setOnClickListener(view -> {
+            Intent intent = new Intent(ConfigScreen.this, GameScreen.class);
+            startActivity(intent);
         });
     }
 }
