@@ -33,7 +33,7 @@ public class ConfigScreen extends AppCompatActivity {
             if (name != null && name.length() > 0) { //also add for name to not be whitespaces
                 boolean foundLetter = false;
                 for (int i = 0; i < name.length(); i++) {
-                    if (name.toString().charAt(i) != ' ') {
+                    if (name.getText().toString().charAt(i) != ' ') {
                         foundLetter = true;
                     }
                 }
