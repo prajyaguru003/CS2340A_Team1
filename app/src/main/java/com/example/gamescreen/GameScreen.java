@@ -3,6 +3,7 @@ package com.example.gamescreen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,27 +14,32 @@ import androidx.appcompat.app.AppCompatActivity;
 //import android.widget.ProgressBar;
 
 public class GameScreen extends AppCompatActivity {
+<<<<<<< HEAD
 
     private static GameScreen gameScreen;
+=======
+>>>>>>> b8198a2d0473ba38a7703cc8a5e11e91db6ea2fe
     private static float X;
     private static float Y;
     private static int tile;
     private static final String TAG = "GameScreen";
+
+    private CountDownTimer countDownTimer;
+    private TextView score;
+    private int scoreInt = 500;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        if (gameScreen == null) {
-            GameScreen();
-        }
+        tile = 1;
         setContentView(R.layout.tile1);
+        score = (TextView) findViewById(R.id.score);
+        score.setTextColor(Color.WHITE);
+        startCountdown();
         tile();
     }
-    private void GameScreen() {
-        X = 0;
-        Y = 0;
-        tile = 1;
-    }
-    private void tile(){
+
+    private void tile() {
         Log.d(TAG, "TILE NUMBER " + tile);
         ImageView player = (ImageView) findViewById(R.id.main_character);
         player.setImageDrawable(ConfigScreen.getSprite());
@@ -52,42 +58,18 @@ public class GameScreen extends AppCompatActivity {
         showSelected();
         Button next = (Button) findViewById(R.id.btnNextTile);
         next.setOnClickListener(view -> {
-            if(tile == 1) {
+            if (tile == 1) {
                 tile++;
                 setContentView(R.layout.tile2);
                 tile();
-            } else if(tile == 2) {
+            } else if (tile == 2) {
                 tile++;
                 setContentView(R.layout.tile3);
                 tile();
-            } else if(tile == 3) {
+            } else if (tile == 3) {
                 Intent intent = new Intent(GameScreen.this, EndScreen.class);
                 startActivity(intent);
             }
-        });
-    }
-    private void moveRight(Button button, ImageView player){
-        button.setOnClickListener(view -> {
-            X++;
-            player.setX(X);
-        });
-    }
-    private void moveLeft(Button button, ImageView player){
-        button.setOnClickListener(view -> {
-            X--;
-            player.setX(X);
-        });
-    }
-    private void moveUp(Button button, ImageView player){
-        button.setOnClickListener(view -> {
-            Y++;
-            player.setY(Y);
-        });
-    }
-    private void moveDown(Button button, ImageView player){
-        button.setOnClickListener(view -> {
-            Y--;
-            player.setY(Y);
         });
     }
     private void showSelected() {
@@ -103,9 +85,6 @@ public class GameScreen extends AppCompatActivity {
         diff.setTextColor(Color.WHITE);
         Log.d(TAG, "SHOWING SELECTED 4 AND TILE " + tile);
         TextView tileNum = (TextView) findViewById(R.id.tileNum);
-        if(tileNum == null){
-            Log.d(TAG, "YOOOOOOOOOOOOO");
-        }
         tileNum.setTextColor(Color.WHITE);
         Log.d(TAG, "SHOWING SELECTED 5 AND TILE " + tile);
         String n = "Name: " + ConfigScreen.getPlayerName();
@@ -117,5 +96,54 @@ public class GameScreen extends AppCompatActivity {
         hp.setText(health);
         diff.setText(diffic);
         tileNum.setText(setTile);
+    }
+
+    private void startCountdown() {
+        Log.d(TAG, "COUNTDOWN 1");
+        countDownTimer = new CountDownTimer(500000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "COUNTDOWN 2");
+                long secondsLeft = millisUntilFinished / 1000;
+                Log.d(TAG, "COUNTDOWN 3");
+                score.setText("Score: " + String.valueOf(secondsLeft));
+                Log.d(TAG, "COUNTDOWN 4");
+            }
+
+            @Override
+            public void onFinish() {
+                score.setText("Score: " + "0");
+                Intent intent = new Intent(GameScreen.this, EndScreen.class);
+            }
+        };
+        countDownTimer.start();
+    }
+
+    private void moveRight(Button button, ImageView player) {
+        button.setOnClickListener(view -> {
+            X++;
+            player.setX(X);
+        });
+    }
+
+    private void moveLeft(Button button, ImageView player) {
+        button.setOnClickListener(view -> {
+            X--;
+            player.setX(X);
+        });
+    }
+
+    private void moveUp(Button button, ImageView player) {
+        button.setOnClickListener(view -> {
+            Y++;
+            player.setY(Y);
+        });
+    }
+
+    private void moveDown(Button button, ImageView player) {
+        button.setOnClickListener(view -> {
+            Y--;
+            player.setY(Y);
+        });
     }
 }
