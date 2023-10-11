@@ -24,9 +24,14 @@ public class GameScreen extends AppCompatActivity {
         ImageView player = (ImageView) findViewById(R.id.character);
         player.setImageDrawable(ConfigScreen.sprite);
         this.position = new int[2];
+        if (ConfigScreen.hp <= 0) {
+            lost();
+        }
     }
 
-    private void lost() {
 
+    private void lost() {
+        Intent intent = new Intent(GameScreen.this, EndScreen.class);
+        startActivity(intent);
     }
 }
