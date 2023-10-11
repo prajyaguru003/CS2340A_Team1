@@ -2,6 +2,7 @@ package com.example.gamescreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.content.Intent;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class ConfigScreen extends AppCompatActivity {
 
     private void setName() {
         setContentView(R.layout.setname);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         TextView name = (TextView) findViewById(R.id.nameInput);
         Button btnContinue = (Button) findViewById(R.id.btnContinueName);
         btnContinue.setOnClickListener(view -> {
@@ -55,6 +57,7 @@ public class ConfigScreen extends AppCompatActivity {
 
     private void difficulty() {
         setContentView(R.layout.setdifficulty);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Button easy = (Button) findViewById(R.id.btnEasy);
         Button medium = (Button) findViewById(R.id.btnMedium);
         Button hard = (Button) findViewById(R.id.btnHard);
@@ -110,6 +113,7 @@ public class ConfigScreen extends AppCompatActivity {
 
     private void showSelected() {
         setContentView(R.layout.showselected);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         TextView name = (TextView) findViewById(R.id.nameSelect);
         ImageView setSprite = (ImageView) findViewById(R.id.spriteSelect);
         String setName = "Name: " + playerName;
