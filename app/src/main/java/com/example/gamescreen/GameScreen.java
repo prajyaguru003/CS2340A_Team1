@@ -1,5 +1,6 @@
 package com.example.gamescreen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreen extends AppCompatActivity {
 
+    private static GameScreen gameScreen;
     private static float X;
     private static float Y;
     private static int tile;
@@ -20,9 +22,16 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        tile = 1;
+        if (gameScreen == null) {
+            GameScreen();
+        }
         setContentView(R.layout.tile1);
         tile();
+    }
+    private void GameScreen() {
+        X = 0;
+        Y = 0;
+        tile = 1;
     }
     private void tile(){
         Log.d(TAG, "TILE NUMBER " + tile);
