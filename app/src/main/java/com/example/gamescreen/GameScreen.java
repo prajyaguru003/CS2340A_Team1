@@ -52,6 +52,9 @@ public class GameScreen extends AppCompatActivity {
                 tile++;
                 setContentView(R.layout.tile3);
                 tile();
+            } else if(tile == 3) {
+                Intent intent = new Intent(GameScreen.this, EndScreen.class);
+                startActivity(intent);
             }
         });
     }

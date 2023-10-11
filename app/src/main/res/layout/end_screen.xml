@@ -6,24 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editTextText"
+    <TextView
+        android:id="@+id/end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="232dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Leaderboard"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="178dp"
+        android:text="The End!"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/theEnd"
+        android:id="@+id/leaderBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The End!"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="628dp" />
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="175dp"
+        android:text="Leaderboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end"
+        tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="105dp"
+        android:text="Restart?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
