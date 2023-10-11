@@ -14,6 +14,16 @@
         android:layout_marginTop="183dp"
         android:layout_marginEnd="178dp"
         android:text="The End!"
+        app:layout_constraintEnd_toEndOf="parent"></TextView>
+
+    <EditText
+        android:id="@+id/leaderboardText"
+        android:layout_width="290dp"
+        android:layout_height="91dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Leaderboard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +40,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/end"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"></TextView>
+
+    <TextView
+        android:id="@+id/currScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="100dp"
+        android:text="Your score was "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/restart"
