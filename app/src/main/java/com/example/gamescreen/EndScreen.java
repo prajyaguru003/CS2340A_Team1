@@ -1,5 +1,6 @@
 package com.example.gamescreen;
 
+<<<<<<< HEAD
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.view.View;
@@ -25,6 +26,5 @@ public class EndScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }
