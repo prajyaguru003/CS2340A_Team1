@@ -3,6 +3,7 @@ package com.example.gamescreen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.util.Log;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ public class Welcome extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.welcome_screen);
         Button start = (Button) findViewById(R.id.btnStart);
         Button exit = (Button) findViewById(R.id.btnExit);
