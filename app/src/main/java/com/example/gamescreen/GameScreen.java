@@ -19,6 +19,7 @@ public class GameScreen extends AppCompatActivity {
     private static int tile;
     private static final String TAG = "GameScreen";
 
+    private CountDownTimer countDownTimer;
     private TextView score;
     private int scoreInt = 500;
 
@@ -27,6 +28,9 @@ public class GameScreen extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tile = 1;
         setContentView(R.layout.tile1);
+        score = (TextView) findViewById(R.id.score);
+        score.setTextColor(Color.WHITE);
+        startCountdown();
         tile();
     }
 
@@ -63,18 +67,47 @@ public class GameScreen extends AppCompatActivity {
             }
         });
     }
+    private void showSelected() {
+        Log.d(TAG, "SHOWING SELECTED");
+        TextView name = (TextView) findViewById(R.id.name);
+        name.setTextColor(Color.WHITE);
+        Log.d(TAG, "SHOWING SELECTED 1 AND TILE " + tile);
+        TextView hp = (TextView) findViewById(R.id.health);
+        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
+        hp.setTextColor(Color.WHITE);
+        Log.d(TAG, "SHOWING SELECTED 3 AND TILE " + tile);
+        TextView diff = (TextView) findViewById(R.id.difficulty);
+        diff.setTextColor(Color.WHITE);
+        Log.d(TAG, "SHOWING SELECTED 4 AND TILE " + tile);
+        TextView tileNum = (TextView) findViewById(R.id.tileNum);
+        tileNum.setTextColor(Color.WHITE);
+        Log.d(TAG, "SHOWING SELECTED 5 AND TILE " + tile);
+        String n = "Name: " + ConfigScreen.getPlayerName();
+        String health = "HP: " + ConfigScreen.gethp();
+        String diffic = "Difficulty: " + ConfigScreen.getDifficulty();
+        String setTile = "Tile: " + tile;
+        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
+        name.setText(n);
+        hp.setText(health);
+        diff.setText(diffic);
+        tileNum.setText(setTile);
+    }
 
     private void startCountdown() {
-        CountDownTimer countDownTimer = new CountDownTimer(500000, 1000) {
+        Log.d(TAG, "COUNTDOWN 1");
+        countDownTimer = new CountDownTimer(500000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "COUNTDOWN 2");
                 long secondsLeft = millisUntilFinished / 1000;
-                score.setText(String.valueOf(secondsLeft));
+                Log.d(TAG, "COUNTDOWN 3");
+                score.setText("Score: " + String.valueOf(secondsLeft));
+                Log.d(TAG, "COUNTDOWN 4");
             }
 
             @Override
             public void onFinish() {
-                score.setText("0");
+                score.setText("Score: " + "0");
                 Intent intent = new Intent(GameScreen.this, EndScreen.class);
             }
         };
@@ -107,31 +140,5 @@ public class GameScreen extends AppCompatActivity {
             Y--;
             player.setY(Y);
         });
-    }
-
-    private void showSelected() {
-        Log.d(TAG, "SHOWING SELECTED");
-        TextView name = (TextView) findViewById(R.id.name);
-        name.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 1 AND TILE " + tile);
-        TextView hp = (TextView) findViewById(R.id.health);
-        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
-        hp.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 3 AND TILE " + tile);
-        TextView diff = (TextView) findViewById(R.id.difficulty);
-        diff.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 4 AND TILE " + tile);
-        TextView tileNum = (TextView) findViewById(R.id.tileNum);
-        tileNum.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 5 AND TILE " + tile);
-        String n = "Name: " + ConfigScreen.getPlayerName();
-        String health = "HP: " + ConfigScreen.gethp();
-        String diffic = "Difficulty: " + ConfigScreen.getDifficulty();
-        String setTile = "Tile: " + tile;
-        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
-        name.setText(n);
-        hp.setText(health);
-        diff.setText(diffic);
-        tileNum.setText(setTile);
     }
 }

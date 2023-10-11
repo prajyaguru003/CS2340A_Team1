@@ -16,6 +16,7 @@ public class EndScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.end_screen);
         TextView lb = (TextView) findViewById(R.id.leaderboardText);
         SharedPreferences prefs = getSharedPreferences("PREFS", 0);
         currScore = prefs.getInt("currScore", 0);
@@ -30,7 +31,6 @@ public class EndScreen extends AppCompatActivity {
                 "3. " + best3 + "\n" +
                 "4. " + best4 + "\n" +
                 "5. " + best5);
-        setContentView(R.layout.end_screen);
         TextView end = (TextView) findViewById(R.id.end);
         TextView leaderBoard = (TextView) findViewById(R.id.leaderBoard);
         Button restart = (Button) findViewById(R.id.restart);
