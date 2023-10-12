@@ -1,9 +1,9 @@
 package com.example.gamescreen;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.List;
-import java.util.ArrayList;
+//import java.util.Map;
+//import java.util.HashMap;
+//import java.util.PriorityQueue;
+//import java.util.List;
+//import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 //import android.widget.ProgressBar;
 
 public class GameScreen extends AppCompatActivity {
-    private static float X;
-    private static float Y;
+    private static float x;
+    private static float y;
     private int tile;
     private static final String TAG = "GameScreen";
     private CountDownTimer countDownTimer;
@@ -42,8 +42,8 @@ public class GameScreen extends AppCompatActivity {
     private void tile() {
         ImageView player = (ImageView) findViewById(R.id.main_character);
         player.setImageDrawable(ConfigScreen.getSprite());
-        X = player.getX();
-        Y = player.getY();
+        x = player.getX();
+        y = player.getY();
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
         Button left = (Button) findViewById(R.id.btnleft);
@@ -100,8 +100,8 @@ public class GameScreen extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-//                score.setText("Score: " + "0");
-//                Intent intent = new Intent(GameScreen.this, EndScreen.class);
+                //score.setText("Score: " + "0");
+                //Intent intent = new Intent(GameScreen.this, EndScreen.class);
             }
         };
         countDownTimer.start();
@@ -109,32 +109,32 @@ public class GameScreen extends AppCompatActivity {
 
     private void moveRight(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            X++;
-            player.setX(X);
+            x++;
+            player.setX(x);
         });
     }
 
     private void moveLeft(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            X--;
-            player.setX(X);
+            x--;
+            player.setX(x);
         });
     }
 
     private void moveUp(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            Y++;
-            player.setY(Y);
+            y++;
+            player.setY(y);
         });
     }
 
     private void moveDown(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            Y--;
-            player.setY(Y);
+            y--;
+            player.setY(y);
         });
     }
-    public static String getScore(){
+    public static String getScore() {
         return score.getText().toString();
     }
 }
