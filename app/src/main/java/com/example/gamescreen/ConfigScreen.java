@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 public class ConfigScreen extends AppCompatActivity {
     private static int hp;
-    private static final int HPEASY = 100;
-    private static final int HPMEDIUM = 75;
-    private static final int HPHARD = 50;
+    private static int HPEASY = 100;
+    private static int HPMEDIUM = 75;
+    private static int HPHARD = 50;
     private static String difficulty;
     private static Drawable sprite;
     private static String playerName;
@@ -74,18 +74,25 @@ public class ConfigScreen extends AppCompatActivity {
         });
     }
 
-    public static void setDifficulty(String diff) {
+    public static void setDifficulty(String diff, int num) {
         if (diff.equals("Easy")) {
+            HPEASY = num;
             difficulty = Integer.toString(HPEASY);
         } else if (diff.equals("Medium")) {
+            HPMEDIUM = num;
             difficulty = Integer.toString(HPMEDIUM);
         } else if (diff.equals("Hard")) {
+            HPHARD = num;
             difficulty = Integer.toString(HPHARD);
         }
     }
 
     public static void setHp(int x) {
-        hp = x;
+        if(x < 0){
+            hp = 0;
+        } else{
+            hp = x;
+        }
     }
 
     public static String getDifficulty() {
