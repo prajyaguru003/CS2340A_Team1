@@ -26,6 +26,7 @@ public class GameScreen extends AppCompatActivity {
     private static TextView score;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "TILEEEEEE " + tile);
@@ -57,6 +58,7 @@ public class GameScreen extends AppCompatActivity {
             if (tile == 1) {
                 tile++;
                 setContentView(R.layout.tile2);
+                ImageView weapon = (ImageView) findViewById(R.id.btnWeapon);
                 tile();
             } else if (tile == 2) {
                 tile++;
