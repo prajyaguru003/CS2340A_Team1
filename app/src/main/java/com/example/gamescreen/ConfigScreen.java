@@ -74,6 +74,16 @@ public class ConfigScreen extends AppCompatActivity {
         });
     }
 
+    public static void setDifficulty(String diff) {
+        if (diff.equals("Easy")) {
+            difficulty = Integer.toString(HPEASY);
+        } else if (diff.equals("Medium")) {
+            difficulty = Integer.toString(HPMEDIUM);
+        } else if (diff.equals("Hard")) {
+            difficulty = Integer.toString(HPHARD);
+        }
+    }
+
     public static void setHp(int x) {
         hp = x;
     }
