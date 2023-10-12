@@ -26,20 +26,19 @@ public class GameScreen extends AppCompatActivity {
     private static TextView score;
 
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "TILEEEEEE " + tile);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tile = 1;
         setContentView(R.layout.tile1);
         score = (TextView) findViewById(R.id.score);
         score.setTextColor(Color.WHITE);
-        startCountdown();
+        score.setText("500");
         tile();
     }
 
     private void tile() {
+        startCountdown(Integer.parseInt(score.getText().toString()));
         ImageView player = (ImageView) findViewById(R.id.main_character);
         player.setImageDrawable(ConfigScreen.getSprite());
         x = player.getX();
@@ -69,6 +68,7 @@ public class GameScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     private void showSelected() {
         TextView name = (TextView) findViewById(R.id.name);
@@ -89,9 +89,9 @@ public class GameScreen extends AppCompatActivity {
         tileNum.setText(setTile);
     }
 
-    private void startCountdown() {
+    private void startCountdown(int num) {
         Log.d(TAG, "COUNTDOWN 1");
-        countDownTimer = new CountDownTimer(500000, 1000) {
+        countDownTimer = new CountDownTimer(num*1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 long secondsLeft = millisUntilFinished / 1000;
@@ -100,8 +100,8 @@ public class GameScreen extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                //score.setText("Score: " + "0");
-                //Intent intent = new Intent(GameScreen.this, EndScreen.class);
+                score.setText("Score: " + "0");
+                Intent intent = new Intent(GameScreen.this, EndScreen.class);
             }
         };
         countDownTimer.start();
