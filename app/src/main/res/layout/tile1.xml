@@ -7,6 +7,18 @@
     android:background="@color/black"
     android:screenOrientation="landscape">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="76dp"
+        android:layout_height="117dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextTile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toEndOf="@+id/btnChest"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523"
+        app:srcCompat="@drawable/screen_shot_2023_10_11_at_9_37_00_pm" />
+
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"

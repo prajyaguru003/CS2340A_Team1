@@ -8,13 +8,15 @@ import android.util.Log;
 import android.widget.Button;
 import android.content.SharedPreferences;
 import android.widget.TextView;
-
+import java.text.SimpleDateFormat;
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.sql.Timestamp;
 public class EndScreen extends AppCompatActivity {
     TextView score;
 
     private static final String TAG = "EndScreen";
+    private static final SimpleDateFormat s = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
     int currScore;
 
     private static List<List<String>> tempLeaders;
@@ -25,9 +27,12 @@ public class EndScreen extends AppCompatActivity {
         if(tempLeaders == null){
             tempLeaders = new ArrayList<>();
         }
+        Long dateTime = System.currentTimeMillis();
+        Timestamp ts = new Timestamp(dateTime);
         List<String> temp = new ArrayList<>();
         temp.add(ConfigScreen.getPlayerName());
         temp.add(GameScreen.getScore());
+        temp.add(s.format(ts));
         tempLeaders.add(temp);
         Collections.sort(tempLeaders, (a,b) -> Integer.parseInt(b.get(1)) - Integer.parseInt(a.get(1)));
 
