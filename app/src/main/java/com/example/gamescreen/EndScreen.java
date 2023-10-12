@@ -15,30 +15,21 @@ public class EndScreen extends AppCompatActivity {
     private TextView score;
 
     private static final String TAG = "EndScreen";
-    private static final SimpleDateFormat S = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 
+    private Leaderboard leaderboard = Leaderboard.getInstance();
     private int currScore;
 
-    private static List<List<String>> tempLeaders;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.end_screen);
-        if (tempLeaders == null) {
-            tempLeaders = new ArrayList<>();
-        }
         Long dateTime = System.currentTimeMillis();
         Timestamp ts = new Timestamp(dateTime);
-        List<String> temp = new ArrayList<>();
-        temp.add(ConfigScreen.getPlayerName());
-        temp.add(GameScreen.getScore());
-        temp.add(S.format(ts));
-        tempLeaders.add(temp);
-        Collections.sort(tempLeaders, (a, b) ->
-                Integer.parseInt(b.get(1)) - Integer.parseInt(a.get(1)));
+        List<String> temp = leaderboard.addWinner(ConfigScreen.getPlayerName(), GameScreen.getScore(), ts);
 
         TextView lb = (TextView) findViewById(R.id.leaderboardText);
         String leaderString = "";
+        List<List<String>> tempLeaders = leaderboard.getSortedWinners();
         for (int i = 0; i < tempLeaders.size(); i++) {
             if (i % 2 == 0) {
                 List<String> c = tempLeaders.get(i);
