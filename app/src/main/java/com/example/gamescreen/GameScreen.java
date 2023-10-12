@@ -1,5 +1,9 @@
 package com.example.gamescreen;
-
+import java.util.Map;
+import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.List;
+import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,15 +20,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class GameScreen extends AppCompatActivity {
     private static float X;
     private static float Y;
-    private static int tile;
+    private int tile;
     private static final String TAG = "GameScreen";
-
     private CountDownTimer countDownTimer;
-    private TextView score;
-    private int scoreInt = 500;
+    private static TextView score;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "TILEEEEEE " + tile);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tile = 1;
         setContentView(R.layout.tile1);
@@ -35,13 +39,10 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void tile() {
-        Log.d(TAG, "TILE NUMBER " + tile);
         ImageView player = (ImageView) findViewById(R.id.main_character);
         player.setImageDrawable(ConfigScreen.getSprite());
         X = player.getX();
         Y = player.getY();
-        Log.d(TAG, "X COORDINATE" + " " + X);
-        Log.d(TAG, "Y COORDINATE" + " " + Y);
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
         Button left = (Button) findViewById(R.id.btnleft);
@@ -62,31 +63,25 @@ public class GameScreen extends AppCompatActivity {
                 setContentView(R.layout.tile3);
                 tile();
             } else if (tile == 3) {
+                tile++;
                 Intent intent = new Intent(GameScreen.this, EndScreen.class);
                 startActivity(intent);
             }
         });
     }
     private void showSelected() {
-        Log.d(TAG, "SHOWING SELECTED");
         TextView name = (TextView) findViewById(R.id.name);
         name.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 1 AND TILE " + tile);
         TextView hp = (TextView) findViewById(R.id.health);
-        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
         hp.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 3 AND TILE " + tile);
         TextView diff = (TextView) findViewById(R.id.difficulty);
         diff.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 4 AND TILE " + tile);
         TextView tileNum = (TextView) findViewById(R.id.tileNum);
         tileNum.setTextColor(Color.WHITE);
-        Log.d(TAG, "SHOWING SELECTED 5 AND TILE " + tile);
         String n = "Name: " + ConfigScreen.getPlayerName();
         String health = "HP: " + ConfigScreen.gethp();
         String diffic = "Difficulty: " + ConfigScreen.getDifficulty();
         String setTile = "Tile: " + tile;
-        Log.d(TAG, "SHOWING SELECTED 2 AND TILE " + tile);
         name.setText(n);
         hp.setText(health);
         diff.setText(diffic);
@@ -98,17 +93,14 @@ public class GameScreen extends AppCompatActivity {
         countDownTimer = new CountDownTimer(500000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "COUNTDOWN 2");
                 long secondsLeft = millisUntilFinished / 1000;
-                Log.d(TAG, "COUNTDOWN 3");
-                score.setText("Score: " + String.valueOf(secondsLeft));
-                Log.d(TAG, "COUNTDOWN 4");
+                score.setText(String.valueOf(secondsLeft));
             }
 
             @Override
             public void onFinish() {
-                score.setText("Score: " + "0");
-                Intent intent = new Intent(GameScreen.this, EndScreen.class);
+//                score.setText("Score: " + "0");
+//                Intent intent = new Intent(GameScreen.this, EndScreen.class);
             }
         };
         countDownTimer.start();
@@ -140,5 +132,8 @@ public class GameScreen extends AppCompatActivity {
             Y--;
             player.setY(Y);
         });
+    }
+    public static String getScore(){
+        return score.getText().toString();
     }
 }
