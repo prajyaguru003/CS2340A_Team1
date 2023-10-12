@@ -74,7 +74,7 @@ public class ConfigScreen extends AppCompatActivity {
         });
     }
 
-    private static void setHp(int x) {
+    public static void setHp(int x) {
         hp = x;
     }
 
