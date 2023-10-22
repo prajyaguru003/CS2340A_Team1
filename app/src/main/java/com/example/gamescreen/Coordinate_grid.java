@@ -51,17 +51,29 @@ public class Coordinate_grid extends AppCompatActivity {
     }
 
     private void setGrid(){
-        for(int i = 0; i<grid.length; i++){
-            grid[i][0] = -1;
+        setColumn(0, -1);
+        setColumn(grid_width-1, -1);
+        setColumn(grid_width-2, 5);
+        setRow(0, -1);
+        setRow(grid_height-10, -1);
+        setRow(grid_height-9, -1);
+        setRow(grid_height-8, -1);
+        setRow(grid_height-7, -1);
+        setRow(grid_height-6, -1);
+        setRow(grid_height-5, -1);
+        setRow(grid_height-4, -1);
+        setRow(grid_height-3, -1);
+        setRow(grid_height-2, -1);
+        setRow(grid_height-1, -1);
+    }
+    public static void setColumn(int j, int value){
+        for(int i = 0; i<grid_height; i++){
+            grid[i][j] = value;
         }
-        for(int i = 0; i<grid.length; i++){
-            grid[i][grid[0].length-1] = -1;
-        }
-        for(int j = 0; j<grid[0].length; j++){
-            grid[0][j] = -1;
-        }
-        for(int j = 0; j<grid[0].length; j++){
-            grid[grid.length-1][j] = -1;
+    }
+    public static void setRow(int i, int value){
+        for(int j = 0; j<grid_width; j++){
+            grid[i][j] = value;
         }
     }
 }

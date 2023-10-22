@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_gamescreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -11,12 +12,12 @@
         android:id="@+id/imageView"
         android:layout_width="76dp"
         android:layout_height="117dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnNextTile"
+        app:layout_constraintBottom_toTopOf="@+id/btnWeapon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toEndOf="@+id/btnChest"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/screen_shot_2023_10_11_at_9_37_00_pm" />
 
     <TextView
@@ -49,7 +50,7 @@
         android:id="@+id/main_character"
         android:layout_width="54dp"
         android:layout_height="38dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.057"
@@ -159,19 +160,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btnup"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btnNextTile"
-        android:layout_width="58dp"
-        android:layout_height="46dp"
-        android:text=">"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
-
     <ImageView
         android:id="@+id/btnWeapon"
         android:layout_width="103dp"
@@ -183,5 +171,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.396"
         app:srcCompat="@drawable/diamond_sword" />
+
+    <ImageView
+        android:id="@+id/wall2"
+        android:layout_width="82dp"
+        android:layout_height="129dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnleft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChest"
+        app:srcCompat="@drawable/stone_wall" />
+
+    <ImageView
+        android:id="@+id/wall1"
+        android:layout_width="82dp"
+        android:layout_height="129dp"
+        app:layout_constraintBottom_toTopOf="@+id/wall2"
+        app:layout_constraintEnd_toStartOf="@+id/btnWeapon"
+        app:layout_constraintStart_toEndOf="@+id/btnChest"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/stone_wall" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
