@@ -192,4 +192,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/stone_wall" />
 
+    <ImageView
+        android:id="@+id/goal"
+        android:layout_width="63dp"
+        android:layout_height="43dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toEndOf="@+id/btnWeapon"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.578"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
