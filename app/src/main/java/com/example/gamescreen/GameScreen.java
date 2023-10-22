@@ -6,6 +6,7 @@ package com.example.gamescreen;
 //import java.util.ArrayList;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.os.CountDownTimer;
@@ -140,22 +141,18 @@ public class GameScreen extends AppCompatActivity {
 
     private void moveRight(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            if (x + 1 < grid.length && grid[y][x + 1] > -1) {
-                grid[y][x] = 0;
-                x++;
+            if (x + 1 < grid[0].length && grid[y][x + 1] > -1) {
+                x = CoordinateGrid.moveRight(x, y);
                 player.setX(x * scaleX);
                 if (collided()) {
-                    x--;
+                    x = CoordinateGrid.moveLeft(x, y);
                     player.setX(x * scaleX);
                 }
-                if (grid[y][x] == 5) {
+                if (goal()) {
                     Log.d(TAG, "POSITION OF CHARACTER: " + x + "    " + player.getX());
                     nextTile();
                 }
-                grid[y][x] = 1;
                 Log.d(TAG, "FOR DA CULTURE: " + x + " " + y);
-
-
             } else {
                 Log.d(TAG, "OUT OF BOUNDS!!! " + x + "     " + grid[y][x]);
             }
@@ -165,14 +162,12 @@ public class GameScreen extends AppCompatActivity {
     private void moveLeft(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (x - 1 >= 0 && grid[y][x - 1] > -1) {
-                grid[y][x] = 0;
-                x--;
+                x = CoordinateGrid.moveLeft(x, y);
                 player.setX(x * scaleX);
                 if (collided()) {
-                    x++;
+                    x = CoordinateGrid.moveRight(x, y);
                     player.setX(x * scaleX);
                 }
-                grid[y][x] = 1;
                 Log.d(TAG, "FOR DA CULTURE: " + x + " " + y);
             } else {
                 Log.d(TAG, "OUT OF BOUNDS!!!");
@@ -183,14 +178,12 @@ public class GameScreen extends AppCompatActivity {
     private void moveUp(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (y - 1 >= 0 && grid[y - 1][x] > -1) {
-                grid[y][x] = 0;
-                y--;
+                y = CoordinateGrid.moveUp(x, y);
                 player.setY(y * scaleY);
                 if (collided()) {
-                    y++;
+                    y = CoordinateGrid.moveDown(x, y);
                     player.setY(y * scaleY);
                 }
-                grid[y][x] = 1;
                 Log.d(TAG, "FOR DA CULTURE: " + x + " " + y);
             } else {
                 Log.d(TAG, "OUT OF BOUNDS!!!");
@@ -200,15 +193,13 @@ public class GameScreen extends AppCompatActivity {
 
     private void moveDown(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            if (y + 1 < grid[0].length && grid[y + 1][x] > -1) {
-                grid[y][x] = 0;
-                y++;
+            if (y + 1 < grid.length && grid[y + 1][x] > -1) {
+                y = CoordinateGrid.moveDown(x, y);
                 player.setY(y * scaleY);
                 if (collided()) {
-                    y--;
+                    y = CoordinateGrid.moveUp(x, y);
                     player.setY(y * scaleY);
                 }
-                grid[y][x] = 1;
                 Log.d(TAG, "FOR DA CULTURE: " + x + " " + y);
             } else {
                 Log.d(TAG, "OUT OF BOUNDS!!! " + y + " " + gridHeight);
@@ -247,7 +238,18 @@ public class GameScreen extends AppCompatActivity {
         obstacles.add(wall1);
         obstacles.add(wall2);
     }
+    private boolean goal(){
+        Rect box1 = new Rect();
+        Rect box2 = new Rect();
+        ImageView goal = (ImageView) findViewById(R.id.goal);
+        player.getHitRect(box1);
+        goal.getHitRect(box2);
 
+        if (box1.intersect(box2)) {
+            return true;
+        }
+        return false;
+    }
     private boolean collided() {
         Rect box1 = new Rect();
         Rect box2 = new Rect();
