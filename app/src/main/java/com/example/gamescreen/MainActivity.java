@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(MainActivity.this, Welcome.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, Welcome.class);
+//        startActivity(intent);
+        Intent test_coordinate_grid = new Intent(MainActivity.this, Coordinate_grid.class);
+        startActivity(test_coordinate_grid);
     }
 }

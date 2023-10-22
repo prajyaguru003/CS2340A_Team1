@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,34 +16,48 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Arrays;
 //import android.widget.ProgressBar;
 
 public class GameScreen extends AppCompatActivity {
-    private static float x;
-    private static float y;
+    private static int x = 10;
+    private static int y = 10;
     private int tile;
     private static final String TAG = "GameScreen";
     private CountDownTimer countDownTimer;
     private static TextView score;
 
-
+    private static int[][] grid;
+    private static int scale_X;
+    private static int scale_Y;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         tile = 1;
         setContentView(R.layout.tile1);
-        score = (TextView) findViewById(R.id.score);
-        score.setTextColor(Color.WHITE);
-        score.setText("500");
+        grid = Coordinate_grid.getGrid();
+        Log.d(TAG, Arrays.deepToString(grid));
+        scale_X = Coordinate_grid.get_scale_X();
+        scale_Y = Coordinate_grid.get_scale_Y();
         tile();
     }
 
     private void tile() {
+        score = (TextView) findViewById(R.id.score);
+        score.setTextColor(Color.WHITE);
+        score.setText("500");
         startCountdown(Integer.parseInt(score.getText().toString()));
         ImageView player = (ImageView) findViewById(R.id.main_character);
         player.setImageDrawable(ConfigScreen.getSprite());
-        x = player.getX();
-        y = player.getY();
+        player.setX(x * scale_X);
+        player.setY(y * scale_Y);
+        grid[x][y] = 1;
+        player.setVisibility(View.VISIBLE);
+        Log.d(TAG, "XPOS: " + x + "     " + x * scale_X);
+        Log.d(TAG, "YPOS: " + y + "     " + y * scale_Y);
+        Log.d(TAG, "PLAYER XPOS: " + player.getX());
+        Log.d(TAG, "PLAYER YPOS: " + player.getY());
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
         Button left = (Button) findViewById(R.id.btnleft);
@@ -109,29 +124,53 @@ public class GameScreen extends AppCompatActivity {
 
     private void moveRight(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            x++;
-            player.setX(x);
+            if(x+1 < grid.length && grid[x+1][y] != -1){
+                grid[x][y] = 0;
+                x++;
+                player.setX(x * scale_X);
+                grid[x][y] = 1;
+            } else{
+                Log.d(TAG, "OUT OF BOUNDS!!!");
+            }
         });
     }
 
     private void moveLeft(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            x--;
-            player.setX(x);
+            if(x-1 >= 0 && grid[x-1][y] != -1){
+                grid[x][y] = 0;
+                x--;
+                player.setX(x * scale_X);
+                grid[x][y] = 1;
+            } else{
+                Log.d(TAG, "OUT OF BOUNDS!!!");
+            }
         });
     }
 
     private void moveUp(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            y++;
-            player.setY(y);
+            if(y-1 >= 0 && grid[x][y-1] != -1){
+                grid[x][y] = 0;
+                y--;
+                player.setY(y * scale_Y);
+                grid[x][y] = 1;
+            } else{
+                Log.d(TAG, "OUT OF BOUNDS!!!");
+            }
         });
     }
 
     private void moveDown(Button button, ImageView player) {
         button.setOnClickListener(view -> {
-            y--;
-            player.setY(y);
+            if(y+1 < grid.length && grid[x][y+1] != -1){
+                grid[x][y] = 0;
+                y++;
+                player.setY(y * scale_Y);
+                grid[x][y] = 1;
+            } else{
+                Log.d(TAG, "OUT OF BOUNDS!!!");
+            }
         });
     }
     public static String getScore() {
