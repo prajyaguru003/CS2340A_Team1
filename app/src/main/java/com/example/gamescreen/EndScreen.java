@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 //import android.util.Log;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+//import android.util.Log;
+//import android.view.View;
+//import android.widget.Button;
 //import android.content.SharedPreferences;
+import android.widget.Button;
 import android.widget.TextView;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import androidx.appcompat.app.AppCompatActivity;
 import java.sql.Timestamp;
 public class EndScreen extends AppCompatActivity {
@@ -25,12 +26,13 @@ public class EndScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.win_screen);
-        Button leaderboard_btn = (Button) findViewById(R.id.see_leaderboard);
-        leaderboard_btn.setOnClickListener(view -> {
+        Button leaderboardBtn = (Button) findViewById(R.id.see_leaderboard);
+        leaderboardBtn.setOnClickListener(view -> {
             setContentView(R.layout.end_screen);
             Long dateTime = System.currentTimeMillis();
             Timestamp ts = new Timestamp(dateTime);
-            List<String> temp = leaderboard.addWinner(ConfigScreen.getPlayerName(), GameScreen.getScore(), ts);
+            List<String> temp = leaderboard.addWinner(ConfigScreen.getPlayerName(),
+                    GameScreen.getScore(), ts);
 
             TextView lb = (TextView) findViewById(R.id.leaderboardText);
             String leaderString = "";

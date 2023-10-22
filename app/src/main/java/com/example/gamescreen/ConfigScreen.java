@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 public class ConfigScreen extends AppCompatActivity {
     private static int hp;
-    private static int HPEASY = 100;
-    private static int HPMEDIUM = 75;
-    private static int HPHARD = 50;
+    private static int hpEasy = 100;
+    private static int hpMedium = 75;
+    private static int hpHard = 50;
     private static String difficulty;
     private static Drawable sprite;
     private static String playerName;
@@ -61,9 +61,9 @@ public class ConfigScreen extends AppCompatActivity {
         Button easy = (Button) findViewById(R.id.btnEasy);
         Button medium = (Button) findViewById(R.id.btnMedium);
         Button hard = (Button) findViewById(R.id.btnHard);
-        difficultyClicked(easy, HPEASY, "Easy");
-        difficultyClicked(medium, HPMEDIUM, "Medium");
-        difficultyClicked(hard, HPHARD, "Hard");
+        difficultyClicked(easy, hpEasy, "Easy");
+        difficultyClicked(medium, hpMedium, "Medium");
+        difficultyClicked(hard, hpHard, "Hard");
     }
 
     private void difficultyClicked(Button button, int hp, String diff) {
@@ -76,21 +76,21 @@ public class ConfigScreen extends AppCompatActivity {
 
     public static void setDifficulty(String diff, int num) {
         if (diff.equals("Easy")) {
-            HPEASY = num;
-            difficulty = Integer.toString(HPEASY);
+            hpEasy = num;
+            difficulty = Integer.toString(hpEasy);
         } else if (diff.equals("Medium")) {
-            HPMEDIUM = num;
-            difficulty = Integer.toString(HPMEDIUM);
+            hpMedium = num;
+            difficulty = Integer.toString(hpMedium);
         } else if (diff.equals("Hard")) {
-            HPHARD = num;
-            difficulty = Integer.toString(HPHARD);
+            hpHard = num;
+            difficulty = Integer.toString(hpHard);
         }
     }
 
     public static void setHp(int x) {
-        if(x < 0){
+        if (x < 0) {
             hp = 0;
-        } else{
+        } else {
             hp = x;
         }
     }
