@@ -6,7 +6,7 @@ package com.example.gamescreen;
 //import java.util.ArrayList;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.media.Image;
+//import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.os.CountDownTimer;
@@ -45,6 +45,10 @@ public class GameScreen extends AppCompatActivity {
     private ImageView player;
 
     private static Set<ImageView> obstacles;
+    private MovementStrategy movementStrategy;
+    public void setMovementStrategy(MovementStrategy movementStrategy) {
+        this.movementStrategy = movementStrategy;
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -57,6 +61,7 @@ public class GameScreen extends AppCompatActivity {
         gridHeight = grid.length;
         gridWidth = grid[0].length;
         obstacles = new HashSet<>();
+        setMovementStrategy(new WalkStrategy());
         startCountdown(500);
         tile();
     }
@@ -139,7 +144,7 @@ public class GameScreen extends AppCompatActivity {
         countDownTimer.start();
     }
 
-    private void moveRight(Button button, ImageView player) {
+    public void moveRight(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (x + 1 < grid[0].length && grid[y][x + 1] > -1) {
                 x = CoordinateGrid.moveRight(x, y);
@@ -159,7 +164,7 @@ public class GameScreen extends AppCompatActivity {
         });
     }
 
-    private void moveLeft(Button button, ImageView player) {
+    public void moveLeft(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (x - 1 >= 0 && grid[y][x - 1] > -1) {
                 x = CoordinateGrid.moveLeft(x, y);
@@ -175,7 +180,7 @@ public class GameScreen extends AppCompatActivity {
         });
     }
 
-    private void moveUp(Button button, ImageView player) {
+    public void moveUp(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (y - 1 >= 0 && grid[y - 1][x] > -1) {
                 y = CoordinateGrid.moveUp(x, y);
@@ -191,7 +196,7 @@ public class GameScreen extends AppCompatActivity {
         });
     }
 
-    private void moveDown(Button button, ImageView player) {
+    public void moveDown(Button button, ImageView player) {
         button.setOnClickListener(view -> {
             if (y + 1 < grid.length && grid[y + 1][x] > -1) {
                 y = CoordinateGrid.moveDown(x, y);
@@ -238,17 +243,13 @@ public class GameScreen extends AppCompatActivity {
         obstacles.add(wall1);
         obstacles.add(wall2);
     }
-    private boolean goal(){
+    private boolean goal() {
         Rect box1 = new Rect();
         Rect box2 = new Rect();
         ImageView goal = (ImageView) findViewById(R.id.goal);
         player.getHitRect(box1);
         goal.getHitRect(box2);
-
-        if (box1.intersect(box2)) {
-            return true;
-        }
-        return false;
+        return (box1.intersect(box2));
     }
     private boolean collided() {
         Rect box1 = new Rect();
@@ -256,7 +257,6 @@ public class GameScreen extends AppCompatActivity {
         for (ImageView wall : obstacles) {
             player.getHitRect(box1);
             wall.getHitRect(box2);
-
             if (box1.intersect(box2)) {
                 return true;
             }
