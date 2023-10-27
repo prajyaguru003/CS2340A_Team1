@@ -1,7 +1,9 @@
 package com.example.gamescreen;
-import java.util.Observable;
+import java.util.List;
+
 public interface Subject {
-    public void addObserver(Observable observer);
-    public void removeObserver(Observable observer);
-    public void notifyObservers();
+//    List<Character> observers;
+    public void addObserver(PlayerObserver observer);
+    public void notifyObservers(int[][] grid, int x, int y);
+    public void removeObserver(PlayerObserver observer);
 }
