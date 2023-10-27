@@ -1,5 +1,4 @@
 package com.example.gamescreen;
-
 import java.util.List;
 
 public interface Subject {
