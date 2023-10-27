@@ -7,5 +7,6 @@ public class PlayerObserver {
         grid[x][y] = 0;
         this.x = x-1;
         this.y = y-1;
+        grid[this.x][this.y] = 1;
     }
 }

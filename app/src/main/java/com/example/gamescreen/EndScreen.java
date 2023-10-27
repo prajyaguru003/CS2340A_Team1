@@ -38,10 +38,10 @@ public class EndScreen extends AppCompatActivity {
             String leaderString = "";
             List<List<String>> tempLeaders = leaderboard.getSortedWinners();
             for (int i = 0; i < tempLeaders.size(); i++) {
-                if (i % 2 == 0) {
+//                if (i % 2 == 0) {
                     List<String> c = tempLeaders.get(i);
                     leaderString = leaderString + "\n" + c;
-                }
+//                }
             }
             lb.setText("Score: " + temp.get(1) + "\n" + leaderString);
             TextView end = (TextView) findViewById(R.id.end);
