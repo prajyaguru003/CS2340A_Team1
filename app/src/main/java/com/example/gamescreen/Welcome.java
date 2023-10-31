@@ -31,7 +31,7 @@ public class Welcome extends AppCompatActivity {
 
     private void exitClicked(Button exit) {
         exit.setOnClickListener(view -> {
-            Log.d(TAG, "onClick: Clicked Start!");
+            Log.d(TAG, "onClick: Clicked Exit!");
             //finish();
             System.exit(0);
         });

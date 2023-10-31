@@ -14,41 +14,19 @@
         android:text="The End!"
         app:layout_constraintEnd_toEndOf="parent"></TextView>
 
-    <EditText
-        android:id="@+id/leaderboardText"
-        android:layout_width="290dp"
-        android:layout_height="91dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Leaderboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
-
     <TextView
         android:id="@+id/leaderBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="272dp"
         android:layout_marginEnd="175dp"
         android:text="Leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/end"
         tools:ignore="HardcodedText"></TextView>
-
-    <TextView
-        android:id="@+id/currScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="100dp"
-        android:text="Your score was "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/restart"
@@ -62,5 +40,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText" />
+<<<<<<< HEAD
 </androidx.constraintlayout.widget.ConstraintLayout>
 >>>>>>> main
+=======
+
+    <TextView
+        android:id="@+id/leaderboardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> ad9164083fa74bd74ea461c876863d8064b39bef
