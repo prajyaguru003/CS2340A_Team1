@@ -28,22 +28,14 @@ import java.util.Set;
 //import android.widget.ProgressBar;
 
 public class GameScreen extends AppCompatActivity {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     private static GameScreen gameScreen;
-=======
->>>>>>> b8198a2d0473ba38a7703cc8a5e11e91db6ea2fe
-    private static float X;
-    private static float Y;
-    private static int tile;
-=======
+
     private static int x;
     private static int y;
     private static int startX = 2;
     private static int startY = 20;
     private int tile;
->>>>>>> ad9164083fa74bd74ea461c876863d8064b39bef
     private static final String TAG = "GameScreen";
     private CountDownTimer countDownTimer;
     private static TextView score;

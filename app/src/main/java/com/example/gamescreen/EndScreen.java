@@ -1,45 +1,33 @@
 package com.example.gamescreen;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-=======
-=======
 import java.util.*;
->>>>>>> ad9164083fa74bd74ea461c876863d8064b39bef
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
->>>>>>> main
 import android.os.Bundle;
-//import android.util.Log;
-//import android.util.Log;
-//import android.view.View;
-//import android.widget.Button;
-//import android.content.SharedPreferences;
+import android.util.Log;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.content.SharedPreferences;
 import android.widget.Button;
 import android.widget.TextView;
-<<<<<<< HEAD
 
 public class EndScreen extends AppCompatActivity {
-<<<<<<< HEAD
 
     private static String end = "The End";
 
-=======
     TextView score;
     int currScore;
     int best1, best2, best3, best4, best5, best6, best7, best8, best9, best10;
->>>>>>> b8198a2d0473ba38a7703cc8a5e11e91db6ea2fe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_screen);
-<<<<<<< HEAD
-<<<<<<< HEAD
         TextView done = (TextView) findViewById(R.id.textView);
         done.setText(end);
         Button restart = (Button) findViewById(R.id.restart);
@@ -50,8 +38,6 @@ public class EndScreen extends AppCompatActivity {
                 Intent intent = new Intent(EndScreen.this, Welcome.class);
                 startActivity(intent);
             }
-=======
-=======
         TextView lb = (TextView) findViewById(R.id.leaderboardText);
         SharedPreferences prefs = getSharedPreferences("PREFS", 0);
         currScore = prefs.getInt("currScore", 0);
@@ -66,7 +52,6 @@ public class EndScreen extends AppCompatActivity {
                 "3. " + best3 + "\n" +
                 "4. " + best4 + "\n" +
                 "5. " + best5);
->>>>>>> b8198a2d0473ba38a7703cc8a5e11e91db6ea2fe
         TextView end = (TextView) findViewById(R.id.end);
         TextView leaderBoard = (TextView) findViewById(R.id.leaderBoard);
         Button restart = (Button) findViewById(R.id.restart);
@@ -117,7 +102,6 @@ public class EndScreen extends AppCompatActivity {
                 Intent intent = new Intent(EndScreen.this, Welcome.class);
                 startActivity(intent);
             });
->>>>>>> ad9164083fa74bd74ea461c876863d8064b39bef
         });
 
     }
