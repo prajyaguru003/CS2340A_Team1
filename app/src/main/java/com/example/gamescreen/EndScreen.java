@@ -19,7 +19,7 @@ public class EndScreen extends AppCompatActivity {
 
     private int currScore;
 
-    private static List<List<String>> tempLeaders;
+    static List<List<String>> tempLeaders;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

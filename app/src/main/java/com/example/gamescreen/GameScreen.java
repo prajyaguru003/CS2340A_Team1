@@ -23,7 +23,7 @@ public class GameScreen extends AppCompatActivity {
     private int tile;
     private static final String TAG = "GameScreen";
     private CountDownTimer countDownTimer;
-    private static TextView score;
+    static TextView score;
 
 
     protected void onCreate(Bundle savedInstanceState) {

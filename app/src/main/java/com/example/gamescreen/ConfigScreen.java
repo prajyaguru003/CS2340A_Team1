@@ -20,6 +20,13 @@ public class ConfigScreen extends AppCompatActivity {
     private static String difficulty;
     private static Drawable sprite;
     private static String playerName;
+    //New variables
+    private static int playerSize;
+    private static String playerColor;
+
+    public static void setPlayerName(String testPlayer) {
+        playerName = testPlayer;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
