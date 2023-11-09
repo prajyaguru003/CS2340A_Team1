@@ -22,6 +22,7 @@ public class EndScreen extends AppCompatActivity {
     private Leaderboard leaderboard = Leaderboard.getInstance();
     private int currScore;
 
+    static List<List<String>> tempLeaders;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
