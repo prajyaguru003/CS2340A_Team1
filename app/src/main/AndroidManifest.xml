@@ -25,6 +25,7 @@
         <activity android:name=".ConfigScreen"></activity>
         <activity android:name=".EndScreen"></activity>
         <activity android:name=".GameScreen"></activity>
+        <activity android:name=".CoordinateGrid"></activity>
 <!--        <activity-->
 <!--            android:name=".GameScreen"-->
 <!--            android:configChanges="orientation|screenSize"-->
