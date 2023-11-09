@@ -14,4 +14,9 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void maxScore500() {assertTrue(Integer.parseInt(GameScreen.getScore()) <= 500);}
+    @Test
+    public void minScore0() {assertTrue(Integer.parseInt(GameScreen.getScore()) >= 0);}
+
 }
