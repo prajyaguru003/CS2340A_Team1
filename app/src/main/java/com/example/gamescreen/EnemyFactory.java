@@ -1,4 +1,6 @@
 package com.example.gamescreen;
-
-public class EnemyFactory {
+public abstract class EnemyFactory {
+    int hp;
+    int movementSpeed;
+    String name;
 }
