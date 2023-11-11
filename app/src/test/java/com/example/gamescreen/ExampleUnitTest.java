@@ -308,4 +308,10 @@ public class ExampleUnitTest {
         CoordinateGrid.moveDown(3, 3);
         assertEquals(1, grid[4][3]);
     }
+    //comment here
+    @Test
+    public void maxScore500() {assertTrue(Integer.parseInt(GameScreen.getScore()) <= 500);}
+    @Test
+    public void minScore0() {assertTrue(Integer.parseInt(GameScreen.getScore()) >= 0);}
+
 }
