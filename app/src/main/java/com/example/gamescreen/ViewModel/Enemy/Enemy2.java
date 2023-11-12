@@ -1,4 +1,4 @@
-package com.example.gamescreen;
+package com.example.gamescreen.ViewModel.Enemy;
 
 public class Enemy2 extends Enemy{
     int hp;

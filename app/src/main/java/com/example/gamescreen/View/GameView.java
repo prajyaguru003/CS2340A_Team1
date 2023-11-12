@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,12 +13,14 @@ import android.widget.TextView;
 
 import com.example.cs2340_game.R;
 
-import ViewModel.ConfigurationLogic;
-import ViewModel.TileConfigurationLogic;
+import com.example.gamescreen.ViewModel.ConfigurationLogic;
+import com.example.gamescreen.ViewModel.GameLogic;
+import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 
 public class GameView extends AppCompatActivity {
     ConfigurationLogic playerConfig;
     TileConfigurationLogic tileConfig;
+    GameLogic gameLogic;
     private static final String TAG = "GameView";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,16 @@ public class GameView extends AppCompatActivity {
         setContentView(R.layout.tile1);
         playerConfig = ConfigurationLogic.getConfig();
         tileConfig = TileConfigurationLogic.getConfig();
+        DisplayMetrics display = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(display);
+        int screenWidth = display.heightPixels;
+        int screenLength = display.widthPixels;
+        gameLogic = new GameLogic(screenWidth, screenLength);
         showSelected();
+        gameOn();
+    }
+    private void gameOn(){
+
     }
 
     private void showSelected() {

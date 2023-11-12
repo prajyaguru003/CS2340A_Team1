@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import Model.ConfigurationData;
+import com.example.gamescreen.Model.ConfigurationData;
 
 public class ConfigurationLogic {
     ConfigurationData data;
