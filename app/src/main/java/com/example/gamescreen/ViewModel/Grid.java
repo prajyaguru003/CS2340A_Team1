@@ -28,22 +28,13 @@ public class Grid {
             grid[i][0] = 1;
         }
         for(int i = 0; i<grid.length; i++){
-            grid[i][grid[0].length-1] = 1;
+            grid[i][grid[0].length-12] = 1;
         }
         for(int j = 0; j<grid[0].length; j++){
             grid[0][j] = 1;
         }
         for(int j = 0; j<grid[0].length; j++){
-            grid[grid.length-1][j] = 1;
-        }
-        for(int j = 0; j<grid[0].length; j++){
-            grid[grid.length-2][j] = 1;
-        }
-        for(int j = 0; j<grid[0].length; j++){
             grid[grid.length-3][j] = 1;
-        }
-        for(int j = 0; j<grid[0].length; j++){
-            grid[grid.length-4][j] = 1;
         }
         Log.d(TAG, "GRID: " + Arrays.asList(grid[grid.length-4]));
     }
