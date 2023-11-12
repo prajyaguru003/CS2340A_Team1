@@ -1,9 +1,10 @@
 package com.example.gamescreen;
-
+import android.widget.ImageView;
 public class Enemy3 extends Enemy{
     int hp;
     int movementSpeed;
     String name;
+    ImageView character;
 
     public Enemy3() {
         this.hp = 20;
