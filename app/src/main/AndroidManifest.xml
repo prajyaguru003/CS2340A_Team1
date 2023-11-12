@@ -13,22 +13,24 @@
         android:theme="@style/Theme.CS2340_Game"
         tools:targetApi="31" >
         <activity
-            android:name="ViewModel.MainActivity"
-            android:exported="true" >
+            android:name="com.example.gamescreen.ViewModel.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="View.ConfigurationView"></activity>
-        <activity android:name="View.WelcomeView"></activity>
-        <activity android:name="View.GameView"></activity>
-        <activity android:name="View.EndingView"></activity>
-        <activity android:name="View.LeaderboardView"></activity>
-
-
+        <activity android:name="com.example.gamescreen.View.ConfigurationView"></activity>
+        <activity android:name="com.example.gamescreen.View.EndingView"></activity>
+        <activity android:name="com.example.gamescreen.View.GameView"></activity>
+        <activity android:name="com.example.gamescreen.View.LeaderboardView"></activity>
+        <activity android:name="com.example.gamescreen.View.WelcomeView"></activity>
+<!--        <activity-->
+<!--            android:name=".GameScreen"-->
+<!--            android:configChanges="orientation|screenSize"-->
+<!--            android:screenOrientation="landscape">-->
+<!--        </activity>-->
     </application>
 
 </manifest>
