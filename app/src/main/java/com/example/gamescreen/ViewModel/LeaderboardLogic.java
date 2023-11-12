@@ -1,19 +1,21 @@
-package com.example.gamescreen;
+package com.example.gamescreen.ViewModel;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class Leaderboard {
-    private static Leaderboard leaderboard;
+public class LeaderboardLogic {
+    private static LeaderboardLogic leaderboard;
     private static final SimpleDateFormat S = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     private List<List<String>> winners;
-    private Leaderboard() {
+    private LeaderboardLogic() {
         winners = new ArrayList<>();
     }
-    public static Leaderboard getInstance() {
+    public static LeaderboardLogic getInstance() {
         if (leaderboard == null) {
-            leaderboard = new Leaderboard();
+            leaderboard = new LeaderboardLogic();
         }
         return leaderboard;
     }

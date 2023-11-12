@@ -13,7 +13,7 @@
         android:theme="@style/Theme.GameScreen"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.gamescreen.ViewModel.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome"></activity>
-        <activity android:name=".ConfigScreen"></activity>
-        <activity android:name=".EndScreen"></activity>
-        <activity android:name=".GameScreen"></activity>
-        <activity android:name=".CoordinateGrid"></activity>
+        <activity android:name="com.example.gamescreen.View.ConfigurationView"></activity>
+        <activity android:name="com.example.gamescreen.View.EndingView"></activity>
+        <activity android:name="com.example.gamescreen.View.GameView"></activity>
+        <activity android:name="com.example.gamescreen.View.LeaderboardView"></activity>
+        <activity android:name="com.example.gamescreen.View.WelcomeView"></activity>
 <!--        <activity-->
 <!--            android:name=".GameScreen"-->
 <!--            android:configChanges="orientation|screenSize"-->
