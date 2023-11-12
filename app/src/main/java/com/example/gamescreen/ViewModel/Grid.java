@@ -11,17 +11,18 @@ public class Grid {
     private int lengthFactor;
 
     public Grid(int screenWidth, int screenLength){
-        grid = new int[100][50];
+        grid = new int[50][50];
         this.screenWidth = screenWidth;
         this.screenLength = screenLength;
-        this.widthFactor = screenWidth / 100;
+        this.widthFactor = screenWidth / 50;
         this.lengthFactor = screenLength / 50;
     }
     public void scramble(){
-        grid = new int[100][50];
+        grid = new int[50][50];
     }
-    public boolean moveToSpot(int x, int y){
+    public boolean moveToSpot(int oldX, int oldY, int x, int y){
         if(grid[x][y] == 0){
+            grid[oldX][oldY] = 0;
             grid[x][y] = 1;
             return true;
         }
