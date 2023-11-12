@@ -1,16 +1,21 @@
-package com.example.gamescreen;
+package View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Bundle;
+
+import com.example.cs2340_game.R;
+
 import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.util.Log;
-import android.os.Bundle;
 
-public class Welcome extends AppCompatActivity {
-    private static final String TAG = "Welcome";
+import ViewModel.MainActivity;
 
+public class WelcomeView extends AppCompatActivity {
+    private static final String TAG = "WelcomeView";
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -20,12 +25,12 @@ public class Welcome extends AppCompatActivity {
         startClicked(start);
         exitClicked(exit);
     }
-
     private void startClicked(Button start) {
         start.setOnClickListener(view -> {
             Log.d(TAG, "onClick: Clicked Start!");
-            Intent intent = new Intent(Welcome.this, ConfigScreen.class);
+            Intent intent = new Intent(WelcomeView.this, ConfigurationView.class);
             startActivity(intent);
+
         });
     }
 
@@ -37,4 +42,3 @@ public class Welcome extends AppCompatActivity {
         });
     }
 }
-
