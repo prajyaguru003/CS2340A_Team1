@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import Model.ConfigurationData;
+import com.example.gamescreen.Model.ConfigurationData;
 
 public class ConfigurationLogic {
     ConfigurationData data;
     private static List<ConfigurationLogic> configs;
     private static int configIndex;
     private static final String TAG = "ConfigLogic";
+    private int pixelX;
+    private int pixelY;
     public ConfigurationLogic() {
         data = new ConfigurationData();
         if(configs == null){
@@ -87,5 +89,21 @@ public class ConfigurationLogic {
     }
     public void setSprite(Drawable sprite){
         data.setSprite(sprite);
+    }
+
+    public void setPixelX(int pixelX) {
+        this.pixelX = pixelX;
+    }
+
+    public void setPixelY(int pixelY) {
+        this.pixelY = pixelY;
+    }
+
+    public int getPixelX() {
+        return pixelX;
+    }
+
+    public int getPixelY() {
+        return pixelY;
     }
 }

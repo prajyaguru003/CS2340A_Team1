@@ -1,4 +1,4 @@
-package com.example.gamescreen;
+package com.example.gamescreen.ViewModel.Enemy;
 public abstract class EnemyFactory {
 
     public abstract Enemy createEnemy1();

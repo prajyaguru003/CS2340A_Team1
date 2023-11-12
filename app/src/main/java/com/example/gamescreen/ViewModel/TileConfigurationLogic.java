@@ -1,10 +1,8 @@
 package com.example.gamescreen.ViewModel;
 
+import com.example.gamescreen.Model.TileConfigurationData;
 import java.util.ArrayList;
 import java.util.List;
-
-import Model.ConfigurationData;
-import Model.TileConfigurationData;
 
 public class TileConfigurationLogic {
     TileConfigurationData data;
