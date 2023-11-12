@@ -1,9 +1,14 @@
 package com.example.gamescreen.ViewModel;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Grid {
+    private static final String TAG = "Grid";
     private int[][] grid;
     private int screenWidth;
     private int screenLength;
@@ -11,16 +16,41 @@ public class Grid {
     private int lengthFactor;
 
     public Grid(int screenWidth, int screenLength){
-        grid = new int[50][50];
+        setGrid();
         this.screenWidth = screenWidth;
         this.screenLength = screenLength;
         this.widthFactor = screenWidth / 50;
         this.lengthFactor = screenLength / 50;
     }
-    public void scramble(){
+    private void setGrid(){
         grid = new int[50][50];
+        for(int i = 0; i<grid.length; i++){
+            grid[i][0] = 1;
+        }
+        for(int i = 0; i<grid.length; i++){
+            grid[i][grid[0].length-1] = 1;
+        }
+        for(int j = 0; j<grid[0].length; j++){
+            grid[0][j] = 1;
+        }
+        for(int j = 0; j<grid[0].length; j++){
+            grid[grid.length-1][j] = 1;
+        }
+        for(int j = 0; j<grid[0].length; j++){
+            grid[grid.length-2][j] = 1;
+        }
+        for(int j = 0; j<grid[0].length; j++){
+            grid[grid.length-3][j] = 1;
+        }
+        for(int j = 0; j<grid[0].length; j++){
+            grid[grid.length-4][j] = 1;
+        }
+        Log.d(TAG, "GRID: " + Arrays.asList(grid[grid.length-4]));
     }
-    public boolean moveToSpot(int oldX, int oldY, int x, int y){
+    public void scramble(){
+        setGrid();
+    }
+    public boolean moveToSpot(int x, int y, int oldX, int oldY){
         if(grid[x][y] == 0){
             grid[oldX][oldY] = 0;
             grid[x][y] = 1;
