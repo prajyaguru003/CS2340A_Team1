@@ -1,15 +1,24 @@
 package com.example.gamescreen.ViewModel;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameLogic {
     private Grid grid;
     private Player player;
+    private int[] goldStar;
+    private static final String TAG = "GameLogic";
     public GameLogic(int screenWidth, int screenLength) {
         if(grid == null){
-            grid = new Grid(screenWidth, screenLength);
+            grid = new Grid(screenWidth, screenLength, 25, 25);
         }
+        goldStar = new int[2];
+        goldStar[0] = 23;
+        goldStar[1] = 13;
+        grid.setCoordinate(goldStar[0], goldStar[1], 10);
         player = new Player(9, 9);
     }
 
@@ -53,5 +62,25 @@ public class GameLogic {
         temp.add(player.getX());
         temp.add(player.getY());
         return temp;
+    }
+    public int getPixelWidth(){
+        return grid.getWidthFactor();
+    }
+    public int getPixelHeight(){
+        return grid.getLengthFactor();
+    }
+    public int[][] getGrid(){
+        return grid.getGridCopy();
+    }
+    public int[] getGoldStar(){
+        return goldStar;
+    }
+    public boolean checkGoal(int x, int y){
+        int val = grid.getCoordinateValue(x, y);
+        Log.d(TAG, "VALUE " + val);
+        if(val == 10){
+            return true;
+        }
+        return false;
     }
 }
