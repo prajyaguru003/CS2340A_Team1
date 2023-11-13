@@ -69,7 +69,7 @@ public class GameLogic {
     public int getPixelHeight(){
         return grid.getLengthFactor();
     }
-    public int[][] getGrid(){
+    public int[][] getGridCopy(){
         return grid.getGridCopy();
     }
     public int[] getGoldStar(){
@@ -82,5 +82,8 @@ public class GameLogic {
             return true;
         }
         return false;
+    }
+    public Grid getGrid(){
+        return grid;
     }
 }

@@ -14,8 +14,8 @@ public class Grid {
     private int screenLength;
     private int widthFactor;
     private int lengthFactor;
-    private int gridWidth;
-    private int gridLength;
+    public int gridWidth;
+    public int gridLength;
 
     public Grid(int screenWidth, int screenLength, int gridWidth, int gridLength){
         this.screenWidth = screenWidth;
@@ -30,16 +30,16 @@ public class Grid {
     private void setGrid(){
         grid = new int[this.gridWidth][this.gridLength];
         for(int i = 0; i<grid.length; i++){
-            grid[i][0] = 1;
+            grid[i][0] = -1;
         }
         for(int i = 0; i<grid.length; i++){
-            grid[i][grid[0].length-1] = 1;
+            grid[i][grid[0].length-1] = -1;
         }
         for(int j = 0; j<grid[0].length; j++){
-            grid[0][j] = 1;
+            grid[0][j] = -1;
         }
         for(int j = 0; j<grid[0].length; j++){
-            grid[grid.length-1][j] = 1;
+            grid[grid.length-1][j] = -1;
         }
         Log.d(TAG, "GRID: " + Arrays.asList(grid[grid.length-4]));
     }
@@ -61,7 +61,7 @@ public class Grid {
         setGrid();
     }
     public boolean moveToSpot(int x, int y, int oldX, int oldY){
-        if(grid[x][y] == 0 || grid[x][y] == 10){
+        if(grid[x][y] == 0 || grid[x][y] == 10 || grid[x][y] == 3){
             grid[oldX][oldY] = 0;
             grid[x][y] = 1;
             return true;
@@ -83,13 +83,14 @@ public class Grid {
         return lengthFactor;
     }
     public int[][] getGridCopy(){
-        int[][] copy = new int[gridWidth][gridLength];
-        for(int i = 0; i<copy.length; i++){
-            for(int j = 0; j<copy[0].length; j++){
-                copy[i][j] = grid[i][j];
-            }
-        }
-        return copy;
+//        int[][] copy = new int[gridWidth][gridLength];
+//        for(int i = 0; i<copy.length; i++){
+//            for(int j = 0; j<copy[0].length; j++){
+//                copy[i][j] = grid[i][j];
+//            }
+//        }
+//        return copy;
+        return grid;
     }
     public void setCoordinate(int x, int y, int value){
         grid[x][y] = value;
