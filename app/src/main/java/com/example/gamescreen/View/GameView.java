@@ -11,6 +11,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,20 +21,28 @@ import android.widget.TextView;
 import com.example.cs2340_game.R;
 
 import com.example.gamescreen.ViewModel.ConfigurationLogic;
+import com.example.gamescreen.ViewModel.Enemy.Enemy;
+import com.example.gamescreen.ViewModel.Enemy.EnemyMovementLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
+import com.example.gamescreen.ViewModel.GameTimer;
 import com.example.gamescreen.ViewModel.Grid;
 import com.example.gamescreen.ViewModel.MainActivity;
 import com.example.gamescreen.ViewModel.Player;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class GameView extends AppCompatActivity {
     ConfigurationLogic playerConfig;
     TileConfigurationLogic tileConfig;
     GameLogic gameLogic;
     ImageView player;
+    Timer gameTimer;
+    EnemyMovementLogic enemyMovement;
+    List<ImageView> enemies;
     private static final String TAG = "GameView";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +56,12 @@ public class GameView extends AppCompatActivity {
         int screenWidth = display.heightPixels;
         int screenLength = display.widthPixels;
         gameLogic = new GameLogic(screenLength, screenWidth);
+        enemyMovement = new EnemyMovementLogic(gameLogic);
+        enemies = new ArrayList<>();
+        enemies.add(new ImageView(this));
+        enemies.add(new ImageView(this));
+        enemies.add(new ImageView(this));
+        enemies.add(new ImageView(this));
         player = new ImageView(this);
         player.setImageDrawable(playerConfig.getSprite());
         List<Integer> pixelCoordinates = gameLogic.getPlayerPixels();
@@ -64,10 +79,11 @@ public class GameView extends AppCompatActivity {
         showSelected();
         generateWalls();
         setStar();
+        updateEnemies();
         gameOn();
     }
     private void generateWalls(){
-        int[][] grid = gameLogic.getGrid();
+        int[][] grid = gameLogic.getGridCopy();
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j<grid[0].length; j++){
                 if(grid[i][j] == 5){
@@ -90,6 +106,7 @@ public class GameView extends AppCompatActivity {
         }
     }
     private void gameOn(){
+        startTimer();
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
         Button left = (Button) findViewById(R.id.btnleft);
@@ -165,5 +182,33 @@ public class GameView extends AppCompatActivity {
         int[] goldStarCoordinates = gameLogic.getGoldStar();
         star.setX(gameLogic.getPixelWidth() * goldStarCoordinates[0]);
         star.setY(gameLogic.getPixelHeight()* goldStarCoordinates[1]);
+    }
+    private void startTimer(){
+        gameTimer = new Timer();
+        GameTimer gameTimerTask = new GameTimer(this, enemyMovement);
+        gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 500);
+    }
+    public void updateEnemies(){
+        List<Enemy> enemyObjects = enemyMovement.getEnemies();
+        for(int i = 0; i<enemyObjects.size(); i++){
+            ImageView enemy = enemies.get(i);
+            enemy.setImageResource(R.drawable.ninja);
+            ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            wallParams.width = gameLogic.getPixelWidth();
+            wallParams.height = gameLogic.getPixelHeight();
+            enemy.setLayoutParams(wallParams);
+            if (enemy.getParent() != null) {
+                ((ViewGroup) enemy.getParent()).removeView(enemy);
+            }
+            ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+            layout.addView(enemy);
+            Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
+            enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
+            Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
+            enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
+        }
     }
 }
