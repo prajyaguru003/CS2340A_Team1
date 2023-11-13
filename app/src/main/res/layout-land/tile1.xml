@@ -112,22 +112,4 @@
         app:layout_constraintTop_toBottomOf="@+id/btnup"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/goal"
-        android:layout_width="63dp"
-        android:layout_height="43dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <ImageView
-        android:id="@+id/main_character"
-        android:layout_width="99dp"
-        android:layout_height="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/goal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chimchar" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

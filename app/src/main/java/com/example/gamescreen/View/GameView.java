@@ -1,21 +1,28 @@
 package com.example.gamescreen.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cs2340_game.R;
 
 import com.example.gamescreen.ViewModel.ConfigurationLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
+import com.example.gamescreen.ViewModel.Grid;
+import com.example.gamescreen.ViewModel.MainActivity;
 import com.example.gamescreen.ViewModel.Player;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 
@@ -40,12 +47,47 @@ public class GameView extends AppCompatActivity {
         int screenWidth = display.heightPixels;
         int screenLength = display.widthPixels;
         gameLogic = new GameLogic(screenLength, screenWidth);
-        player = (ImageView) findViewById(R.id.main_character);
+        player = new ImageView(this);
+        player.setImageDrawable(playerConfig.getSprite());
         List<Integer> pixelCoordinates = gameLogic.getPlayerPixels();
+        ConstraintLayout.LayoutParams playerParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        playerParams.width = gameLogic.getPixelWidth();
+        playerParams.height = gameLogic.getPixelHeight();
+        player.setLayoutParams(playerParams);
+        ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+        layout.addView(player);
         player.setX(pixelCoordinates.get(0));
         player.setY(pixelCoordinates.get(1));
         showSelected();
+        generateWalls();
+        setStar();
         gameOn();
+    }
+    private void generateWalls(){
+        int[][] grid = gameLogic.getGrid();
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j<grid[0].length; j++){
+                if(grid[i][j] == 5){
+                    Log.d(TAG, "THERE IS A 5 HERE");
+                    ImageView wall = new ImageView(this);
+                    wall.setImageResource(R.drawable.stonewall);
+                    ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
+                            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                            ConstraintLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    wallParams.width = gameLogic.getPixelWidth();
+                    wallParams.height = gameLogic.getPixelHeight();
+                    wall.setLayoutParams(wallParams);
+                    ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+                    layout.addView(wall);
+                    wall.setX(i * gameLogic.getPixelWidth());
+                    wall.setY(j * gameLogic.getPixelHeight());
+                }
+            }
+        }
     }
     private void gameOn(){
         Button up = (Button) findViewById(R.id.btnup);
@@ -79,7 +121,14 @@ public class GameView extends AppCompatActivity {
             player.setY(playerConfig.getPixelY());
             Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
             Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
+            List<Integer> playerCoordinates = gameLogic.getPlayerCoordinates();
+            if(gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
+                Log.d(TAG, "FOUND THE STAR!!!!!!");
+                Intent intent = new Intent(GameView.this, GameView.class);
+                startActivity(intent);
+            }
         });
+
     }
 
     private void showSelected() {
@@ -100,6 +149,21 @@ public class GameView extends AppCompatActivity {
         diff.setText(diffic);
         tileNum.setText(setTile);
         Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
-        player.setImageDrawable(playerConfig.getSprite());
+    }
+    private void setStar(){
+        ImageView star = new ImageView(this);
+        star.setImageResource(R.drawable.goldstar);
+        ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        wallParams.width = gameLogic.getPixelWidth();
+        wallParams.height = gameLogic.getPixelHeight();
+        star.setLayoutParams(wallParams);
+        ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+        layout.addView(star);
+        int[] goldStarCoordinates = gameLogic.getGoldStar();
+        star.setX(gameLogic.getPixelWidth() * goldStarCoordinates[0]);
+        star.setY(gameLogic.getPixelHeight()* goldStarCoordinates[1]);
     }
 }
