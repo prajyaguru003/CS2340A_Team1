@@ -1,9 +1,11 @@
 package com.example.gamescreen.ViewModel.Enemy;
 
+import android.widget.ImageView;
 public class Enemy4 extends Enemy{
     int hp;
     int movementSpeed;
     String name;
+    ImageView character;
 
     public Enemy4() {
         this.hp = 25;
