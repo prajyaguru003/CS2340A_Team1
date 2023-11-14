@@ -33,7 +33,7 @@ public class GameTimer extends TimerTask{
 //        }
 //        Log.d(TAG, "TIMER HAS BEEN STARTED");
         enemyMovement.moveEnemies();
-        gameView.updateEnemies();
         gameView.updateHealth();
+        gameView.updateEnemies();
     }
 }
