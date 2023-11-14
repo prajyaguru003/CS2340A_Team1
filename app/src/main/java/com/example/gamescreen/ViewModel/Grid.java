@@ -1,6 +1,6 @@
 package com.example.gamescreen.ViewModel;
 
-import android.util.Log;
+//import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Grid {
-    private static final String TAG = "Grid";
+//    private static final String TAG = "Grid";
     private static int[][] grid;
     private int screenWidth;
     private int screenLength;
@@ -41,7 +41,7 @@ public class Grid {
         for (int j = 0; j < grid[0].length; j++) {
             grid[grid.length - 1][j] = -1;
         }
-        Log.d(TAG, "GRID: " + Arrays.asList(grid[grid.length - 4]));
+//        Log.d(TAG, "GRID: " + Arrays.asList(grid[grid.length - 4]));
     }
 
     public static int[][] getGrid() {
