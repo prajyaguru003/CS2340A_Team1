@@ -106,4 +106,10 @@ public class ConfigurationLogic {
     public int getPixelY() {
         return pixelY;
     }
+    public void setHp(int hp){
+        data.setHp(hp);
+    }
+    public int getDamage(){
+        return data.getDamage();
+    }
 }
