@@ -31,8 +31,9 @@ public class GameTimer extends TimerTask{
 //        if(elapsedTime % 500 == 0){
 //
 //        }
-        Log.d(TAG, "TIMER HAS BEEN STARTED");
+//        Log.d(TAG, "TIMER HAS BEEN STARTED");
         enemyMovement.moveEnemies();
         gameView.updateEnemies();
+        gameView.updateHealth();
     }
 }

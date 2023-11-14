@@ -60,13 +60,18 @@ public class Grid {
     public void scramble(){
         setGrid();
     }
-    public boolean moveToSpot(int x, int y, int oldX, int oldY){
+    public int moveToSpot(int x, int y, int oldX, int oldY){
         if(grid[x][y] == 0 || grid[x][y] == 10 || grid[x][y] == 3){
             grid[oldX][oldY] = 0;
-            grid[x][y] = 1;
-            return true;
+            if(grid[x][y] != 10) {
+                grid[x][y] = 1;
+            }
+            if(grid[x][y] == 3){
+                return 3;
+            }
+            return 1;
         }
-        return false;
+        return 0;
     }
     public List<Integer> getPixels(int x, int y){
         List<Integer> list = new ArrayList<>();

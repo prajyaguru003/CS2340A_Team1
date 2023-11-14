@@ -10,45 +10,48 @@ public class GameLogic {
     private Grid grid;
     private Player player;
     private int[] goldStar;
+    ConfigurationLogic playerConfig;
     private static final String TAG = "GameLogic";
-    public GameLogic(int screenWidth, int screenLength) {
+    public GameLogic(int screenWidth, int screenLength, ConfigurationLogic playerConfig) {
         if(grid == null){
             grid = new Grid(screenWidth, screenLength, 25, 25);
         }
+        this.playerConfig = playerConfig;
         goldStar = new int[2];
         goldStar[0] = 23;
         goldStar[1] = 13;
         grid.setCoordinate(goldStar[0], goldStar[1], 10);
+        Log.d(TAG, "GOLDSTAR: " + grid.getCoordinateValue(goldStar[0], goldStar[1]));
         player = new Player(9, 9);
     }
 
     public List<Integer> moveRight(){
-        boolean success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
-        if (success){
+        int success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
+        if (success == 1 || success == 3){
             player.setX(player.getX()+1);
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveLeft(){
-        boolean success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
-        if (success){
+        int success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
+        if (success == 1 || success == 3){
             player.setX(player.getX()-1);
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveUp(){
-        boolean success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
-        if (success){
+        int success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
+        if (success == 1 || success == 3){
             player.setY(player.getY()-1);
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveDown(){
-        boolean success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
-        if (success){
+        int success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
+        if (success == 1 || success == 3){
             player.setY(player.getY()+1);
             return grid.getPixels(player.getX(), player.getY());
         }
@@ -85,5 +88,8 @@ public class GameLogic {
     }
     public Grid getGrid(){
         return grid;
+    }
+    public ConfigurationLogic getPlayerConfig(){
+        return playerConfig;
     }
 }

@@ -50,12 +50,13 @@ public class GameView extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.tile1);
         playerConfig = ConfigurationLogic.getConfig();
+//        Log.d(TAG, "PLAYERCONFIG: " + playerConfig.toString());
         tileConfig = TileConfigurationLogic.getConfig();
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
         int screenWidth = display.heightPixels;
         int screenLength = display.widthPixels;
-        gameLogic = new GameLogic(screenLength, screenWidth);
+        gameLogic = new GameLogic(screenLength, screenWidth, playerConfig);
         enemyMovement = new EnemyMovementLogic(gameLogic);
         enemies = new ArrayList<>();
         enemies.add(new ImageView(this));
@@ -87,7 +88,7 @@ public class GameView extends AppCompatActivity {
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j<grid[0].length; j++){
                 if(grid[i][j] == 5){
-                    Log.d(TAG, "THERE IS A 5 HERE");
+//                    Log.d(TAG, "THERE IS A 5 HERE");
                     ImageView wall = new ImageView(this);
                     wall.setImageResource(R.drawable.stonewall);
                     ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -117,7 +118,7 @@ public class GameView extends AppCompatActivity {
         buttonClicked(right, "right");
     }
     private void buttonClicked(Button button, String btnID){
-        Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+//        Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
         button.setOnClickListener(view -> {
             List<Integer> playerPos = new ArrayList<>();
             if(btnID == "up"){
@@ -136,8 +137,8 @@ public class GameView extends AppCompatActivity {
             playerConfig.setPixelY(playerPos.get(1));
             player.setX(playerConfig.getPixelX());
             player.setY(playerConfig.getPixelY());
-            Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
-            Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
+//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
             List<Integer> playerCoordinates = gameLogic.getPlayerCoordinates();
             if(gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
                 Log.d(TAG, "FOUND THE STAR!!!!!!");
@@ -205,10 +206,17 @@ public class GameView extends AppCompatActivity {
             }
             ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
             layout.addView(enemy);
-            Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
+//            Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
             enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
-            Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
+//            Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
             enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
         }
+    }
+    public void updateHealth(){
+        TextView name = (TextView) findViewById(R.id.health);
+//        Log.d(TAG, "HP: " + playerConfig.getHp());
+//        Log.d(TAG, "HP: " + playerConfig.getHp());
+        String health = "HP: " + playerConfig.getHp();
+        name.setText(health);
     }
 }

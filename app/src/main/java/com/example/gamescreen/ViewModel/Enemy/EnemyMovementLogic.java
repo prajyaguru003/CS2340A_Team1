@@ -1,4 +1,7 @@
 package com.example.gamescreen.ViewModel.Enemy;
+import android.util.Log;
+
+import com.example.gamescreen.ViewModel.ConfigurationLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.Grid;
 
@@ -14,6 +17,8 @@ public class EnemyMovementLogic {
     private Enemy4 enemy4;
     private static Grid grid;
     private List<Enemy> enemies;
+    GameLogic gameLogic;
+    private static final String TAG = "EnemyMovement";
     public EnemyMovementLogic(GameLogic gameLogic) {
         enemies = new ArrayList<>();
         enemy1 = new Enemy1();
@@ -25,6 +30,7 @@ public class EnemyMovementLogic {
         enemies.add(enemy3);
         enemies.add(enemy4);
         this.grid = gameLogic.getGrid();
+        this.gameLogic = gameLogic;
     }
 
     public void moveEnemies(){
@@ -52,7 +58,14 @@ public class EnemyMovementLogic {
             grid.setCoordinate(enemy.x, enemy.y, 0);
             enemy.x = newX;
             enemy.y = newY;
-            grid.setCoordinate(newX, newY, 3);
+            if(grid.getCoordinateValue(newX, newY) != 1){
+                grid.setCoordinate(newX, newY, 3);
+            }
+            if(grid.getCoordinateValue(newX, newY) == 1){
+                ConfigurationLogic playerConfig = gameLogic.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+                Log.d(TAG, "POKEMON.com");
+            }
         }
     }
 
