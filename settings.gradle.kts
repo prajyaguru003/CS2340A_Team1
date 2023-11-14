@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "GameScreen"
+rootProject.name = "CS2340_Game"
 include(":app")
- 
