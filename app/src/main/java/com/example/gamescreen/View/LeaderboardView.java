@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.util.Log;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import com.example.gamescreen.ViewModel.LeaderboardLogic;
 import com.example.gamescreen.ViewModel.MainActivity;
 
 public class LeaderboardView extends AppCompatActivity {
+    private static final String TAG = "Leaderboard";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,11 @@ public class LeaderboardView extends AppCompatActivity {
 
         if(value == 1){
             instance.addWinner(name, health);
+            Log.d(TAG, "WINNERS: " + instance.getSortedWinners().toString());
             lb.setText(instance.getSortedWinners().toString());
         }
         Button restart = (Button) findViewById(R.id.restart);
-        lb.setOnClickListener(view -> {
+        restart.setOnClickListener(view -> {
             Intent lbIntent = new Intent(LeaderboardView.this, com.example.gamescreen.ViewModel.MainActivity.class);
             startActivity(lbIntent);
         });

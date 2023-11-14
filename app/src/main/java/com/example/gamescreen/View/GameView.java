@@ -235,12 +235,20 @@ public class GameView extends AppCompatActivity {
         name.setText(health);
     }
     public void lose(){
+        if (gameTimer != null) {
+            gameTimer.cancel();
+        }
+
         Log.d(TAG, "YOU LOST!!!!");
         Intent intent = new Intent(GameView.this, EndingView.class);
         intent.putExtra("key", -1);
         startActivity(intent);
     }
     public void win(){
+        if (gameTimer != null) {
+            gameTimer.cancel();
+        }
+
         String health = "" + playerConfig.getHp();
         String name = "" + playerConfig.getName();
         Intent intent = new Intent(GameView.this, EndingView.class);
@@ -248,14 +256,6 @@ public class GameView extends AppCompatActivity {
         intent.putExtra("health", health);
         intent.putExtra("name", name);
         startActivity(intent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (gameTimer != null) {
-            gameTimer.cancel();
-        }
     }
 
 }
