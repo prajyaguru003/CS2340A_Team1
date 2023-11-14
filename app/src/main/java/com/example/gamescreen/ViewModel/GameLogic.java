@@ -1,6 +1,6 @@
 package com.example.gamescreen.ViewModel;
 
-import android.util.Log;
+//import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class GameLogic {
         goldStar[0] = 23;
         goldStar[1] = 13;
         grid.setCoordinate(goldStar[0], goldStar[1], 10);
-        Log.d(TAG, "GOLDSTAR: " + grid.getCoordinateValue(goldStar[0], goldStar[1]));
+//        Log.d(TAG, "GOLDSTAR: " + grid.getCoordinateValue(goldStar[0], goldStar[1]));
         player = new Player(9, 9);
     }
 
@@ -34,7 +34,7 @@ public class GameLogic {
             if(grid.getCoordinateValue(newX, newY) == 3){
                 ConfigurationLogic playerConfig = this.getPlayerConfig();
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-                Log.d(TAG, "POKEMON.com");
+//                Log.d(TAG, "POKEMON.com");
             }
             return grid.getPixels(player.getX(), player.getY());
         }
@@ -49,7 +49,7 @@ public class GameLogic {
             if(grid.getCoordinateValue(newX, newY) == 3){
                 ConfigurationLogic playerConfig = this.getPlayerConfig();
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-                Log.d(TAG, "POKEMON.com");
+//                Log.d(TAG, "POKEMON.com");
             }
             return grid.getPixels(player.getX(), player.getY());
         }
@@ -64,7 +64,7 @@ public class GameLogic {
             if(grid.getCoordinateValue(newX, newY) == 3){
                 ConfigurationLogic playerConfig = this.getPlayerConfig();
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-                Log.d(TAG, "POKEMON.com");
+//                Log.d(TAG, "POKEMON.com");
             }
             return grid.getPixels(player.getX(), player.getY());
         }
@@ -79,7 +79,7 @@ public class GameLogic {
             if(grid.getCoordinateValue(newX, newY) == 3){
                 ConfigurationLogic playerConfig = this.getPlayerConfig();
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-                Log.d(TAG, "POKEMON.com");
+//                Log.d(TAG, "POKEMON.com");
             }
             return grid.getPixels(player.getX(), player.getY());
         }
