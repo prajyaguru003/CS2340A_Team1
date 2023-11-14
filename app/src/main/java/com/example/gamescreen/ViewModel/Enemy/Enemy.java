@@ -3,12 +3,27 @@ package com.example.gamescreen.ViewModel.Enemy;
 import android.widget.ImageView;
 
 public abstract class Enemy {
-    int hp;
-    int movementSpeed;
-    public int x = 15;
-    public int y = 15;
-    String name;
+    private int hp;
+    private int movementSpeed;
+    private int x = 15;
+    private int y = 15;
+    private String name;
 
-    ImageView character;
+    private ImageView character;
 
+    public int getMovementSpeed() {
+        return movementSpeed;
+    }
+    public int getX() {
+        return x;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
 }

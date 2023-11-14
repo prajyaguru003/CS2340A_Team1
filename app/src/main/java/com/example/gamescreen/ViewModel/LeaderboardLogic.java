@@ -11,7 +11,7 @@ public class LeaderboardLogic {
     private static final SimpleDateFormat S = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     private List<List<String>> winners;
     private LeaderboardLogic() {
-        if(winners == null){
+        if (winners == null) {
             winners = new ArrayList<>();
         }
     }
