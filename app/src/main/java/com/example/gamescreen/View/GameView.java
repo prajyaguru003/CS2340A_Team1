@@ -225,7 +225,7 @@ public class GameView extends AppCompatActivity {
         TextView name = (TextView) findViewById(R.id.health);
 //        Log.d(TAG, "HP: " + playerConfig.getHp());
 //        Log.d(TAG, "HP: " + playerConfig.getHp());
-        if(playerConfig.getHp() == 0){
+        if(playerConfig.getHp() <= 0){
             if (gameTimer != null) {
                 gameTimer.cancel();
             }
