@@ -29,6 +29,13 @@ public class GameLogic {
         int success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
         if (success == 1 || success == 3){
             player.setX(player.getX()+1);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+                Log.d(TAG, "POKEMON.com");
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -37,6 +44,13 @@ public class GameLogic {
         int success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
         if (success == 1 || success == 3){
             player.setX(player.getX()-1);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+                Log.d(TAG, "POKEMON.com");
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -45,6 +59,13 @@ public class GameLogic {
         int success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
         if (success == 1 || success == 3){
             player.setY(player.getY()-1);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+                Log.d(TAG, "POKEMON.com");
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -53,6 +74,13 @@ public class GameLogic {
         int success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
         if (success == 1 || success == 3){
             player.setY(player.getY()+1);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+                Log.d(TAG, "POKEMON.com");
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -80,7 +108,7 @@ public class GameLogic {
     }
     public boolean checkGoal(int x, int y){
         int val = grid.getCoordinateValue(x, y);
-        Log.d(TAG, "VALUE " + val);
+//        Log.d(TAG, "VALUE " + val);
         if(val == 10){
             return true;
         }
