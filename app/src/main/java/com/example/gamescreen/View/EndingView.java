@@ -22,9 +22,9 @@ public class EndingView extends AppCompatActivity {
         int value = intent.getIntExtra("key", -10);
         Log.d(TAG, "VALUE: " + value);
         TextView status = (TextView) findViewById(R.id.status);
-        if(value == 1){
+        if (value == 1) {
             status.setText("YOU WON!!! CONGRATS :)");
-        } else{
+        } else {
             status.setText("You lost :(");
         }
         Button lb = (Button) findViewById(R.id.leaderboardBtn);

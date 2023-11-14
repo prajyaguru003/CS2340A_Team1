@@ -28,14 +28,14 @@ import java.util.List;
 import java.util.Timer;
 
 public class GameView extends AppCompatActivity {
-    ConfigurationLogic playerConfig;
-    TileConfigurationLogic tileConfig;
-    GameLogic gameLogic;
-    ImageView player;
-    Timer gameTimer;
-    EnemyMovementLogic enemyMovement;
-    List<ImageView> enemies;
-    int tile;
+    private ConfigurationLogic playerConfig;
+    private TileConfigurationLogic tileConfig;
+    private GameLogic gameLogic;
+    private ImageView player;
+    private Timer gameTimer;
+    private EnemyMovementLogic enemyMovement;
+    private List<ImageView> enemies;
+    private int tile;
     private static final String TAG = "GameView";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +44,19 @@ public class GameView extends AppCompatActivity {
         playerConfig = ConfigurationLogic.getConfig();
         Intent intent = getIntent();
         int value = intent.getIntExtra("layout", 1);
-        if(value == 1){
+        if (value == 1) {
             tile = 1;
             setContentView(R.layout.tile1);
-        } else if(value == 2){
+        } else if (value == 2) {
             tile = 2;
             setContentView(R.layout.tile2);
-        } else if(value == 3){
+        } else if (value == 3) {
             tile = 3;
             setContentView(R.layout.tile3);
-        } else{
+        } else {
             win();
         }
-//        Log.d(TAG, "PLAYERCONFIG: " + playerConfig.toString());
+        //Log.d(TAG, "PLAYERCONFIG: " + playerConfig.toString());
         tileConfig = TileConfigurationLogic.getConfig();
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
@@ -89,12 +89,12 @@ public class GameView extends AppCompatActivity {
         updateEnemies();
         gameOn();
     }
-    private void generateWalls(){
+    private void generateWalls() {
         int[][] grid = gameLogic.getGridCopy();
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j<grid[0].length; j++){
-                if(grid[i][j] == 5){
-//                    Log.d(TAG, "THERE IS A 5 HERE");
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == 5) {
+                    //Log.d(TAG, "THERE IS A 5 HERE");
                     ImageView wall = new ImageView(this);
                     wall.setImageResource(R.drawable.stonewall);
                     ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -112,7 +112,7 @@ public class GameView extends AppCompatActivity {
             }
         }
     }
-    private void gameOn(){
+    private void gameOn() {
         startTimer();
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
@@ -123,30 +123,30 @@ public class GameView extends AppCompatActivity {
         buttonClicked(left, "left");
         buttonClicked(right, "right");
     }
-    private void buttonClicked(Button button, String btnID){
-//        Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+    private void buttonClicked(Button button, String btnID) {
+        //Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
         button.setOnClickListener(view -> {
             List<Integer> playerPos = new ArrayList<>();
-            if(btnID == "up"){
+            if (btnID.equals("up")) {
                 playerPos = gameLogic.moveUp();
             }
-            if(btnID == "down"){
+            if (btnID.equals("down")) {
                 playerPos = gameLogic.moveDown();
             }
-            if(btnID == "left"){
+            if (btnID.equals("left")) {
                 playerPos = gameLogic.moveLeft();
             }
-            if(btnID == "right"){
+            if (btnID.equals("right")) {
                 playerPos = gameLogic.moveRight();
             }
             playerConfig.setPixelX(playerPos.get(0));
             playerConfig.setPixelY(playerPos.get(1));
             player.setX(playerConfig.getPixelX());
             player.setY(playerConfig.getPixelY());
-//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
-//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
+            //Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+            //Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
             List<Integer> playerCoordinates = gameLogic.getPlayerCoordinates();
-            if(gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
+            if (gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
                 Log.d(TAG, "FOUND THE STAR!!!!!!");
                 Intent intent = new Intent(GameView.this, GameView.class);
                 Intent oldIntent = getIntent();
@@ -177,7 +177,7 @@ public class GameView extends AppCompatActivity {
         tileNum.setText(setTile);
         Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
     }
-    private void setStar(){
+    private void setStar() {
         ImageView star = new ImageView(this);
         star.setImageResource(R.drawable.goldstar);
         ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -191,16 +191,16 @@ public class GameView extends AppCompatActivity {
         layout.addView(star);
         int[] goldStarCoordinates = gameLogic.getGoldStar();
         star.setX(gameLogic.getPixelWidth() * goldStarCoordinates[0]);
-        star.setY(gameLogic.getPixelHeight()* goldStarCoordinates[1]);
+        star.setY(gameLogic.getPixelHeight() * goldStarCoordinates[1]);
     }
-    private void startTimer(){
+    private void startTimer() {
         gameTimer = new Timer();
         GameTimer gameTimerTask = new GameTimer(this, enemyMovement);
         gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 1000);
     }
-    public void updateEnemies(){
+    public void updateEnemies() {
         List<Enemy> enemyObjects = enemyMovement.getEnemies();
-        for(int i = 0; i<enemyObjects.size(); i++){
+        for (int i = 0; i < enemyObjects.size(); i++) {
             ImageView enemy = enemies.get(i);
             enemy.setImageResource(R.drawable.ninja);
             ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -215,17 +215,17 @@ public class GameView extends AppCompatActivity {
             }
             ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
             layout.addView(enemy);
-//            Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
-            enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
-//            Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
-            enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
+            //Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
+            enemies.get(i).setX(enemyObjects.get(i).getX() * gameLogic.getPixelWidth());
+            //Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
+            enemies.get(i).setY(enemyObjects.get(i).getY() * gameLogic.getPixelHeight());
         }
     }
-    public void updateHealth(){
+    public void updateHealth() {
         TextView name = (TextView) findViewById(R.id.health);
-//        Log.d(TAG, "HP: " + playerConfig.getHp());
-//        Log.d(TAG, "HP: " + playerConfig.getHp());
-        if(playerConfig.getHp() == 0){
+        //Log.d(TAG, "HP: " + playerConfig.getHp());
+        // Log.d(TAG, "HP: " + playerConfig.getHp());
+        if (playerConfig.getHp() == 0) {
             if (gameTimer != null) {
                 gameTimer.cancel();
             }
@@ -234,7 +234,7 @@ public class GameView extends AppCompatActivity {
         String health = "HP: " + playerConfig.getHp();
         name.setText(health);
     }
-    public void lose(){
+    public void lose() {
         if (gameTimer != null) {
             gameTimer.cancel();
         }
@@ -244,7 +244,7 @@ public class GameView extends AppCompatActivity {
         intent.putExtra("key", -1);
         startActivity(intent);
     }
-    public void win(){
+    public void win() {
         if (gameTimer != null) {
             gameTimer.cancel();
         }

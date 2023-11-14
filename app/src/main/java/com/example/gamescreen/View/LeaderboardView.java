@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.util.Log;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+//import java.sql.Timestamp;
+//import java.text.SimpleDateFormat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340_game.R;
 import com.example.gamescreen.ViewModel.LeaderboardLogic;
-import com.example.gamescreen.ViewModel.MainActivity;
+//import com.example.gamescreen.ViewModel.MainActivity;
 
 public class LeaderboardView extends AppCompatActivity {
     private static final String TAG = "Leaderboard";
@@ -26,14 +26,15 @@ public class LeaderboardView extends AppCompatActivity {
         String name = intent.getStringExtra("name");
         String health = intent.getStringExtra("health");
 
-        if(value == 1){
+        if (value == 1) {
             instance.addWinner(name, health);
             Log.d(TAG, "WINNERS: " + instance.getSortedWinners().toString());
             lb.setText(instance.getSortedWinners().toString());
         }
         Button restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(view -> {
-            Intent lbIntent = new Intent(LeaderboardView.this, com.example.gamescreen.ViewModel.MainActivity.class);
+            Intent lbIntent = new Intent(LeaderboardView.this,
+                    com.example.gamescreen.ViewModel.MainActivity.class);
             startActivity(lbIntent);
         });
     }

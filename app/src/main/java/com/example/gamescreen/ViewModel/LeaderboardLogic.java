@@ -1,6 +1,6 @@
 package com.example.gamescreen.ViewModel;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class LeaderboardLogic {
         List<String> temp = new ArrayList<>();
         temp.add(name);
         temp.add(score);
-//        temp.add(S.format(ts));
+        //temp.add(S.format(ts));
         winners.add(temp);
         return temp;
     }
