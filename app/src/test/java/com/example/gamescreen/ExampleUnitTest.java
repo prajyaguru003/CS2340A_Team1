@@ -170,6 +170,7 @@ public class ExampleUnitTest {
         assertEquals("250", ConfigScreen.getDifficulty());
     }
 
+
     @Test
 
     public void testSetGridRow1() {
