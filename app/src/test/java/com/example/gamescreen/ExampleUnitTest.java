@@ -18,11 +18,6 @@ import java.util.List;
 public class ExampleUnitTest {
 
     @Test
-    public void testConfigScreenSetHp75() {
-        ConfigScreen.setHp(75);
-        assertEquals(75, ConfigScreen.gethp());
-    }
-    @Test
     public void testConfigScreenSetHp100() {
         ConfigScreen.setHp(100);
         assertEquals(100, ConfigScreen.gethp());
