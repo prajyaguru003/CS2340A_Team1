@@ -7,7 +7,8 @@ import java.util.List;
 
 public class GameData {
 
-    public
+    public ConfigurationData configData1;
+
     public GameData data1;
     public GameData data2;
     int number = -1;
@@ -28,5 +29,14 @@ public class GameData {
     public void TileHelperWithPlayer() {
         number = 1;
         dataStorage = 5.32;
+    }
+
+    public void TrechorusEnemies() {
+        number = 5;
+        dataStorage = 8.0009;
+    }
+
+    public void PullRequest(){
+        String pub = "Kruithik is Wierd";
     }
 }
