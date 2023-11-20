@@ -175,4 +175,16 @@ public class ExampleUnitTest {
         assertEquals("250", ConfigScreen.getDifficulty());
     }
 
+
+    @Test
+    public void testConfigScreenSetHp75() {
+        ConfigScreen.setHp(75);
+        assertEquals(75, ConfigScreen.gethp());
+    }
+
+    @Test
+    public void testConfigScreenSetHp75() {
+        ConfigScreen.setHp(75);
+        assertEquals(75, ConfigScreen.gethp());
+    }
 }
