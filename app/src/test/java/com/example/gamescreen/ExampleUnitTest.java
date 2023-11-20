@@ -175,4 +175,139 @@ public class ExampleUnitTest {
         assertEquals("250", ConfigScreen.getDifficulty());
     }
 
+    @Test
+
+    public void testSetGridRow1() {
+        CoordinateGrid.setGrid(1);
+        int[][] grid = CoordinateGrid.getGrid();
+        assertEquals("[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]", Arrays.toString(grid[grid.length-1]));
+    }
+    @Test
+    public void testSetGridRow2() {
+        CoordinateGrid.setGrid(2);
+        int[][] grid = CoordinateGrid.getGrid();
+        assertEquals("[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]", Arrays.toString(grid[grid.length-2]));
+    }
+    @Test
+    public void testSetGridRow3() {
+        CoordinateGrid.setGrid(3);
+        int[][] grid = CoordinateGrid.getGrid();
+        assertEquals("[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]", Arrays.toString(grid[grid.length-3]));
+    }
+    @Test
+    public void testSetGridColumn1() {
+        CoordinateGrid.setGrid(4);
+        int[][] grid = CoordinateGrid.getGrid();
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][0] + ", ";
+            } else{
+                column = column + grid[i][0] + ']';
+            }
+        }
+        assertEquals("[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]", column);
+    }
+    @Test
+    public void testSetGridColumn2() {
+        CoordinateGrid.setGrid(4);
+        int[][] grid = CoordinateGrid.getGrid();
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][grid[0].length-1] + ", ";
+            } else{
+                column = column + grid[i][grid[0].length-1] + ']';
+            }
+        }
+        assertEquals("[5, 5, 5, 5, 5, 5, -1, -1, -1, -1]", column);
+    }
+    @Test
+    public void testSetGridPassedTile() {
+        CoordinateGrid.setGrid(0);
+        int[][] grid = CoordinateGrid.getGrid();
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][grid[0].length-2] + ", ";
+            } else{
+                column = column + grid[i][grid[0].length-2] + ']';
+            }
+        }
+        assertEquals("[5, 5, 5, 5, 5, 5, 5, 5, 5, 5]", column);
+    }
+    @Test
+    public void testSetColumnWithRandomSetUp1() {
+        CoordinateGrid.setGrid(4);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.setColumn(grid.length-1, 15);
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][grid[0].length-1] + ", ";
+            } else{
+                column = column + grid[i][grid[0].length-1] + ']';
+            }
+        }
+        assertEquals("[15, 15, 15, 15, 15, 15, 15, 15, 15, 15]", column);
+    }
+    @Test
+    public void testSetColumnWithRandomSetUp2() {
+        CoordinateGrid.setGrid(2);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.setColumn(grid.length-2, 15);
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][grid[0].length-2] + ", ";
+            } else{
+                column = column + grid[i][grid[0].length-2] + ']';
+            }
+        }
+        assertEquals("[15, 15, 15, 15, 15, 15, 15, 15, 15, 15]", column);
+    }
+    @Test
+    public void testSetColumnWithRandomSetUp3() {
+        CoordinateGrid.setGrid(5);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.setColumn(grid.length-3, 15);
+        String column = "[";
+        for(int i = 0; i<grid.length; i++){
+            if(i != grid.length-1){
+                column = column + grid[i][grid[0].length-3] + ", ";
+            } else{
+                column = column + grid[i][grid[0].length-3] + ']';
+            }
+        }
+        assertEquals("[15, 15, 15, 15, 15, 15, 15, 15, 15, 15]", column);
+    }
+    @Test
+    public void testMoveRight(){
+        CoordinateGrid.setGrid(5);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.moveRight(3, 3);
+        assertEquals(1, grid[3][4]);
+    }
+    @Test
+    public void testMoveLeft(){
+        CoordinateGrid.setGrid(5);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.moveLeft(3, 3);
+        assertEquals(1, grid[3][2]);
+    }
+    @Test
+    public void testMoveUp(){
+        CoordinateGrid.setGrid(5);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.moveUp(3, 3);
+        assertEquals(1, grid[2][3]);
+    }
+    @Test
+    public void testMoveDown(){
+        CoordinateGrid.setGrid(5);
+        int[][] grid = CoordinateGrid.getGrid();
+        CoordinateGrid.moveDown(3, 3);
+        assertEquals(1, grid[4][3]);
+    }
+
 }
