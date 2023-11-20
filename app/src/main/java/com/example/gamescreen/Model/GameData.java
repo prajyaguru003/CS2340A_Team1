@@ -7,9 +7,12 @@ import java.util.List;
 
 public class GameData {
 
-    public ConfigurationData configData1;
+  public ConfigurationData configData1;
 
     public GameData data1;
+
+    public Integer intseter;
+    public String storm = "Pribabu";
     public GameData data2;
     int number = -1;
     double dataStorage = 2;
@@ -22,6 +25,11 @@ public class GameData {
         dataStorage = number2;
     }
 
+    public void setStuff() {
+        intseter = 2;
+        storm = "no way";
+    }
+
     public void gameData() {
         List<String> difficulties = Arrays.asList("snail", "Mege", "ULTRA");
     }
@@ -30,6 +38,7 @@ public class GameData {
         number = 1;
         dataStorage = 5.32;
     }
+
 
     public void TrechorusEnemies() {
         number = 5;
