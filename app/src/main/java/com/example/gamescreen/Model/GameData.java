@@ -2,8 +2,11 @@ package com.example.gamescreen.Model;
 import java.uti.Scanner;
 public class GameData {
 
-    public
+
     public GameData data1;
+
+    public Integer intseter;
+    public String storm = "Pribabu";
     public GameData data2;
     int number = -1;
     double dataStorage = 2;
@@ -16,5 +19,9 @@ public class GameData {
         dataStorage = number2;
     }
 
-    
+    public void setStuff() {
+        intseter = 2;
+        storm = "no way";
+    }
+
 }
