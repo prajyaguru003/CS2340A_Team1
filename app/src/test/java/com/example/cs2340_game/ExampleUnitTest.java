@@ -24,4 +24,11 @@ public class ExampleUnitTest {
         int width = gameLogic.getPixelWidth();
         assertEquals(40, width);
     }
+    @Test
+    public void testPixelHeight() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int height = gameLogic.getPixelHeight();
+        assertEquals(40, height);
+    }
 }
