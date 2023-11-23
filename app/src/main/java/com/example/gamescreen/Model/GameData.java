@@ -15,14 +15,18 @@ public class GameData {
     public String storm = "Pribabu";
     public GameData data2;
     int number = -1;
+
+    String newOne = null;
     double dataStorage = 2;
 
     public int dealWithIt (int number1) {
         number = number1;
+        return number;
     }
 
     public int dontDealWithIt (int number2) {
         dataStorage = number2;
+        return 2;
     }
 
     public void setStuff() {
@@ -51,5 +55,15 @@ public class GameData {
         } else {
             return data1;
         }
+        return data1;
+    }
+
+    public String editString(String coolio) {
+        if (newOne == null) {
+            newOne = coolio;
+        } else {
+            return newOne;
+        }
+        return newOne;
     }
 }
