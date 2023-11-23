@@ -4,7 +4,7 @@ public class TileConfigurationData {
     private int tileNum;
 
 
-    public TileConfigurationData(){
+    public TileConfigurationData() {
         this.tileNum = 1;
     }
 
