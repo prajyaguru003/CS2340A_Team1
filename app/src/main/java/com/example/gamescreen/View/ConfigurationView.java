@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,8 +20,8 @@ import com.example.gamescreen.ViewModel.ConfigurationLogic;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 
 public class ConfigurationView extends AppCompatActivity {
-    ConfigurationLogic config;
-    TileConfigurationLogic tileConfig;
+    private ConfigurationLogic config;
+    private TileConfigurationLogic tileConfig;
     private static final String TAG = "ConfigView";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +30,14 @@ public class ConfigurationView extends AppCompatActivity {
         tileConfig = new TileConfigurationLogic();
         setName();
     }
-    private void setName(){
+    private void setName() {
         setContentView(R.layout.setname);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Button btnContinue = (Button) findViewById(R.id.btnContinueName);
         EditText name = (EditText) findViewById(R.id.nameInput);
         btnContinue.setOnClickListener(view -> {
             String pName = name.getText().toString();
-            if(!config.setValidName(pName)){
+            if (!config.setValidName(pName)) {
                 Toast toast = Toast.makeText(ConfigurationView.this,
                         "Enter a valid name!", Toast.LENGTH_LONG);
                 toast.show();
@@ -58,12 +58,12 @@ public class ConfigurationView extends AppCompatActivity {
     }
     private void difficultyClicked(Button button, String diff) {
         button.setOnClickListener(view -> {
-            if(config.setValidDifficulty(diff)){
+            if (config.setValidDifficulty(diff)) {
                 setSprite();
             }
         });
     }
-    private void setSprite(){
+    private void setSprite() {
         setContentView(R.layout.choosesprite);
         ImageButton sprite1 = (ImageButton) findViewById(R.id.btnSprite1);
         ImageButton sprite2 = (ImageButton) findViewById(R.id.btnSprite2);

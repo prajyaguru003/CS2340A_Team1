@@ -11,7 +11,7 @@ import android.content.pm.ActivityInfo;
 import android.widget.Button;
 import android.util.Log;
 
-import com.example.gamescreen.ViewModel.MainActivity;
+//import com.example.gamescreen.ViewModel.MainActivity;
 
 public class WelcomeView extends AppCompatActivity {
     private static final String TAG = "WelcomeView";
