@@ -31,4 +31,11 @@ public class ExampleUnitTest {
         int height = gameLogic.getPixelHeight();
         assertEquals(40, height);
     }
+    @Test
+    public void testPlayerCoordinateX() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int x = gameLogic.getPlayerCoordinates().get(0);
+        assertEquals(9, x);
+    }
 }
