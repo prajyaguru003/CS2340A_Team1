@@ -49,21 +49,15 @@ public class GameData {
         dataStorage = 8.0009;
     }
 
-    public GameData creator() {
-        if (data1 == null) {
-            data1 = new GameData();
-        } else {
-            return data1;
-        }
-        return data1;
+    public int changeConstants(String newTwo, GameData dataNew) {
+        data1 = dataNew;
+        newOne = newTwo;
+        int numo = number + 2;
+        return numo;
     }
 
-    public String editString(String coolio) {
-        if (newOne == null) {
-            newOne = coolio;
-        } else {
-            return newOne;
-        }
-        return newOne;
+    public int stringLeng() {
+        int someone = newOne.length();
+        return someone;
     }
 }
