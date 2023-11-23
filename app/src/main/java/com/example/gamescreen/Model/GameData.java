@@ -1,6 +1,6 @@
 package com.example.gamescreen.Model;
 
-import java.uti.Scanner;
+import java.util.Scanner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +45,11 @@ public class GameData {
         dataStorage = 8.0009;
     }
 
-    public void PullRequest(){
-        String pub = "Kruithik is Wierd";
+    public GameData creator() {
+        if (data1 == null) {
+            data1 = new GameData();
+        } else {
+            return data1;
+        }
     }
 }
