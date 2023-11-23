@@ -17,5 +17,11 @@ import java.util.List;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-
+    @Test
+    public void testPixelWidth() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int width = gameLogic.getPixelWidth();
+        assertEquals(40, width);
+    }
 }

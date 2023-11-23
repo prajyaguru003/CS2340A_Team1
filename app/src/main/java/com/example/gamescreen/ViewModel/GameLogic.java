@@ -25,7 +25,6 @@ public class GameLogic {
         player = new Player(9, 9);
     }
 
-<<<<<<< HEAD
     public List<Integer> moveRight(){
         int success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
         if (success == 1 || success == 3){
@@ -41,7 +40,6 @@ public class GameLogic {
         }
         return grid.getPixels(player.getX(), player.getY());
     }
-<<<<<<< HEAD
     public List<Integer> moveLeft(){
         int success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
         if (success == 1 || success == 3){
@@ -53,18 +51,6 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-=======
-    public List<Integer> moveLeft() {
-        int success = grid.moveToSpot(player.getX() - 1, player.getY(),
-                player.getX(), player.getY());
-        if (success == 1 || success == 3) {
-            player.setX(player.getX() - 1);
->>>>>>> a1984001941804015bba82d3ca34e89fa0f66394
-            return grid.getPixels(player.getX(), player.getY());
-        }
-        return grid.getPixels(player.getX(), player.getY());
-    }
-<<<<<<< HEAD
     public List<Integer> moveUp(){
         int success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
         if (success == 1 || success == 3){
@@ -76,18 +62,6 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-=======
-    public List<Integer> moveUp() {
-        int success = grid.moveToSpot(player.getX(), player.getY() - 1,
-                player.getX(), player.getY());
-        if (success == 1 || success == 3) {
-            player.setY(player.getY() - 1);
->>>>>>> a1984001941804015bba82d3ca34e89fa0f66394
-            return grid.getPixels(player.getX(), player.getY());
-        }
-        return grid.getPixels(player.getX(), player.getY());
-    }
-<<<<<<< HEAD
     public List<Integer> moveDown(){
         int success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
         if (success == 1 || success == 3){
@@ -99,13 +73,6 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-=======
-    public List<Integer> moveDown() {
-        int success = grid.moveToSpot(player.getX(), player.getY() + 1,
-                player.getX(), player.getY());
-        if (success == 1 || success == 3) {
-            player.setY(player.getY() + 1);
->>>>>>> a1984001941804015bba82d3ca34e89fa0f66394
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -133,16 +100,10 @@ public class GameLogic {
     }
     public boolean checkGoal(int x, int y) {
         int val = grid.getCoordinateValue(x, y);
-<<<<<<< HEAD
-//        Log.d(TAG, "VALUE " + val);
         if(val == 10){
             return true;
         }
         return false;
-=======
-        Log.d(TAG, "VALUE " + val);
-        return val == 10;
->>>>>>> a1984001941804015bba82d3ca34e89fa0f66394
     }
     public Grid getGrid() {
         return grid;
