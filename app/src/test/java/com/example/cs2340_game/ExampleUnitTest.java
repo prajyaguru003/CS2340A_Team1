@@ -38,4 +38,11 @@ public class ExampleUnitTest {
         int x = gameLogic.getPlayerCoordinates().get(0);
         assertEquals(9, x);
     }
+    @Test
+    public void testPlayerCoordinateY() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int y = gameLogic.getPlayerCoordinates().get(1);
+        assertEquals(9, y);
+    }
 }
