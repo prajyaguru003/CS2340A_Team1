@@ -5,6 +5,10 @@ public class SpeedBoost extends PowerupDecorator {
     protected Player player;
     public SpeedBoost(Player player) {
         super(player);
-        // set speed boost x1.5
+        // set speed boost x2
+    }
+    @Override
+    public void boost() {
+        player.setSpeed(player.getSpeed() * 2);
     }
 }

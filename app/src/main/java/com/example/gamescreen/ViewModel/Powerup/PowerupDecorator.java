@@ -6,4 +6,6 @@ public class PowerupDecorator{
     public PowerupDecorator(Player player) {
         this.player = player;
     }
+
+    public void boost() { return; }
 }

@@ -5,10 +5,12 @@ package com.example.gamescreen.ViewModel;
 public class Player {
     private int x;
     private int y;
+    private int speed;
 
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
+        this.speed = 1;
     }
 
     public int getX() {
@@ -26,4 +28,8 @@ public class Player {
     public void setY(int y) {
         this.y = y;
     }
+
+    public int getSpeed() { return speed; }
+
+    public void setSpeed(int s) { this.speed = s; }
 }

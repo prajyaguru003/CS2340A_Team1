@@ -26,53 +26,33 @@ public class GameLogic {
     }
 
     public List<Integer> moveRight(){
-        int success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setX(player.getX()+1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
+        if (success){
+            player.setX(player.getX()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveLeft(){
-        int success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setX(player.getX()-1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
+        if (success){
+            player.setX(player.getX()-player.getSpeed());
+            return grid.getPixels(player.getX(), player.getY());
+        }
+        return grid.getPixels(player.getX(), player.getY());
+    }
     public List<Integer> moveUp(){
-        int success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setY(player.getY()-1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
+        if (success){
+            player.setY(player.getY()-player.getSpeed());
+            return grid.getPixels(player.getX(), player.getY());
+        }
+        return grid.getPixels(player.getX(), player.getY());
+    }
     public List<Integer> moveDown(){
-        int success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setY(player.getY()+1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
+        if (success){
+            player.setY(player.getY()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
