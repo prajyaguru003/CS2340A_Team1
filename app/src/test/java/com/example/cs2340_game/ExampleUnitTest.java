@@ -45,4 +45,12 @@ public class ExampleUnitTest {
         int y = gameLogic.getPlayerCoordinates().get(1);
         assertEquals(9, y);
     }
+    @Test
+    public void testMoveRightPixelsX() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        List<Integer> pixelCoords = gameLogic.moveRight();
+        int x = pixelCoords.get(0);
+        assertEquals(10 * 40, x);
+    }
 }
