@@ -27,18 +27,17 @@ public class GameData {
         return 2;
     }
 
-    public void setStuff() {
+    public int redo() {
         intseter = 2;
-        storm = "no way";
+        return intseter + number;
     }
 
-
-    public int changeConstants(String newTwo, GameData dataNew) {
-        data1 = dataNew;
-        newOne = newTwo;
-        int numo = number + 2;
-        return numo;
+    public double calculation() {
+        int fui = 2;
+        fui = number < 2 ? number + number : fui;
+        return fui;
     }
+    
 
 
     public int strLen(GameData gameData) {
