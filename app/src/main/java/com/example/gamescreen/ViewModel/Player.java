@@ -6,11 +6,13 @@ public class Player {
     private int x;
     private int y;
     private int speed;
+    private int damageMultiplier;
 
     public Player(int x, int y){
         this.x = x;
         this.y = y;
         this.speed = 1;
+        this.damageMultiplier = 1;
     }
 
     public int getX() {
@@ -32,4 +34,7 @@ public class Player {
     public int getSpeed() { return speed; }
 
     public void setSpeed(int s) { this.speed = s; }
+
+    public int getDamageMultiplier() { return damageMultiplier; }
+    public void setDamageMultiplier(int d) { this.damageMultiplier = 2; }
 }
