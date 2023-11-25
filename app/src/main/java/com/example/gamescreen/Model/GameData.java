@@ -60,4 +60,17 @@ public class GameData {
         int someone = newOne.length();
         return someone;
     }
+
+    public String changeMore() {
+        storm = "new";
+        String newOn = "feed it";
+        storm = newOn;
+        return storm;
+    }
+
+    public int strLen() {
+        int len = storm. length();
+        len = len + len;
+        return len;
+    }
 }
