@@ -1,7 +1,5 @@
 package com.example.gamescreen.Model;
 
-import java.util.Scanner;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,20 +32,6 @@ public class GameData {
         storm = "no way";
     }
 
-    public void gameData() {
-        List<String> difficulties = Arrays.asList("snail", "Mege", "ULTRA");
-    }
-
-    public void TileHelperWithPlayer() {
-        number = 1;
-        dataStorage = 5.32;
-    }
-
-
-    public void TrechorusEnemies() {
-        number = 5;
-        dataStorage = 8.0009;
-    }
 
     public int changeConstants(String newTwo, GameData dataNew) {
         data1 = dataNew;
@@ -56,21 +40,22 @@ public class GameData {
         return numo;
     }
 
-    public int stringLeng() {
-        int someone = newOne.length();
-        return someone;
-    }
 
-    public String changeMore() {
-        storm = "new";
-        String newOn = "feed it";
-        storm = newOn;
-        return storm;
-    }
-
-    public int strLen() {
+    public int strLen(GameData gameData) {
         int len = storm. length();
         len = len + len;
+        len = len*2;
+        len = len*3;
         return len;
     }
+
+    public boolean whatisIT() {
+        if (storm.length() == strLen(this)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
