@@ -5,6 +5,10 @@ public class DamageBoost extends PowerupDecorator {
     protected Player player;
     public DamageBoost(Player player) {
         super(player);
-        // set damage boost x1.5
+    }
+
+    @Override
+    public void boost() {
+        player.setDamageMultiplier(player.getDamageMultiplier() * 2);
     }
 }
