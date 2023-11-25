@@ -25,7 +25,7 @@ public class GameLogic {
     public List<Integer> moveRight(){
         boolean success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
         if (success){
-            player.setX(player.getX()+1);
+            player.setX(player.getX()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -33,7 +33,7 @@ public class GameLogic {
     public List<Integer> moveLeft(){
         boolean success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
         if (success){
-            player.setX(player.getX()-1);
+            player.setX(player.getX()-player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -41,7 +41,7 @@ public class GameLogic {
     public List<Integer> moveUp(){
         boolean success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
         if (success){
-            player.setY(player.getY()-1);
+            player.setY(player.getY()-player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -49,7 +49,7 @@ public class GameLogic {
     public List<Integer> moveDown(){
         boolean success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
         if (success){
-            player.setY(player.getY()+1);
+            player.setY(player.getY()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
