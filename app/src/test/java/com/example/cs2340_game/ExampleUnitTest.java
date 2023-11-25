@@ -69,4 +69,12 @@ public class ExampleUnitTest {
         int x = pixelCoords.get(0);
         assertEquals(9 * 40, x);
     }
+    @Test
+    public void testMoveUpPixelsY() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        List<Integer> pixelCoords = gameLogic.moveUp();
+        int y = pixelCoords.get(1);
+        assertEquals(8 * 40, y);
+    }
 }
