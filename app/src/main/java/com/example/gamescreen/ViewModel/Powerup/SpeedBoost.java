@@ -5,7 +5,6 @@ public class SpeedBoost extends PowerupDecorator {
     protected Player player;
     public SpeedBoost(Player player) {
         super(player);
-        // set speed boost x2
     }
     @Override
     public void boost() {
