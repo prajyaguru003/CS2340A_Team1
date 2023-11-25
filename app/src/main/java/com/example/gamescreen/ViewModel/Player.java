@@ -1,6 +1,6 @@
 package com.example.gamescreen.ViewModel;
 
-import android.graphics.Bitmap;
+//import android.graphics.Bitmap;
 
 public class Player {
     private int x;
@@ -8,7 +8,7 @@ public class Player {
     private int speed;
     private int damageMultiplier;
 
-    public Player(int x, int y){
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
         this.speed = 1;

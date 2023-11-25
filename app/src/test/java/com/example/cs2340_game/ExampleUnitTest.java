@@ -4,6 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.gamescreen.ViewModel.ConfigurationLogic;
+import com.example.gamescreen.ViewModel.GameLogic;
+import com.example.gamescreen.ViewModel.Grid;
+
+import java.util.List;
+
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -11,7 +18,31 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testPixelWidth() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int width = gameLogic.getPixelWidth();
+        assertEquals(40, width);
+    }
+    @Test
+    public void testPixelHeight() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int height = gameLogic.getPixelHeight();
+        assertEquals(40, height);
+    }
+    @Test
+    public void testPlayerCoordinateX() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int x = gameLogic.getPlayerCoordinates().get(0);
+        assertEquals(9, x);
+    }
+    @Test
+    public void testPlayerCoordinateY() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        int y = gameLogic.getPlayerCoordinates().get(1);
+        assertEquals(9, y);
     }
 }
