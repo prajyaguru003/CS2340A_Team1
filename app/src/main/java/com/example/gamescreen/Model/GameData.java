@@ -34,10 +34,10 @@ public class GameData {
 
     public boolean returner() {
         String newO = storm;
-        storm += " ";
+        this.storm += " ";
         char[] strarray = storm.toCharArray();
         for (int i = 0; i < strarray.length; i++) {
-            if (strarray[i] == ("a")) {
+            if (strarray[i] == ('a')) {
                 return true;
             }
         }
@@ -45,9 +45,20 @@ public class GameData {
     }
 
     public boolean whatisIT() {
-        if (storm.length() == strLen(this)) {
+        if (storm.length() == this.storm.length()) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean intsetersetter() {
+        if (this.intseter == 0) {
+            this.intseter = 1;
+            return true;
+        }
+        else {
+            this.intseter = redo();
             return false;
         }
     }
