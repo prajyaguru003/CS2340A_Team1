@@ -1,24 +1,27 @@
 package com.example.gamescreen.ViewModel;
 
-import android.util.Log;
+//import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
 public class GameLogic {
     private Grid grid;
     private Player player;
     private int[] goldStar;
+    private ConfigurationLogic playerConfig;
     private static final String TAG = "GameLogic";
-    public GameLogic(int screenWidth, int screenLength) {
-        if(grid == null){
+    public GameLogic(int screenWidth, int screenLength, ConfigurationLogic playerConfig) {
+        if (grid == null) {
             grid = new Grid(screenWidth, screenLength, 25, 25);
         }
+        this.playerConfig = playerConfig;
         goldStar = new int[2];
         goldStar[0] = 23;
         goldStar[1] = 13;
         grid.setCoordinate(goldStar[0], goldStar[1], 10);
+//        Log.d(TAG, "GOLDSTAR: " + grid.getCoordinateValue(goldStar[0], goldStar[1]));
         player = new Player(9, 9);
     }
 
@@ -54,36 +57,38 @@ public class GameLogic {
         }
         return grid.getPixels(player.getX(), player.getY());
     }
-    public List<Integer> getPlayerPixels(){
+    public List<Integer> getPlayerPixels() {
         return grid.getPixels(player.getX(), player.getY());
     }
-    public List<Integer> getPlayerCoordinates(){
+    public List<Integer> getPlayerCoordinates() {
         List<Integer> temp = new ArrayList<>();
         temp.add(player.getX());
         temp.add(player.getY());
         return temp;
     }
-    public int getPixelWidth(){
+    public int getPixelWidth() {
         return grid.getWidthFactor();
     }
-    public int getPixelHeight(){
+    public int getPixelHeight() {
         return grid.getLengthFactor();
     }
-    public int[][] getGridCopy(){
+    public int[][] getGridCopy() {
         return grid.getGridCopy();
     }
-    public int[] getGoldStar(){
+    public int[] getGoldStar() {
         return goldStar;
     }
-    public boolean checkGoal(int x, int y){
+    public boolean checkGoal(int x, int y) {
         int val = grid.getCoordinateValue(x, y);
-        Log.d(TAG, "VALUE " + val);
         if(val == 10){
             return true;
         }
         return false;
     }
-    public Grid getGrid(){
+    public Grid getGrid() {
         return grid;
+    }
+    public ConfigurationLogic getPlayerConfig() {
+        return playerConfig;
     }
 }

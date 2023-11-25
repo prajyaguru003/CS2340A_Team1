@@ -1,7 +1,7 @@
 package com.example.gamescreen.Model;
 
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class ConfigurationData {
     private Set<String> difficulties;
     private Set<Integer> spriteIDs;
     private Drawable sprite;
+    private int damage;
     public ConfigurationData() {
         List<String> difficulties = Arrays.asList("Easy", "Medium", "Hard");
         this.difficulties = new HashSet<>();
@@ -51,14 +52,17 @@ public class ConfigurationData {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
-        if(difficulty.equals("Easy")){
+        if (difficulty.equals("Easy")) {
             this.hp = 100;
+            this.damage = 10;
         }
-        if(difficulty.equals("Medium")){
+        if (difficulty.equals("Medium")) {
             this.hp = 75;
+            this.damage = 25;
         }
-        if(difficulty.equals("Hard")){
+        if (difficulty.equals("Hard")) {
             this.hp = 50;
+            this.damage = 50;
         }
     }
 
@@ -66,9 +70,9 @@ public class ConfigurationData {
         return hp;
     }
 
-//    public void setHp(int hp) {
-//        this.hp = hp;
-//    }
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 
     public void setSpriteID(int spriteID) {
         this.spriteID = spriteID;
@@ -88,5 +92,8 @@ public class ConfigurationData {
 
     public void setSprite(Drawable sprite) {
         this.sprite = sprite;
+    }
+    public int getDamage() {
+        return damage;
     }
 }
