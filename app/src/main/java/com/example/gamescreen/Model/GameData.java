@@ -32,20 +32,16 @@ public class GameData {
         return intseter + number;
     }
 
-    public double calculation() {
-        int fui = 2;
-        fui = number < 2 ? number + number : fui;
-        return fui;
-    }
-    
-
-
-    public int strLen(GameData gameData) {
-        int len = storm. length();
-        len = len + len;
-        len = len*2;
-        len = len*3;
-        return len;
+    public boolean returner() {
+        String newO = storm;
+        storm += " ";
+        char[] strarray = storm.toCharArray();
+        for (int i = 0; i < strarray.length; i++) {
+            if (strarray[i] == ("a")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean whatisIT() {
