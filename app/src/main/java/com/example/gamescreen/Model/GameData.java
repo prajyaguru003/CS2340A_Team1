@@ -26,10 +26,22 @@ public class GameData {
         }
         return false;
     }
-    public GameData newGD() {
+    private boolean newGD() {
         GameData newOne = new GameData();
+        data1 = newOne;
         newOne.intseter = 2;
         newOne.number = 3;
-        return newOne;
+        return true;
+    }
+
+    public boolean newGameData() {
+        if (data1 == null) {
+            return newGD();
+        }
+        return false;
+    }
+
+    public GameData getGameData() {
+        return this.data1;
     }
 }
