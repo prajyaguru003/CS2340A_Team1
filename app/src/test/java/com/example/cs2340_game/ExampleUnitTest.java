@@ -77,4 +77,12 @@ public class ExampleUnitTest {
         int y = pixelCoords.get(1);
         assertEquals(8 * 40, y);
     }
+    @Test
+    public void testCheckGoal() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000,playerConfig);
+        boolean check = gameLogic.checkGoal(23,13);
+        boolean real = false;
+        assertEquals(true,check);
+    }
 }
