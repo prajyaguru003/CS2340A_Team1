@@ -69,11 +69,14 @@ public class GameData {
     }
 
     public boolean createConfigData() {
+        return setConfigData();
+    }
+
+    private boolean setConfigData() {
         if (this.configData1 == null) {
             configData1 = new ConfigurationData();
             return true;
         }
         return false;
     }
-
 }
