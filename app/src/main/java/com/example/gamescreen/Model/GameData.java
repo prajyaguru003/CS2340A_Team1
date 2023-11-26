@@ -40,7 +40,7 @@ public class GameData {
         }
         return false;
     }
-    
+
     public String isGameDataTrue() {
         if (data1 == null) {
             return "GameData is True";
@@ -59,5 +59,13 @@ public class GameData {
         return n;
     }
 
+    public boolean giveString(String storm) {
+        if (!storm.isEmpty() || storm != null) {
+            this.storm = storm;
+            return true;
+        }
+        return false;
+
+    }
 
 }
