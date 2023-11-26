@@ -14,7 +14,7 @@ public class EnemyWeapon {
     public boolean isInUse() {
         return inUse;
     }
-    
+
     public void setDamage(int damage) {
         this.damage = damage;
     }
