@@ -40,11 +40,7 @@ public class GameData {
         }
         return false;
     }
-
-    public GameData getGameData() {
-        return this.data1;
-    }
-
+    
     public String isGameDataTrue() {
         if (data1 == null) {
             return "GameData is True";
@@ -54,4 +50,14 @@ public class GameData {
         }
         return "neither are true";
     }
+
+    public int multiplyNums() {
+        int n = number;
+        if (number != 0) {
+            n = n * n;
+        }
+        return n;
+    }
+
+
 }
