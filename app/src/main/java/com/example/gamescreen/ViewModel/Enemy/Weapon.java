@@ -3,6 +3,7 @@ package com.example.gamescreen.ViewModel.Enemy;
 public abstract class Weapon {
     private int damage;
     private int durability;
+    private boolean inUse;
 
     public int getDamage() {
         return damage;
