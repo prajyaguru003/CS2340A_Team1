@@ -10,6 +10,18 @@ public abstract class Enemy {
     private String name;
 
     private ImageView character;
+    private EnemyWeapon weapon;
+
+    public Enemy(int hp, int movementSpeed, int x, int y, String name,
+                 ImageView character, EnemyWeapon weapon) {
+        this.hp = hp;
+        this.movementSpeed = movementSpeed;
+        this.x = x;
+        this.y = y;
+        this.name = name;
+        this.character = character;
+        this.weapon = weapon;
+    }
 
     public int getMovementSpeed() {
         return movementSpeed;
