@@ -102,10 +102,4 @@ public class ExampleUnitTest {
         ConfigurationLogic temp = gameLogic.getPlayerConfig();
         assertEquals(playerConfig, temp);
     }
-    @Test
-    public void testReal() {
-        ConfigurationLogic playerConfig = new ConfigurationLogic();
-        int real = 70;
-        assertEquals(70, real);
-    }
 }
