@@ -7,4 +7,8 @@ public class HPBoost extends PowerupDecorator {
         super(player);
         // set HP boost x1.5
     }
+
+    public void boost() {
+        player.setHPMultiplier(player.getHPMultiplier() * 2);
+    }
 }
