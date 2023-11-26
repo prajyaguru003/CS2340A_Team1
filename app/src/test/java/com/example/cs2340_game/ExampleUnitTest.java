@@ -99,4 +99,11 @@ public class ExampleUnitTest {
         int val = grid.getCoordinateValue(20, 20);
         assertEquals(15, val);
     }
+    @Test
+    public void testPLayerConfigSame() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
+        ConfigurationLogic temp = gameLogic.getPlayerConfig();
+        assertEquals(playerConfig, temp);
+    }
 }
