@@ -19,62 +19,17 @@ public class GameData {
         number = number1;
         return number;
     }
-
-    public boolean teller() {
-        number = intseter;
-        intseter = intseter > number ? intseter + intseter : intseter;
-        if (number + intseter == number) {
+    public boolean addNums() {
+        int s = number + 2;
+        if (s < 0) {
             return true;
         }
         return false;
     }
-
-    public boolean returner() {
-        String newO = storm;
-        this.storm += " ";
-        char[] strarray = storm.toCharArray();
-        for (int i = 0; i < strarray.length; i++) {
-            if (strarray[i] == ('a')) {
-                return true;
-            }
-        }
-
-        return false;
+    public GameData newGD() {
+        GameData newOne = new GameData();
+        newOne.intseter = 2;
+        newOne.number = 3;
+        return newOne;
     }
-
-    public boolean whatisIT() {
-        if (storm.length() == this.storm.length()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean intsetersetter() {
-        if (this.intseter == 0) {
-            this.intseter = 1;
-            return true;
-        }
-        else {
-            teller();
-            return false;
-        }
-    }
-
-    public void calculator() {
-        if (this.intseter == 0) {
-            this.number += number;
-        }
-        if (this.intseter == 1) {
-            this.number -= number;
-        }
-        if (this.intseter == 2) {
-            this.number = number * number;
-        }
-        if (this.intseter == 3) {
-            this.number = number / number;
-        }
-    }
-
-
 }
