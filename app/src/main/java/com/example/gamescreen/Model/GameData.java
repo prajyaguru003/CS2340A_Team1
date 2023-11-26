@@ -10,7 +10,7 @@ public class GameData {
     public GameData data1;
 
     public Integer intseter;
-    public String storm = "Pribabu";
+    public String storm = "Kruither";
     int number = -1;
 
     String newOne = null;
@@ -43,5 +43,15 @@ public class GameData {
 
     public GameData getGameData() {
         return this.data1;
+    }
+
+    public String isGameDataTrue() {
+        if (data1 == null) {
+            return "GameData is True";
+        }
+        if (configData1 == null) {
+            return "ConfigData is true but not GameData";
+        }
+        return "neither are true";
     }
 }
