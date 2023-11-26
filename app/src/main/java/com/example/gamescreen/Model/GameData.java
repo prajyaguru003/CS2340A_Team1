@@ -19,8 +19,6 @@ public class GameData {
         number = number1;
         return number;
     }
-
-
     public boolean addNums() {
         int s = number + 2;
         if (s < 0) {
@@ -28,12 +26,10 @@ public class GameData {
         }
         return false;
     }
-
     public GameData newGD() {
         GameData newOne = new GameData();
         newOne.intseter = 2;
         newOne.number = 3;
         return newOne;
     }
-
 }
