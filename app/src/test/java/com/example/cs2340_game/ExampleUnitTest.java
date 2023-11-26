@@ -92,4 +92,11 @@ public class ExampleUnitTest {
         boolean check = gameLogic.checkGoal(21, 13);
         assertEquals(false, check);
     }
+    @Test
+    public void testSetGrid() {
+        Grid grid = new Grid(1000, 1000, 25, 25);
+        grid.setCoordinate(20, 20, 15);
+        int val = grid.getCoordinateValue(20, 20);
+        assertEquals(15, val);
+    }
 }
