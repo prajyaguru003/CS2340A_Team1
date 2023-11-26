@@ -26,6 +26,7 @@ public class GameData {
         if (number + intseter == number) {
             return true;
         }
+        return false;
     }
 
     public boolean returner() {
@@ -55,8 +56,23 @@ public class GameData {
             return true;
         }
         else {
-            this.intseter = redo();
+            teller();
             return false;
+        }
+    }
+
+    public void calculator() {
+        if (this.intseter == 0) {
+            this.number += number;
+        }
+        if (this.intseter == 1) {
+            this.number -= number;
+        }
+        if (this.intseter == 2) {
+            this.number = number * number;
+        }
+        if (this.intseter == 3) {
+            this.number = number / number;
         }
     }
 
