@@ -3,17 +3,17 @@ package com.example.gamescreen.ViewModel;
 //import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
 public class GameLogic {
     private Grid grid;
     private Player player;
     private int[] goldStar;
-    ConfigurationLogic playerConfig;
+    private ConfigurationLogic playerConfig;
     private static final String TAG = "GameLogic";
     public GameLogic(int screenWidth, int screenLength, ConfigurationLogic playerConfig) {
-        if(grid == null){
+        if (grid == null) {
             grid = new Grid(screenWidth, screenLength, 25, 25);
         }
         this.playerConfig = playerConfig;
@@ -26,98 +26,69 @@ public class GameLogic {
     }
 
     public List<Integer> moveRight(){
-        int success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setX(player.getX()+1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
+        if (success){
+            player.setX(player.getX()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveLeft(){
-        int success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setX(player.getX()-1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
+        if (success){
+            player.setX(player.getX()-player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveUp(){
-        int success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setY(player.getY()-1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
+        if (success){
+            player.setY(player.getY()-player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveDown(){
-        int success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
-        if (success == 1 || success == 3){
-            player.setY(player.getY()+1);
-            int newX = player.getX();
-            int newY = player.getY();
-            if(grid.getCoordinateValue(newX, newY) == 3){
-                ConfigurationLogic playerConfig = this.getPlayerConfig();
-                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
-//                Log.d(TAG, "POKEMON.com");
-            }
+        boolean success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
+        if (success){
+            player.setY(player.getY()+player.getSpeed());
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
-    public List<Integer> getPlayerPixels(){
+    public List<Integer> getPlayerPixels() {
         return grid.getPixels(player.getX(), player.getY());
     }
-    public List<Integer> getPlayerCoordinates(){
+    public List<Integer> getPlayerCoordinates() {
         List<Integer> temp = new ArrayList<>();
         temp.add(player.getX());
         temp.add(player.getY());
         return temp;
     }
-    public int getPixelWidth(){
+    public int getPixelWidth() {
         return grid.getWidthFactor();
     }
-    public int getPixelHeight(){
+    public int getPixelHeight() {
         return grid.getLengthFactor();
     }
-    public int[][] getGridCopy(){
+    public int[][] getGridCopy() {
         return grid.getGridCopy();
     }
-    public int[] getGoldStar(){
+    public int[] getGoldStar() {
         return goldStar;
     }
-    public boolean checkGoal(int x, int y){
+    public boolean checkGoal(int x, int y) {
         int val = grid.getCoordinateValue(x, y);
-//        Log.d(TAG, "VALUE " + val);
         if(val == 10){
             return true;
         }
         return false;
     }
-    public Grid getGrid(){
+    public Grid getGrid() {
         return grid;
     }
-    public ConfigurationLogic getPlayerConfig(){
+    public ConfigurationLogic getPlayerConfig() {
         return playerConfig;
     }
 }

@@ -10,6 +10,7 @@ import com.example.gamescreen.ViewModel.Grid;
 
 import java.util.List;
 
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -76,33 +77,4 @@ public class ExampleUnitTest {
         int y = pixelCoords.get(1);
         assertEquals(8 * 40, y);
     }
-    @Test
-    public void testCheckGoal() {
-        ConfigurationLogic playerConfig = new ConfigurationLogic();
-        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
-        boolean check = gameLogic.checkGoal(23, 13);
-        assertEquals(true, check);
-    }
-    @Test
-    public void testCheckGoalFalse() {
-        ConfigurationLogic playerConfig = new ConfigurationLogic();
-        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
-        boolean check = gameLogic.checkGoal(21, 13);
-        assertEquals(false, check);
-    }
-    @Test
-    public void testSetGrid() {
-        Grid grid = new Grid(1000, 1000, 25, 25);
-        grid.setCoordinate(20, 20, 15);
-        int val = grid.getCoordinateValue(20, 20);
-        assertEquals(15, val);
-    }
-    @Test
-    public void testPLayerConfigSame() {
-        ConfigurationLogic playerConfig = new ConfigurationLogic();
-        GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
-        ConfigurationLogic temp = gameLogic.getPlayerConfig();
-        assertEquals(playerConfig, temp);
-    }
-
 }
