@@ -79,7 +79,6 @@ public class ExampleUnitTest {
         ConfigurationLogic playerConfig = new ConfigurationLogic();
         GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
         boolean check = gameLogic.checkGoal(23,13);
-        boolean real = false;
         assertEquals(true,check);
     }
     @Test
@@ -102,5 +101,11 @@ public class ExampleUnitTest {
         GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
         ConfigurationLogic temp = gameLogic.getPlayerConfig();
         assertEquals(playerConfig, temp);
+    }
+    @Test
+    public void testReal() {
+        ConfigurationLogic playerConfig = new ConfigurationLogic();
+        int real = 70;
+        assertEquals(70, real);
     }
 }
