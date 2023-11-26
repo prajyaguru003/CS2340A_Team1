@@ -41,16 +41,6 @@ public class GameData {
         return false;
     }
 
-    public String isGameDataTrue() {
-        if (data1 == null) {
-            return "GameData is True";
-        }
-        if (configData1 == null) {
-            return "ConfigData is true but not GameData";
-        }
-        return "neither are true";
-    }
-
     public int multiplyNums() {
         int n = number;
         if (number != 0) {
@@ -66,6 +56,24 @@ public class GameData {
         }
         return false;
 
+    }
+
+    public String isGameDataTrue() {
+        if (data1 == null) {
+            return "GameData is True";
+        }
+        if (configData1 == null) {
+            return "ConfigData is true but not GameData";
+        }
+        return "neither are true";
+    }
+
+    public boolean createConfigData() {
+        if (this.configData1 == null) {
+            configData1 = new ConfigurationData();
+            return true;
+        }
+        return false;
     }
 
 }
