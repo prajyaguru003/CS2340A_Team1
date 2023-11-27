@@ -4,6 +4,7 @@ public class Gun extends Weapon {
     private int damage;
     private int durability;
     private boolean inUse;
+    private Bullet[] ammo;
     public Gun(int damage, int durability, boolean inUse) {
         this.damage = damage;
         this.durability = durability;
@@ -24,5 +25,9 @@ public class Gun extends Weapon {
 
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
+    }
+
+    public int criticalAttack() {
+        return damage * 5;
     }
 }
