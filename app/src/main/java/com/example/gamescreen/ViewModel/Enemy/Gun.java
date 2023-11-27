@@ -29,11 +29,4 @@ public class Gun extends Weapon {
     public void setInUse(boolean inUse) {
         this.inUse = inUse;
     }
-
-    public int attack() {
-        if (critCount == critical) {
-            return damage * 5;
-        }
-        return damage;
-    }
 }
