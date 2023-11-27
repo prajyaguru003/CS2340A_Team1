@@ -1,12 +1,16 @@
 package com.example.gamescreen.ViewModel.Enemy;
 
 import android.widget.ImageView;
+import java.util.Random;
 
 public abstract class Enemy {
     int hp;
     int movementSpeed;
-    public int x = 15;
-    public int y = 15;
+    Random random = new Random();
+    public int x = 1 + random.nextInt(20);
+
+    // Generate a number between 1 and 20
+    public int y = 1 + random.nextInt(20);
     String name;
 
     ImageView character;

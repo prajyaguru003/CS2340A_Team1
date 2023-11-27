@@ -6,7 +6,7 @@ public class Enemy1 extends Enemy{
     int hp;
     int movementSpeed;
     String name;
-    public int x = 15;
+    public int x = 20;
     public int y = 15;
     ImageView character;
 

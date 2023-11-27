@@ -224,7 +224,7 @@ public class GameView extends AppCompatActivity {
     private void startTimer(){
         gameTimer = new Timer();
         GameTimer gameTimerTask = new GameTimer(this, enemyMovement);
-        gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 200);
+        gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 400);
     }
     public void updateEnemies(int el){
         List<Enemy> enemyObjects = enemyMovement.getEnemies();
@@ -246,7 +246,12 @@ public class GameView extends AppCompatActivity {
                 enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
                 enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
                 layout.addView(enemy);
+            } else{
+                Log.d(TAG, "YOOOOO FOUND DA BOMB ENEMY!");
             }
+        }
+        if(el != 0){
+            enemyObjects.remove(el-1);
         }
     }
     public void updateHealth(){

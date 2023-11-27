@@ -2,6 +2,8 @@ package com.example.gamescreen.ViewModel;
 
 //import android.util.Log;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
