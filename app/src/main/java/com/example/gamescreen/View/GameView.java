@@ -58,7 +58,6 @@ public class GameView extends AppCompatActivity {
         } else{
             win();
         }
-//        Log.d(TAG, "PLAYERCONFIG: " + playerConfig.toString());
         tileConfig = TileConfigurationLogic.getConfig();
         DisplayMetrics display = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(display);
@@ -92,12 +91,12 @@ public class GameView extends AppCompatActivity {
         updateEnemies(0);
         gameOn();
     }
-    private void generateWalls(){
+    private void generateWalls() {
         int[][] grid = gameLogic.getGridCopy();
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j<grid[0].length; j++){
-                if(grid[i][j] == 5){
-//                    Log.d(TAG, "THERE IS A 5 HERE");
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == 5) {
+                    //Log.d(TAG, "THERE IS A 5 HERE");
                     ImageView wall = new ImageView(this);
                     wall.setImageResource(R.drawable.stonewall);
                     ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -115,7 +114,7 @@ public class GameView extends AppCompatActivity {
             }
         }
     }
-    private void gameOn(){
+    private void gameOn() {
         startTimer();
         Button up = (Button) findViewById(R.id.btnup);
         Button down = (Button) findViewById(R.id.btndown);
@@ -127,30 +126,30 @@ public class GameView extends AppCompatActivity {
         buttonClicked(right, "right");
         placeBlob();
     }
-    private void buttonClicked(Button button, String btnID){
-//        Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+    private void buttonClicked(Button button, String btnID) {
+        //Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
         button.setOnClickListener(view -> {
             List<Integer> playerPos = new ArrayList<>();
-            if(btnID == "up"){
+            if (btnID == "up") {
                 playerPos = gameLogic.moveUp();
             }
-            if(btnID == "down"){
+            if (btnID == "down") {
                 playerPos = gameLogic.moveDown();
             }
-            if(btnID == "left"){
+            if (btnID == "left") {
                 playerPos = gameLogic.moveLeft();
             }
-            if(btnID == "right"){
+            if (btnID == "right") {
                 playerPos = gameLogic.moveRight();
             }
             playerConfig.setPixelX(playerPos.get(0));
             playerConfig.setPixelY(playerPos.get(1));
             player.setX(playerConfig.getPixelX());
             player.setY(playerConfig.getPixelY());
-//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
-//            Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
+            //Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
+            //Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
             List<Integer> playerCoordinates = gameLogic.getPlayerCoordinates();
-            if(gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
+            if (gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
                 Log.d(TAG, "FOUND THE STAR!!!!!!");
                 Intent intent = new Intent(GameView.this, GameView.class);
                 Intent oldIntent = getIntent();
@@ -205,7 +204,7 @@ public class GameView extends AppCompatActivity {
         tileNum.setText(setTile);
         Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
     }
-    private void setStar(){
+    private void setStar() {
         ImageView star = new ImageView(this);
         star.setImageResource(R.drawable.goldstar);
         ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -219,16 +218,16 @@ public class GameView extends AppCompatActivity {
         layout.addView(star);
         int[] goldStarCoordinates = gameLogic.getGoldStar();
         star.setX(gameLogic.getPixelWidth() * goldStarCoordinates[0]);
-        star.setY(gameLogic.getPixelHeight()* goldStarCoordinates[1]);
+        star.setY(gameLogic.getPixelHeight() * goldStarCoordinates[1]);
     }
-    private void startTimer(){
+    private void startTimer() {
         gameTimer = new Timer();
         GameTimer gameTimerTask = new GameTimer(this, enemyMovement);
         gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 200);
     }
     public void updateEnemies(int el){
         List<Enemy> enemyObjects = enemyMovement.getEnemies();
-        for(int i = 0; i<enemyObjects.size(); i++){
+        for (int i = 0; i < enemyObjects.size(); i++) {
             ImageView enemy = enemies.get(i);
             enemy.setImageResource(R.drawable.ninja);
             ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -249,8 +248,9 @@ public class GameView extends AppCompatActivity {
             }
         }
     }
-    public void updateHealth(){
+    public void updateHealth() {
         TextView name = (TextView) findViewById(R.id.health);
+<<<<<<< HEAD
 //        Log.d(TAG, "HP: " + playerConfig.getHp());
 //        Log.d(TAG, "HP: " + playerConfig.getHp());
         if(playerConfig.getHp() <= 0){
@@ -259,6 +259,10 @@ public class GameView extends AppCompatActivity {
             }
             lose();
         }
+=======
+        //Log.d(TAG, "HP: " + playerConfig.getHp());
+        //Log.d(TAG, "HP: " + playerConfig.getHp());
+>>>>>>> a1984001941804015bba82d3ca34e89fa0f66394
         String health = "HP: " + playerConfig.getHp();
         name.setText(health);
     }

@@ -2,13 +2,13 @@ package com.example.gamescreen.ViewModel.Enemy;
 
 
 import android.widget.ImageView;
-public class Enemy1 extends Enemy{
-    int hp;
-    int movementSpeed;
-    String name;
-    public int x = 15;
-    public int y = 15;
-    ImageView character;
+public class Enemy1 extends Enemy {
+    private int hp;
+    private int movementSpeed;
+    private String name;
+    private int x = 15;
+    private int y = 15;
+    private ImageView character;
 
     public Enemy1() {
         this.hp = 10;

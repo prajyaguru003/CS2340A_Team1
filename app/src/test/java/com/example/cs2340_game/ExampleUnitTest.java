@@ -1,5 +1,4 @@
 package com.example.cs2340_game;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +8,6 @@ import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.Grid;
 
 import java.util.List;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -80,8 +78,8 @@ public class ExampleUnitTest {
     public void testCheckGoal() {
         ConfigurationLogic playerConfig = new ConfigurationLogic();
         GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
-        boolean check = gameLogic.checkGoal(23, 13);
-        assertEquals(true, check);
+        boolean check = gameLogic.checkGoal(23,13);
+        assertEquals(true,check);
     }
     @Test
     public void testCheckGoalFalse() {
@@ -98,11 +96,10 @@ public class ExampleUnitTest {
         assertEquals(15, val);
     }
     @Test
-    public void testPLayerConfigSame() {
+    public void testPlayerConfigSame() {
         ConfigurationLogic playerConfig = new ConfigurationLogic();
         GameLogic gameLogic = new GameLogic(1000, 1000, playerConfig);
         ConfigurationLogic temp = gameLogic.getPlayerConfig();
         assertEquals(playerConfig, temp);
     }
-
 }

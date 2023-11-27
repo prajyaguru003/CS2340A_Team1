@@ -3,13 +3,14 @@ package com.example.gamescreen.ViewModel.Enemy;
 import android.widget.ImageView;
 
 public abstract class Enemy {
-    int hp;
-    int movementSpeed;
-    public int x = 15;
-    public int y = 15;
-    String name;
+    private int hp;
+    private int movementSpeed;
+    private int x = 15;
+    private int y = 15;
+    private String name;
 
-    ImageView character;
+    private ImageView character;
+    private EnemyWeapon weapon;
 
     public int getHp() {
         return hp;
