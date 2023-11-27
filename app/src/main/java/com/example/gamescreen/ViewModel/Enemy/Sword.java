@@ -4,6 +4,7 @@ public class Sword extends Weapon {
     private int damage;
     private int durability;
     private boolean inUse;
+    private Bullet[] ammo;
     public Sword(int damage, int durability, boolean inUse) {
         this.damage = damage;
         this.durability = durability;
