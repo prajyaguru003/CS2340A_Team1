@@ -4,11 +4,14 @@ public class Gun extends Weapon {
     private int damage;
     private int durability;
     private boolean inUse;
+    private int critCount;
+    private int critical;
     private Bullet[] ammo;
-    public Gun(int damage, int durability, boolean inUse) {
+    public Gun(int damage, int durability, boolean inUse, int critical) {
         this.damage = damage;
         this.durability = durability;
         this.inUse = inUse;
+        this.critical = critical;
     }
 
     public int getDamage() {
@@ -28,6 +31,9 @@ public class Gun extends Weapon {
     }
 
     public int criticalAttack() {
-        return damage * 5;
+        if (critCount == critical) {
+            return damage * 5;
+        }
+        return 0;
     }
 }
