@@ -1,10 +1,11 @@
 package com.example.gamescreen.ViewModel.Enemy;
 
-public class EnemyWeapon extends Weapon {
+public class Sword extends Weapon {
     private int damage;
     private int durability;
     private boolean inUse;
-    public EnemyWeapon(int damage, int durability, boolean inUse) {
+    private Bullet[] ammo;
+    public Sword(int damage, int durability, boolean inUse) {
         this.damage = damage;
         this.durability = durability;
         this.inUse = inUse;
