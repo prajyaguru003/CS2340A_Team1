@@ -33,14 +33,24 @@ public class EnemyMovementLogic {
         this.gameLogic = gameLogic;
     }
 
-    public void moveEnemies(){
-        moveEnemy(enemy1, grid);
-        moveEnemy(enemy2, grid);
-        moveEnemy(enemy3, grid);
-        moveEnemy(enemy4, grid);
+    public int moveEnemies(){
+        int e1 = moveEnemy(enemy1, grid);
+        int e2 = moveEnemy(enemy2, grid);
+        int e3 = moveEnemy(enemy3, grid);
+        int e4 = moveEnemy(enemy4, grid);
+        if(e1 == -1){
+            return 1;
+        } else if(e2 == -1){
+            return 2;
+        } else if(e3 == -1){
+            return 3;
+        } else if(e4 == -1){
+            return 4;
+        }
+        return 0;
     }
 
-    public void moveEnemy(Enemy enemy, Grid grid){
+    public int moveEnemy(Enemy enemy, Grid grid){
         int movementSpeed = enemy.movementSpeed;
         List<int[]> directions = new ArrayList<>();
         directions.add(new int[]{0,1});
@@ -66,7 +76,14 @@ public class EnemyMovementLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
                 Log.d(TAG, "POKEMON.com");
             }
+            if(grid.getCoordinateValue(newX, newY) == 8){
+                enemy.setHp(enemy.getHp() - 5);
+                if(enemy.getHp() <= 0){
+                    return -1;
+                }
+            }
         }
+        return 1;
     }
 
     public List<Enemy> getEnemies() {

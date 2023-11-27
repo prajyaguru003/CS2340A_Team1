@@ -25,6 +25,7 @@ public class Grid {
         this.gridWidth = gridWidth;
         this.gridLength = gridLength;
         setGrid();
+        setGun();
         generateWalls(gridLength, 1, gridWidth-5);
     }
     private void setGrid(){
@@ -56,6 +57,9 @@ public class Grid {
         for(int j = 3; j<8; j++){
             grid[15][j] = 5;
         }
+    }
+    private void setGun(){
+        grid[5][5] = 8;
     }
     public void scramble(){
         setGrid();

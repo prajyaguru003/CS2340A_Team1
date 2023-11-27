@@ -22,6 +22,7 @@ import com.example.gamescreen.ViewModel.Enemy.EnemyMovementLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.GameTimer;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
+import com.example.gamescreen.ViewModel.Weapons.BlobLogic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class GameView extends AppCompatActivity {
     Timer gameTimer;
     EnemyMovementLogic enemyMovement;
     List<ImageView> enemies;
+    BlobLogic blobLogic;
     int tile;
     private static final String TAG = "GameView";
     @Override
@@ -63,6 +65,7 @@ public class GameView extends AppCompatActivity {
         int screenWidth = display.heightPixels;
         int screenLength = display.widthPixels;
         gameLogic = new GameLogic(screenLength, screenWidth, playerConfig);
+        blobLogic = new BlobLogic(gameLogic);
         enemyMovement = new EnemyMovementLogic(gameLogic);
         enemies = new ArrayList<>();
         enemies.add(new ImageView(this));
@@ -86,7 +89,7 @@ public class GameView extends AppCompatActivity {
         showSelected();
         generateWalls();
         setStar();
-        updateEnemies();
+        updateEnemies(0);
         gameOn();
     }
     private void generateWalls(){
@@ -122,6 +125,7 @@ public class GameView extends AppCompatActivity {
         buttonClicked(down, "down");
         buttonClicked(left, "left");
         buttonClicked(right, "right");
+        placeBlob();
     }
     private void buttonClicked(Button button, String btnID){
 //        Log.d(TAG, "POSSSSIIITIOOONN" + " " + player.getX() + " " + player.getY());
@@ -155,6 +159,30 @@ public class GameView extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void placeBlob(){
+        Button button = (Button) findViewById(R.id.blobPlacer);
+        button.setOnClickListener(view -> {
+            List<Integer> coords = gameLogic.getPlayerCoordinates();
+            int x = coords.get(0);
+            int y = coords.get(1);
+            blobLogic.placeBlob(x, y);
+            ImageView blob = new ImageView(this);
+            blob.setImageResource(R.drawable.blob);
+            ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            wallParams.width = gameLogic.getPixelWidth();
+            wallParams.height = gameLogic.getPixelHeight();
+            blob.setLayoutParams(wallParams);
+            ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+            layout.addView(blob);
+            int[] goldStarCoordinates = gameLogic.getGoldStar();
+            blob.setX(gameLogic.getPixelWidth() * x);
+            blob.setY(gameLogic.getPixelHeight()* y);
+        });
     }
 
     private void showSelected() {
@@ -196,9 +224,9 @@ public class GameView extends AppCompatActivity {
     private void startTimer(){
         gameTimer = new Timer();
         GameTimer gameTimerTask = new GameTimer(this, enemyMovement);
-        gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 1000);
+        gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 200);
     }
-    public void updateEnemies(){
+    public void updateEnemies(int el){
         List<Enemy> enemyObjects = enemyMovement.getEnemies();
         for(int i = 0; i<enemyObjects.size(); i++){
             ImageView enemy = enemies.get(i);
@@ -214,11 +242,11 @@ public class GameView extends AppCompatActivity {
                 ((ViewGroup) enemy.getParent()).removeView(enemy);
             }
             ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
-            layout.addView(enemy);
-//            Log.d(TAG, "ENEMY POS: " + enemyObjects.get(i).x + " " + enemyObjects.get(i).y);
-            enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
-//            Log.d(TAG, "PIXELS: " + (enemyObjects.get(i).x * gameLogic.getPixelWidth()));
-            enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
+            if(el-1 != i){
+                enemies.get(i).setX(enemyObjects.get(i).x * gameLogic.getPixelWidth());
+                enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
+                layout.addView(enemy);
+            }
         }
     }
     public void updateHealth(){
