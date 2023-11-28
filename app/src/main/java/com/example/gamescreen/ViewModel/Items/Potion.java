@@ -13,4 +13,11 @@ public class Potion extends Item {
     public int getX(){
         return this.x;
     }
+    public void setY(int y){
+        this.y = y;
+    }
+    public int getY(){
+        return this.y;
+    }
+
 }

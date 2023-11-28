@@ -87,7 +87,7 @@ public class EnemyMovementLogic {
             grid.setCoordinate(enemy.x, enemy.y, 0);
             enemy.x = newX;
             enemy.y = newY;
-            if(grid.getCoordinateValue(newX, newY) != 1){
+            if(grid.getCoordinateValue(newX, newY) != 1 && grid.getCoordinateValue(newX, newY) != 8){
                 grid.setCoordinate(newX, newY, 3);
             }
             if(grid.getCoordinateValue(newX, newY) == 1){

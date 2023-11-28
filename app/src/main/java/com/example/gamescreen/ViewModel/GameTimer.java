@@ -33,6 +33,7 @@ public class GameTimer extends TimerTask{
             gameView.updateEnemies(enemyEl);
         } if(elapsedTime % 200 == 0){
             gameView.updateHealth();
+            gameView.updateItems();
         }
 //        Log.d(TAG, "TIMER HAS BEEN STARTED");
     }

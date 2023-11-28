@@ -22,11 +22,16 @@ import com.example.gamescreen.ViewModel.Enemy.EnemyMovementLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.GameTimer;
 import com.example.gamescreen.ViewModel.Items.GenerateItems;
+import com.example.gamescreen.ViewModel.Items.Item;
+import com.example.gamescreen.ViewModel.Items.Potion;
+import com.example.gamescreen.ViewModel.Items.SlowEnemies;
+import com.example.gamescreen.ViewModel.Items.SpeedBoost;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 import com.example.gamescreen.ViewModel.Weapons.BlobLogic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 
 public class GameView extends AppCompatActivity {
@@ -39,6 +44,8 @@ public class GameView extends AppCompatActivity {
     List<ImageView> enemies;
     BlobLogic blobLogic;
     GenerateItems items;
+    List<ImageView> itemImages;
+    List<Integer> itemIndex;
     int tile;
     private static final String TAG = "GameView";
     @Override
@@ -69,6 +76,9 @@ public class GameView extends AppCompatActivity {
         gameLogic = new GameLogic(screenLength, screenWidth, playerConfig);
         blobLogic = new BlobLogic(gameLogic);
         items = new GenerateItems(gameLogic);
+        itemImages = new ArrayList<>();
+        itemIndex = items.getItems();
+        gameLogic.setItems(itemIndex);
         enemyMovement = new EnemyMovementLogic(gameLogic);
         enemies = new ArrayList<>();
         enemies.add(new ImageView(this));
@@ -92,6 +102,7 @@ public class GameView extends AppCompatActivity {
         showSelected();
         generateWalls();
         setStar();
+        setItems();
         updateEnemies(0);
         gameOn();
     }
@@ -207,6 +218,50 @@ public class GameView extends AppCompatActivity {
         diff.setText(diffic);
         tileNum.setText(setTile);
         Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
+    }
+    public void setItems(){
+        Log.d(TAG, "POTIONS SIZE: " + items.getItems().size());
+        for(int i = 0; i<items.getItems().size(); i++){
+            Random random = new Random();
+            ImageView item = new ImageView(this);
+            item.setImageResource(R.drawable.potion);
+            if(i%3 == 0){
+                item.setImageResource(R.drawable.potion);
+            } else if(i%3 == 1){
+                item.setImageResource(R.drawable.lightning_bolt);
+            } else{
+                item.setImageResource(R.drawable.clock);
+            }
+            ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            wallParams.width = gameLogic.getPixelWidth();
+            wallParams.height = gameLogic.getPixelHeight();
+            item.setLayoutParams(wallParams);
+            if (item.getParent() != null) {
+                ((ViewGroup) item.getParent()).removeView(item);
+            }
+            ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+            layout.addView(item);
+            itemImages.add(item);
+            Item itemObject = items.getRealItems().get(i);
+            item.setX(gameLogic.getPixelWidth() * itemObject.getX());
+            item.setY(gameLogic.getPixelHeight() * itemObject.getY());
+        }
+    }
+
+    public void updateItems(){
+        Log.d(TAG, "ITEMS ARRAY: " + itemIndex.toString());
+        for(int i = 0; i<itemIndex.size(); i++){
+            if(itemIndex.get(i) == 0){
+                Log.d(TAG, "UPDATE ITEMS");
+                ImageView imageViewToRemove = itemImages.get(i);
+                ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
+                layout.removeView(imageViewToRemove);
+                layout.requestLayout();
+            }
+        }
     }
     private void setStar(){
         ImageView star = new ImageView(this);
