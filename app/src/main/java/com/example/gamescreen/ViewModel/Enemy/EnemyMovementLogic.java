@@ -69,7 +69,7 @@ public class EnemyMovementLogic {
         int y = direction[1];
         int newX = enemy.x + x;
         int newY = enemy.y + y;
-        boolean passed = newX >= 0 && newX < grid.gridWidth && newY >= 0 && newY < grid.gridLength&& grid.getCoordinateValue(newX, newY) != 5 && grid.getCoordinateValue(newX, newY) != -1;
+        boolean passed = newX >= 0 && newX < grid.gridWidth && newY >= 0 && newY < grid.gridLength && grid.getCoordinateValue(newX, newY) != 5 && grid.getCoordinateValue(newX, newY) != -1;
         if(!passed){
             index = random.nextInt(directions.size());
             direction = directions.get(index);
@@ -84,9 +84,16 @@ public class EnemyMovementLogic {
             passed = newX >= 0 && newX < grid.gridWidth && newY >= 0 && newY < grid.gridLength&& grid.getCoordinateValue(newX, newY) != 5 && grid.getCoordinateValue(newX, newY) != -1;
         }
         if(passed){
-            grid.setCoordinate(enemy.x, enemy.y, 0);
+            int oldX = enemy.x;
+            int oldY = enemy.y;
             enemy.x = newX;
             enemy.y = newY;
+            if(grid.getCoordinateValue(newX, newY) == 8){
+                Log.d(TAG, "IT FOUnd DA BOMB");
+                grid.setCoordinate(oldX, oldY, 0);
+                return -1;
+            }
+            grid.setCoordinate(oldX, oldY, 0);
             if(grid.getCoordinateValue(newX, newY) != 1 && grid.getCoordinateValue(newX, newY) != 8){
                 grid.setCoordinate(newX, newY, 3);
             }
@@ -95,11 +102,6 @@ public class EnemyMovementLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
                 Log.d(TAG, "POKEMON.com");
             }
-            if(grid.getCoordinateValue(newX, newY) == 8){
-                return -1;
-            }
-        } else{
-
         }
         return 1;
     }

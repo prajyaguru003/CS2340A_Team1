@@ -165,7 +165,7 @@ public class GameView extends AppCompatActivity {
 //            Log.d(TAG, "POSSSSIIITIOOONN" + " " + gameLogic.getPlayerCoordinates().toString());
             List<Integer> playerCoordinates = gameLogic.getPlayerCoordinates();
             if(gameLogic.checkGoal(playerCoordinates.get(0), playerCoordinates.get(1))) {
-                Log.d(TAG, "FOUND THE STAR!!!!!!");
+//                Log.d(TAG, "FOUND THE STAR!!!!!!");
                 Intent intent = new Intent(GameView.this, GameView.class);
                 Intent oldIntent = getIntent();
                 intent.putExtra("layout", oldIntent.getIntExtra("layout", 1) + 1);
@@ -217,19 +217,17 @@ public class GameView extends AppCompatActivity {
         hp.setText(health);
         diff.setText(diffic);
         tileNum.setText(setTile);
-        Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
+//        Log.d(TAG, "SPRITE: " + playerConfig.getSprite());
     }
     public void setItems(){
-        Log.d(TAG, "POTIONS SIZE: " + items.getItems().size());
-        for(int i = 0; i<items.getItems().size(); i++){
-            Random random = new Random();
+        for(int i = 0; i<itemIndex.size(); i++){
             ImageView item = new ImageView(this);
-            item.setImageResource(R.drawable.potion);
+            item.setImageResource(R.drawable.lightning_bolt);
             if(i%3 == 0){
                 item.setImageResource(R.drawable.potion);
             } else if(i%3 == 1){
                 item.setImageResource(R.drawable.lightning_bolt);
-            } else{
+            } else if (i%3 == 2){
                 item.setImageResource(R.drawable.clock);
             }
             ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -243,19 +241,20 @@ public class GameView extends AppCompatActivity {
                 ((ViewGroup) item.getParent()).removeView(item);
             }
             ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
-            layout.addView(item);
             itemImages.add(item);
             Item itemObject = items.getRealItems().get(i);
             item.setX(gameLogic.getPixelWidth() * itemObject.getX());
             item.setY(gameLogic.getPixelHeight() * itemObject.getY());
+            layout.addView(item);
         }
     }
 
     public void updateItems(){
-        Log.d(TAG, "ITEMS ARRAY: " + itemIndex.toString());
+//        Log.d(TAG, "ITEMS ARRAY: " + itemIndex.toString());
+//        Log.d(TAG, "ITEMINDEXSIZE: " + itemIndex.size());
         for(int i = 0; i<itemIndex.size(); i++){
             if(itemIndex.get(i) == 0){
-                Log.d(TAG, "UPDATE ITEMS");
+//                Log.d(TAG, "UPDATE ITEMS");
                 ImageView imageViewToRemove = itemImages.get(i);
                 ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
                 layout.removeView(imageViewToRemove);
@@ -305,7 +304,7 @@ public class GameView extends AppCompatActivity {
                 enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
                 layout.addView(enemy);
             } else{
-                Log.d(TAG, "YOOOOO FOUND DA BOMB ENEMY!");
+//                Log.d(TAG, "YOOOOO FOUND DA BOMB ENEMY!");
             }
         }
         if(el != 0){
@@ -330,7 +329,7 @@ public class GameView extends AppCompatActivity {
             gameTimer.cancel();
         }
 
-        Log.d(TAG, "YOU LOST!!!!");
+//        Log.d(TAG, "YOU LOST!!!!");
         Intent intent = new Intent(GameView.this, EndingView.class);
         intent.putExtra("key", -1);
         startActivity(intent);
@@ -347,6 +346,16 @@ public class GameView extends AppCompatActivity {
         intent.putExtra("health", health);
         intent.putExtra("name", name);
         startActivity(intent);
+    }
+    public void updateScore(){
+        TextView score = (TextView) findViewById(R.id.score);
+//        Log.d(TAG, "HP: " + playerConfig.getHp());
+//        Log.d(TAG, "HP: " + playerConfig.getHp());
+        Random random = new Random();
+        int y = 1 + random.nextInt(5);
+        int temp = playerConfig.getHp() * y;
+        String scoreText = "Score: " + temp;
+        score.setText(scoreText);
     }
 
 }

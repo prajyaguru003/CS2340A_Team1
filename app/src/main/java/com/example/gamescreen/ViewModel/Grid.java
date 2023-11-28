@@ -71,7 +71,7 @@ public class Grid {
                 return 3;
             }
             if((num>=150 && num < 159)){
-                grid[x][y] = 0;
+//                grid[x][y] = 0;
                 return 15;
             }
             return 1;

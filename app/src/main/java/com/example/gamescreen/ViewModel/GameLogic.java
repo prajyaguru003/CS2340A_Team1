@@ -42,17 +42,17 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
             if(success == 15){
-                Log.d(TAG, "HEALTH BOOST!");
                 int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+//                Log.d(TAG, "LIST INDEX: " + listIndex);
                 items.set(listIndex, 0);
                 if(listIndex%3 == 0){
-                    playerConfig.setHp(playerConfig.getHp() + 20);
+                    playerConfig.setHp(playerConfig.getHp() + 100);
                 } else if(listIndex % 3 == 1){
-                    scaleMovement += 1;
+                    scaleMovement +=1;
                 } else{
-                    scaleMovement += 1;
+                    scaleMovement -=1;
                 }
             }
             return grid.getPixels(player.getX(), player.getY());
@@ -70,17 +70,19 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
             if(success == 15){
-                Log.d(TAG, "HEALTH BOOST!");
+//                Log.d(TAG, "HEALTH BOOST!");
                 int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
                 items.set(listIndex, 0);
                 if(listIndex%3 == 0){
-                    playerConfig.setHp(playerConfig.getHp() + 20);
+                    playerConfig.setHp(playerConfig.getHp() + 100);
                 } else if(listIndex % 3 == 1){
-                    scaleMovement += 1;
+                    scaleMovement +=1;
                 } else{
-                    scaleMovement += 1;
+                    scaleMovement -=1;
                 }
             }
             return grid.getPixels(player.getX(), player.getY());
@@ -98,17 +100,19 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
             if(success == 15){
-                Log.d(TAG, "HEALTH BOOST!");
+//                Log.d(TAG, "HEALTH BOOST!");
                 int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
                 items.set(listIndex, 0);
                 if(listIndex%3 == 0){
-                    playerConfig.setHp(playerConfig.getHp() + 20);
+                    playerConfig.setHp(playerConfig.getHp() + 100);
                 } else if(listIndex % 3 == 1){
-                    scaleMovement += 1;
+                    scaleMovement +=1;
                 } else{
-                    scaleMovement += 1;
+                    scaleMovement -=1;
                 }
             }
             return grid.getPixels(player.getX(), player.getY());
@@ -126,17 +130,19 @@ public class GameLogic {
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
 //                Log.d(TAG, "POKEMON.com");
             }
-            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
             if(success == 15){
-                Log.d(TAG, "HEALTH BOOST!");
+//                Log.d(TAG, "HEALTH BOOST!");
                 int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
                 items.set(listIndex, 0);
                 if(listIndex%3 == 0){
-                    playerConfig.setHp(playerConfig.getHp() + 20);
+                    playerConfig.setHp(playerConfig.getHp()+500);
                 } else if(listIndex % 3 == 1){
-                    scaleMovement += 1;
+                    scaleMovement +=1;
                 } else{
-                    scaleMovement += 1;
+                    scaleMovement -=1;
                 }
             }
             return grid.getPixels(player.getX(), player.getY());

@@ -34,6 +34,7 @@ public class GameTimer extends TimerTask{
         } if(elapsedTime % 200 == 0){
             gameView.updateHealth();
             gameView.updateItems();
+            gameView.updateScore();
         }
 //        Log.d(TAG, "TIMER HAS BEEN STARTED");
     }

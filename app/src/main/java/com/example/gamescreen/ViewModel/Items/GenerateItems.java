@@ -22,15 +22,21 @@ public class GenerateItems {
             Random random = new Random();
             int x = 1 + random.nextInt(20);
             int y = 1 + random.nextInt(20);
+            while(grid.getCoordinateValue(x, y) != 0){
+                x = 1 + random.nextInt(20);
+                y = 1 + random.nextInt(20);
+            }
             Item item = null;
             if(i%3 == 0){
                 item = new Potion(x,y);
             } else if(i%3 == 1){
                 item = new SpeedBoost(x, y);
             } else{
+                x = realItems.get(i-1).getX()+2;
+                y = realItems.get(i-1).getY();
                 item = new SlowEnemies(x,y);
             }
-            grid.setCoordinate(x, y, 15*10 + i);
+            grid.setCoordinate(x, y, 150 + i);
             items.add(1);
             realItems.add(item);
         }

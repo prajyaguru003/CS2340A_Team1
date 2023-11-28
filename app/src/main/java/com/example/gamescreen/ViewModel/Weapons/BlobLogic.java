@@ -9,7 +9,7 @@ public class BlobLogic {
     GameLogic gameLogic;
     private static final String TAG = "EnemyMovement";
     public BlobLogic(GameLogic gameLogic) {
-        boulder1 = new Blob(5);
+        boulder1 = new Blob(1000);
         this.grid = gameLogic.getGrid();
         this.gameLogic = gameLogic;
     }
