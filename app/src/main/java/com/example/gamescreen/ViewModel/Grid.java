@@ -60,14 +60,19 @@ public class Grid {
     public void scramble() {
         setGrid();
     }
-    public int moveToSpot(int x, int y, int oldX, int oldY) {
-        if (grid[x][y] == 0 || grid[x][y] == 10 || grid[x][y] == 3) {
+    public int moveToSpot(int x, int y, int oldX, int oldY){
+        int num = grid[x][y];
+        if(num == 0 || num == 10 || num == 3 || (num>=150 && num < 159)){
             grid[oldX][oldY] = 0;
-            if (grid[x][y] != 10) {
+            if(grid[x][y] == 0) {
                 grid[x][y] = 1;
             }
             if (grid[x][y] == 3) {
                 return 3;
+            }
+            if((num>=150 && num < 159)){
+//                grid[x][y] = 0;
+                return 15;
             }
             return 1;
         }

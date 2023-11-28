@@ -2,6 +2,10 @@ package com.example.gamescreen.ViewModel;
 
 //import android.util.Log;
 
+import android.util.Log;
+
+import com.example.gamescreen.ViewModel.Items.GenerateItems;
+
 import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.List;
@@ -10,7 +14,9 @@ public class GameLogic {
     private Grid grid;
     private Player player;
     private int[] goldStar;
-    private ConfigurationLogic playerConfig;
+    private int scaleMovement = 1;
+    private List<Integer> items;
+    ConfigurationLogic playerConfig;
     private static final String TAG = "GameLogic";
     public GameLogic(int screenWidth, int screenLength, ConfigurationLogic playerConfig) {
         if (grid == null) {
@@ -26,33 +32,119 @@ public class GameLogic {
     }
 
     public List<Integer> moveRight(){
-        boolean success = grid.moveToSpot(player.getX()+1, player.getY(), player.getX(), player.getY());
-        if (success){
-            player.setX(player.getX()+player.getSpeed());
+        int success = grid.moveToSpot(player.getX()+1*scaleMovement, player.getY(), player.getX(), player.getY());
+        if (success == 1 || success == 3 || success == 15){
+            player.setX(player.getX()+1*scaleMovement);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+//                Log.d(TAG, "POKEMON.com");
+            }
+            if(success == 15){
+                int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+//                Log.d(TAG, "LIST INDEX: " + listIndex);
+                items.set(listIndex, 0);
+                if(listIndex%3 == 0){
+                    playerConfig.setHp(playerConfig.getHp() + 100);
+                } else if(listIndex % 3 == 1){
+                    scaleMovement +=1;
+                } else{
+                    scaleMovement -=1;
+                }
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveLeft(){
-        boolean success = grid.moveToSpot(player.getX()-1, player.getY(), player.getX(), player.getY());
-        if (success){
-            player.setX(player.getX()-player.getSpeed());
+        int success = grid.moveToSpot(player.getX()-1*scaleMovement, player.getY(), player.getX(), player.getY());
+        if (success == 1 || success == 3 || success == 15){
+            player.setX(player.getX()-1*scaleMovement);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+//                Log.d(TAG, "POKEMON.com");
+            }
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+            if(success == 15){
+//                Log.d(TAG, "HEALTH BOOST!");
+                int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
+                items.set(listIndex, 0);
+                if(listIndex%3 == 0){
+                    playerConfig.setHp(playerConfig.getHp() + 100);
+                } else if(listIndex % 3 == 1){
+                    scaleMovement +=1;
+                } else{
+                    scaleMovement -=1;
+                }
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveUp(){
-        boolean success = grid.moveToSpot(player.getX(), player.getY()-1, player.getX(), player.getY());
-        if (success){
-            player.setY(player.getY()-player.getSpeed());
+        int success = grid.moveToSpot(player.getX(), player.getY()-1*scaleMovement, player.getX(), player.getY());
+        if (success == 1 || success == 3 || success == 15){
+            player.setY(player.getY()-1*scaleMovement);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+//                Log.d(TAG, "POKEMON.com");
+            }
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+            if(success == 15){
+//                Log.d(TAG, "HEALTH BOOST!");
+                int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
+                items.set(listIndex, 0);
+                if(listIndex%3 == 0){
+                    playerConfig.setHp(playerConfig.getHp() + 100);
+                } else if(listIndex % 3 == 1){
+                    scaleMovement +=1;
+                } else{
+                    scaleMovement -=1;
+                }
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
     }
     public List<Integer> moveDown(){
-        boolean success = grid.moveToSpot(player.getX(), player.getY()+1, player.getX(), player.getY());
-        if (success){
-            player.setY(player.getY()+player.getSpeed());
+        int success = grid.moveToSpot(player.getX(), player.getY()+1*scaleMovement, player.getX(), player.getY());
+        if (success == 1 || success == 3 || success == 15){
+            player.setY(player.getY()+1*scaleMovement);
+            int newX = player.getX();
+            int newY = player.getY();
+            if(grid.getCoordinateValue(newX, newY) == 3){
+                ConfigurationLogic playerConfig = this.getPlayerConfig();
+                playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
+//                Log.d(TAG, "POKEMON.com");
+            }
+//            Log.d(TAG, "HEALTH BOOST! " + grid.getCoordinateValue(newX, newY));
+            if(success == 15){
+//                Log.d(TAG, "HEALTH BOOST!");
+                int listIndex = grid.getCoordinateValue(newX, newY) % 150;
+                grid.setCoordinate(newX, newY, 0);
+                Log.d(TAG, "LIST INDEX: " + listIndex);
+                items.set(listIndex, 0);
+                if(listIndex%3 == 0){
+                    playerConfig.setHp(playerConfig.getHp()+500);
+                } else if(listIndex % 3 == 1){
+                    scaleMovement +=1;
+                } else{
+                    scaleMovement -=1;
+                }
+            }
             return grid.getPixels(player.getX(), player.getY());
         }
         return grid.getPixels(player.getX(), player.getY());
@@ -90,5 +182,8 @@ public class GameLogic {
     }
     public ConfigurationLogic getPlayerConfig() {
         return playerConfig;
+    }
+    public void setItems(List<Integer> items){
+        this.items = items;
     }
 }

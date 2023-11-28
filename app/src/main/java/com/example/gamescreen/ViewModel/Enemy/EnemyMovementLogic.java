@@ -33,15 +33,26 @@ public class EnemyMovementLogic {
         this.gameLogic = gameLogic;
     }
 
-    public void moveEnemies() {
-        moveEnemy(enemy1, grid);
-        moveEnemy(enemy2, grid);
-        moveEnemy(enemy3, grid);
-        moveEnemy(enemy4, grid);
+    public int moveEnemies(){
+        int e1 = moveEnemy(enemy1, grid);
+        int e2 = moveEnemy(enemy2, grid);
+        int e3 = moveEnemy(enemy3, grid);
+        int e4 = moveEnemy(enemy4, grid);
+        if(e1 == -1){
+            return 1;
+        } else if(e2 == -1){
+            return 2;
+        }
+        else if(e3 == -1){
+            return 3;
+        } else if(e4 == -1){
+            return 4;
+        }
+        return 0;
     }
 
-    public void moveEnemy(Enemy enemy, Grid grid) {
-        int movementSpeed = enemy.getMovementSpeed();
+    public int moveEnemy(Enemy enemy, Grid grid){
+        int movementSpeed = enemy.movementSpeed;
         List<int[]> directions = new ArrayList<>();
         directions.add(new int[]{0, 1});
         directions.add(new int[]{0, -1});
@@ -49,18 +60,41 @@ public class EnemyMovementLogic {
         directions.add(new int[]{-1, 0});
         Random random = new Random();
         int index = random.nextInt(directions.size());
-        int[] direction = directions.get(index);
+//        int[] direction = directions.get(index);
+        List<Integer> enemyCoords = new ArrayList<>();
+        enemyCoords.add(enemy.x);
+        enemyCoords.add(enemy.y);
+        int[] direction = AStar(enemyCoords, gameLogic.getPlayerCoordinates());
         int x = direction[0];
         int y = direction[1];
-        int newX = enemy.getX() + x;
-        int newY = enemy.getY() + y;
-        if (newX >= 0 && newX < grid.getGridWidth() && newY >= 0 && newY < grid.getGridLength()
-                && grid.getCoordinateValue(newX, newY) != 5
-                && grid.getCoordinateValue(newX, newY) != -1) {
-            grid.setCoordinate(enemy.getX(), enemy.getY(), 0);
-            enemy.setX(newX);
-            enemy.setX(newY);
-            if (grid.getCoordinateValue(newX, newY) != 1) {
+        int newX = enemy.x + x;
+        int newY = enemy.y + y;
+        boolean passed = newX >= 0 && newX < grid.gridWidth && newY >= 0 && newY < grid.gridLength && grid.getCoordinateValue(newX, newY) != 5 && grid.getCoordinateValue(newX, newY) != -1;
+        if(!passed){
+            index = random.nextInt(directions.size());
+            direction = directions.get(index);
+            enemyCoords = new ArrayList<>();
+            enemyCoords.add(enemy.x);
+            enemyCoords.add(enemy.y);
+//            direction = AStar(enemyCoords, gameLogic.getPlayerCoordinates());
+            x = direction[0];
+            y = direction[1];
+            newX = enemy.x + x;
+            newY = enemy.y + y;
+            passed = newX >= 0 && newX < grid.gridWidth && newY >= 0 && newY < grid.gridLength&& grid.getCoordinateValue(newX, newY) != 5 && grid.getCoordinateValue(newX, newY) != -1;
+        }
+        if(passed){
+            int oldX = enemy.x;
+            int oldY = enemy.y;
+            enemy.x = newX;
+            enemy.y = newY;
+            if(grid.getCoordinateValue(newX, newY) == 8){
+                Log.d(TAG, "IT FOUnd DA BOMB");
+                grid.setCoordinate(oldX, oldY, 0);
+                return -1;
+            }
+            grid.setCoordinate(oldX, oldY, 0);
+            if(grid.getCoordinateValue(newX, newY) != 1 && grid.getCoordinateValue(newX, newY) != 8){
                 grid.setCoordinate(newX, newY, 3);
             }
             if (grid.getCoordinateValue(newX, newY) == 1) {
@@ -69,7 +103,31 @@ public class EnemyMovementLogic {
                 Log.d(TAG, "POKEMON.com");
             }
         }
+        return 1;
     }
+
+    private int[] AStar(List<Integer> enemy, List<Integer> player){
+        int enemyX = enemy.get(0);
+        int enemyY = enemy.get(1);
+        int playerX = player.get(0);
+        int playerY = player.get(1);
+        int[][] dirs = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        double heuristic = 1000;
+        int[] ans = new int[2];
+        for(int[] curr : dirs){
+            int newX = curr[0] + enemyX;
+            int newY = curr[1] + enemyY;
+            double temp = Math.sqrt(Math.pow(newX - playerX, 2) + Math.pow(newY-playerY, 2));
+            if(temp < heuristic){
+                heuristic = temp;
+                ans[0] = curr[0];
+                ans[1] = curr[1];
+            }
+
+        }
+        return ans;
+    }
+
 
     public List<Enemy> getEnemies() {
         return enemies;

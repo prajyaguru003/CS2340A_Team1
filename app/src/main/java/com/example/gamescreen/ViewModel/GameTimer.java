@@ -27,13 +27,15 @@ public class GameTimer extends TimerTask {
             }
         });
     }
-    private void updateGame(long elapsedTime) {
-        //if(elapsedTime % 500 == 0) {
-        //
-        //}
-        //Log.d(TAG, "TIMER HAS BEEN STARTED");
-        enemyMovement.moveEnemies();
-        gameView.updateHealth();
-        gameView.updateEnemies();
+    private void updateGame(long elapsedTime){
+        if(elapsedTime % 200 == 0){
+            int enemyEl = enemyMovement.moveEnemies();
+            gameView.updateEnemies(enemyEl);
+        } if(elapsedTime % 200 == 0){
+            gameView.updateHealth();
+            gameView.updateItems();
+            gameView.updateScore();
+        }
+//        Log.d(TAG, "TIMER HAS BEEN STARTED");
     }
 }
