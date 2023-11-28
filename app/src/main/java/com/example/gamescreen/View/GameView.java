@@ -21,6 +21,7 @@ import com.example.gamescreen.ViewModel.Enemy.Enemy;
 import com.example.gamescreen.ViewModel.Enemy.EnemyMovementLogic;
 import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.GameTimer;
+import com.example.gamescreen.ViewModel.Items.GenerateItems;
 import com.example.gamescreen.ViewModel.TileConfigurationLogic;
 import com.example.gamescreen.ViewModel.Weapons.BlobLogic;
 
@@ -37,6 +38,7 @@ public class GameView extends AppCompatActivity {
     EnemyMovementLogic enemyMovement;
     List<ImageView> enemies;
     BlobLogic blobLogic;
+    GenerateItems items;
     int tile;
     private static final String TAG = "GameView";
     @Override
@@ -66,6 +68,7 @@ public class GameView extends AppCompatActivity {
         int screenLength = display.widthPixels;
         gameLogic = new GameLogic(screenLength, screenWidth, playerConfig);
         blobLogic = new BlobLogic(gameLogic);
+        items = new GenerateItems(gameLogic);
         enemyMovement = new EnemyMovementLogic(gameLogic);
         enemies = new ArrayList<>();
         enemies.add(new ImageView(this));
