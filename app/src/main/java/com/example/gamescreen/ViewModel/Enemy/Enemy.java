@@ -13,7 +13,8 @@ public abstract class Enemy {
     public int y = 1 + random.nextInt(20);
     String name;
 
-    ImageView character;
+    private ImageView character;
+    private EnemyWeapon weapon;
 
     public int getHp() {
         return hp;
@@ -26,7 +27,7 @@ public abstract class Enemy {
     public int getMovementSpeed() {
         return movementSpeed;
     }
-
+  
     public void setMovementSpeed(int movementSpeed) {
         this.movementSpeed = movementSpeed;
     }

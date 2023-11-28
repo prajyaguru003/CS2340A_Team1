@@ -6,10 +6,10 @@ import com.example.gamescreen.ViewModel.GameLogic;
 import com.example.gamescreen.ViewModel.Grid;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
+//import java.util.Set;
 public class EnemyMovementLogic {
     private Enemy1 enemy1;
     private Enemy2 enemy2;
@@ -17,7 +17,7 @@ public class EnemyMovementLogic {
     private Enemy4 enemy4;
     private static Grid grid;
     private List<Enemy> enemies;
-    GameLogic gameLogic;
+    private GameLogic gameLogic;
     private static final String TAG = "EnemyMovement";
     public EnemyMovementLogic(GameLogic gameLogic) {
         enemies = new ArrayList<>();
@@ -54,10 +54,10 @@ public class EnemyMovementLogic {
     public int moveEnemy(Enemy enemy, Grid grid){
         int movementSpeed = enemy.movementSpeed;
         List<int[]> directions = new ArrayList<>();
-        directions.add(new int[]{0,1});
-        directions.add(new int[]{0,-1});
-        directions.add(new int[]{1,0});
-        directions.add(new int[]{-1,0});
+        directions.add(new int[]{0, 1});
+        directions.add(new int[]{0, -1});
+        directions.add(new int[]{1, 0});
+        directions.add(new int[]{-1, 0});
         Random random = new Random();
         int index = random.nextInt(directions.size());
 //        int[] direction = directions.get(index);
@@ -97,7 +97,7 @@ public class EnemyMovementLogic {
             if(grid.getCoordinateValue(newX, newY) != 1 && grid.getCoordinateValue(newX, newY) != 8){
                 grid.setCoordinate(newX, newY, 3);
             }
-            if(grid.getCoordinateValue(newX, newY) == 1){
+            if (grid.getCoordinateValue(newX, newY) == 1) {
                 ConfigurationLogic playerConfig = gameLogic.getPlayerConfig();
                 playerConfig.setHp(playerConfig.getHp() - playerConfig.getDamage());
                 Log.d(TAG, "POKEMON.com");

@@ -10,6 +10,7 @@ public class Enemy1 extends Enemy{
     public int y = 15;
     ImageView character;
 
+
     public Enemy1() {
         this.hp = 10;
         this.movementSpeed = 4;

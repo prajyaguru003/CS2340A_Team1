@@ -1,14 +1,20 @@
 package com.example.gamescreen.ViewModel;
 
-import android.graphics.Bitmap;
+//import android.graphics.Bitmap;
 
 public class Player {
     private int x;
     private int y;
+    private int speed;
+    private int damageMultiplier;
+    private int HPMultiplier;
 
-    public Player(int x, int y){
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
+        this.speed = 1;
+        this.damageMultiplier = 1;
+        this.HPMultiplier = 1;
     }
 
     public int getX() {
@@ -26,4 +32,16 @@ public class Player {
     public void setY(int y) {
         this.y = y;
     }
+
+    public int getSpeed() { return speed; }
+
+    public void setSpeed(int s) { this.speed = s; }
+
+    public int getDamageMultiplier() { return damageMultiplier; }
+
+    public void setDamageMultiplier(int d) { this.damageMultiplier = d; }
+
+    public int getHPMultiplier() { return HPMultiplier; }
+
+    public void setHPMultiplier(int h) { this.HPMultiplier = h; }
 }

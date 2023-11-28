@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="0dp" android:layout_width="0dp"/>
+=======
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+>>>>>>> 8240ec2891481b9bb5952aa42f252cace32da972
 
+<<<<<<< HEAD
+=======
     <TextView
         android:id="@+id/status"
         android:layout_width="209dp"
@@ -25,7 +32,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
+        tools:ignore="HardcodedText" />
+<<<<<<< HEAD
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> main
+=======
+
+    <TextView
+        android:id="@+id/leaderboardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> ad9164083fa74bd74ea461c876863d8064b39bef
+=======
         app:layout_constraintTop_toBottomOf="@+id/status"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 8240ec2891481b9bb5952aa42f252cace32da972
