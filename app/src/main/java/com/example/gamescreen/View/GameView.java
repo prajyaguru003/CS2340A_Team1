@@ -304,7 +304,10 @@ public class GameView extends AppCompatActivity {
                 enemies.get(i).setY(enemyObjects.get(i).y * gameLogic.getPixelHeight());
                 layout.addView(enemy);
             } else{
-//                Log.d(TAG, "YOOOOO FOUND DA BOMB ENEMY!");
+                ImageView imageViewToRemove = enemy;
+                layout = findViewById(R.id.parent_gamescreen);
+                layout.removeView(imageViewToRemove);
+                layout.requestLayout();
             }
         }
         if(el != 0){
