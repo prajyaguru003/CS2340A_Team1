@@ -181,7 +181,7 @@ public class GameView extends AppCompatActivity {
             List<Integer> coords = gameLogic.getPlayerCoordinates();
             int x = coords.get(0);
             int y = coords.get(1);
-            blobLogic.placeBlob(x, y);
+            blobLogic.placeBlob(x+1, y);
             ImageView blob = new ImageView(this);
             blob.setImageResource(R.drawable.blob);
             ConstraintLayout.LayoutParams wallParams = new ConstraintLayout.LayoutParams(
@@ -193,8 +193,7 @@ public class GameView extends AppCompatActivity {
             blob.setLayoutParams(wallParams);
             ConstraintLayout layout = findViewById(R.id.parent_gamescreen);
             layout.addView(blob);
-            int[] goldStarCoordinates = gameLogic.getGoldStar();
-            blob.setX(gameLogic.getPixelWidth() * x);
+            blob.setX(gameLogic.getPixelWidth() * (x+1));
             blob.setY(gameLogic.getPixelHeight()* y);
         });
     }
@@ -284,6 +283,7 @@ public class GameView extends AppCompatActivity {
         gameTimer.scheduleAtFixedRate(gameTimerTask, 0, 400);
     }
     public void updateEnemies(int el){
+        int toRemove = -1;
         List<Enemy> enemyObjects = enemyMovement.getEnemies();
         for(int i = 0; i<enemyObjects.size(); i++){
             ImageView enemy = enemies.get(i);
@@ -308,10 +308,11 @@ public class GameView extends AppCompatActivity {
                 layout = findViewById(R.id.parent_gamescreen);
                 layout.removeView(imageViewToRemove);
                 layout.requestLayout();
+                toRemove = i;
             }
         }
-        if(el != 0){
-            enemyObjects.remove(el-1);
+        if(toRemove != -1){
+            enemyObjects.remove(toRemove);
         }
     }
     public void updateHealth(){
